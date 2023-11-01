@@ -1,7 +1,11 @@
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+
 const App = () => {
   return (
     <>
-      <div>this is app</div>
+      <Header />
+      <Footer/>
     </>
   );
 };

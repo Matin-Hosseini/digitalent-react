@@ -1,0 +1,232 @@
+/* nav starts */
+.nav {
+  direction: rtl !important;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  padding: 1rem;
+  color: var(--text-color);
+  background-color: var(--app-bg);
+  margin: 0 auto;
+  z-index: 999999;
+  transition: all var(--transition);
+  box-shadow: var(--box-shadow);
+}
+
+.nav__logo{
+  width: 5rem;
+  height: 5rem;
+  margin-left: auto;
+}
+
+#close-sidebar-btn {
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.menu-btn{
+  font-size: 3rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+
+
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -20rem;
+  background-color: var(--app-bg);
+  width: 20rem;
+  box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.3);
+  padding: 1rem 0;
+  transition: right var(--transition);
+  z-index: 9999999;
+  color: var(--gray);
+}
+
+.nav-menu--open {
+  right: 0;
+}
+.nav-sub-menu {
+  display: none;
+}
+
+.nav-menu__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition);
+  cursor: pointer;
+  padding: 0 1rem;
+}
+.nav-menu__item--active {
+  color: var(--purple);
+  background: #8696fe57;
+  margin: 0 1rem;
+  border-radius: var(--border-radius);
+}
+.nav-menu__item:hover {
+  color: var(--purple);
+}
+.nav-menu__icon {
+  font-size: 2rem;
+}
+.nav-menu__link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.nav-menu__arrow-down {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  color: inherit;
+}
+
+.nav__options {
+  display: flex;
+}
+
+.nav__icon {
+  color: var(--purple);
+  font-size: 2rem;
+}
+
+/* search modal starts */
+.search-modal {
+}
+.search-modal .modal-content {
+  background-color: var(--app-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+}
+
+.search-modal__search-icon {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--purple);
+  font-size: 2rem;
+  cursor: pointer;
+}
+/* search modal ends */
+
+.login-signup-btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+  border-radius: 0.4rem;
+  position: relative;
+  color: var(--purple);
+  font-size: 1.4rem;
+  transition: all var(--transition);
+}
+
+.login-signup-btn::before {
+  content: "";
+  position: absolute;
+  width: 0.1rem;
+  height: 100%;
+  background-color: var(--light-gray);
+  opacity: 0.4;
+  right: -1rem;
+}
+.login-signup-btn svg {
+  transform-origin: center;
+  transform: rotate(180deg);
+}
+
+/* nav ends */
+
+/* responsive starts */
+
+@media (min-width: 768px) {
+  .nav {
+    padding-right: 3.5rem;
+  }
+  .login-signup-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 10rem;
+  }
+  .login-signup-btn:hover {
+    color: var(--purple);
+    background-color: #b46afa1a;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-menu {
+    position: static;
+    background: transparent;
+  }
+
+  .nav-menu {
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+    margin-right: 1rem;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .nav-menu__arrow-down {
+    left: 1.3rem;
+  }
+
+  .nav-sub-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 2rem;
+    padding: 1rem 0;
+    width: 17rem;
+    border-radius: 1rem;
+    border-top: 0.5rem solid var(--yellow);
+    transition: opacity var(--transition);
+    background-color: var(--app-bg);
+    visibility: hidden;
+    opacity: 0;
+    box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.2);
+  }
+  .nav-menu__item {
+    padding: 0;
+  }
+  .nav-menu__item--active {
+    margin: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .nav-menu__item:hover .nav-sub-menu {
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav-sub-menu__link {
+    display: block;
+    padding: 1rem 0.8rem;
+    color: var(--title-color);
+    transition: all var(--transition);
+    font-size: 1.3rem;
+  }
+  .nav-sub-menu__link:hover {
+    color: var(--gray);
+  }
+}
+/* responsive ends */
