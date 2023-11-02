@@ -1,0 +1,20 @@
+@import './../../../styles/modules/custom-input.css';
+
+/* search modal starts */
+.search-modal .modal-content {
+  background-color: var(--app-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.search-modal__search-icon {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--purple);
+  font-size: 2rem;
+  cursor: pointer;
+}
+/* search modal ends */

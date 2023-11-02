@@ -1,49 +1,65 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import './Header.css'
+//icons
+import {
+  BiHomeSmile,
+  BiCategoryAlt,
+  BiBookReader,
+  BiBriefcase,
+  BiPhoneCall,
+  BiSearchAlt,
+  BiCartAlt,
+  BiMoon,
+  BiLogIn,
+} from "react-icons/bi";
+import { BsCodeSlash } from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
+
+//local files and components
+import "./Header.css";
+import SearchModal from "./SearchModal/SearchModal";
 
 const Header = () => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <header>
       {/* nav menu starts */}
       <nav className="nav">
         <i className="ri-menu-3-line menu-btn d-lg-none" id="menu-btn"></i>
         <div className="nav__logo">
-          <a href="index.html">
-            <img src="assets/images/app-logo/app-favicon.png" alt="logo" />
-          </a>
+          <Link to={"/"}>
+            <img src="src/assets/images/app-logo/app-favicon.png" alt="logo" />
+          </Link>
         </div>
         <ul className="nav-menu" id="nav-menu">
           <div className="d-flex d-lg-none justify-content-between align-items-center px-3 mt-3 mb-5">
             <div className="nav__logo">
-              <a href="index.html">
+              <Link to="/">
                 <img src="assets/images/app-logo/app-favicon.png" alt="logo" />
-              </a>
+              </Link>
             </div>
             <i className="bx bx-x" id="close-sidebar-btn"></i>
           </div>
           <li className="nav-menu__item nav-menu__item--active">
-            <a href="index.html" className="nav-menu__link">
-              <i className="bx bx-home-smile nav-menu__icon"></i>
+            <Link to="/" className="nav-menu__link">
+              <BiHomeSmile className="nav-menu__icon" />
               <span>خانه</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-menu__item h-6">
-            <a href="not-completed.html" className="nav-menu__link">
-              <i className="bx bx-category-alt nav-menu__icon"></i>
+            <Link to="/not-completed" className="nav-menu__link">
+              <BiCategoryAlt className="nav-menu__icon" />
               <span>دسته بندی</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-menu__item d-none">
-            <svg>
-              <use href="#code"></use>
-            </svg>
-            <a href="#" className="nav-menu__link">
+            <BsCodeSlash />
+            <Link to="/" className="nav-menu__link">
               برنامه نویسی
-            </a>
-            <svg className="nav-menu__arrow-down d-none d-lg-block">
-              <use href="#arrow-down"></use>
-            </svg>
+            </Link>
+            <IoIosArrowDown className="nav-menu__arrow-down d-none d-lg-block" />
             <ul className="nav-sub-menu">
               <li className="nav-sub-menu__item">
                 <a href="#" className="nav-sub-menu__link">
@@ -78,22 +94,22 @@ const Header = () => {
             </ul>
           </li>
           <li className="nav-menu__item">
-            <a href="not-completed.html" className="nav-menu__link">
-              <i className="bx bx-book-reader nav-menu__icon"></i>
+            <Link to="/not-completed" className="nav-menu__link">
+              <BiBookReader className="nav-menu__icon" />
               <span>بلاگ</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-menu__item">
-            <a href="#" className="nav-menu__link">
-              <i className="bx bx-briefcase nav-menu__icon"></i>
+            <Link to="/not-completed" className="nav-menu__link">
+              <BiBriefcase className="nav-menu__icon" />
               <span>همکاری با دیجی تلنت</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-menu__item">
-            <a href="contact-us.html" className="nav-menu__link">
-              <i className="bx bx-phone-call nav-menu__icon"></i>
+            <Link to="/contact-us" className="nav-menu__link">
+              <BiPhoneCall />
               <span>تماس با ما</span>
-            </a>
+            </Link>
           </li>
         </ul>
         {/* nav menu ends */}
@@ -101,51 +117,22 @@ const Header = () => {
         {/* nav options starts */}
         <div className="nav__options d-flex justify-content-center align-items-center">
           <div className="search-modal">
-            <button
-              className="d-flex"
-              data-bs-toggle="modal"
-              data-bs-target="#searchModal">
-              <i className="bx bx-search-alt nav__icon"></i>
+            <button className="d-flex" onClick={() => setShowModal(true)}>
+              <BiSearchAlt className="nav__icon" />
             </button>
-            <div
-              className="search-modal modal fade"
-              id="searchModal"
-              // tabindex="0"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                  <div className="modal-body">
-                    <form action="">
-                      <div className="custom-input position-relative m-0">
-                        <input
-                          type="text"
-                          className="custom-input__input"
-                          id="login-name-input"
-                          required
-                        />
-                        <label className="custom-input__label">
-                          چی دلت میخواد؟
-                        </label>
-                        <i className="bx bx-search-alt search-modal__search-icon"></i>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <SearchModal show={showModal} onHide={() => setShowModal(false)} />
           </div>
 
           <div className="nav__shopping-cart d-flex">
-            <i className="bx bx-cart-alt nav__icon"></i>
+            <BiCartAlt className="nav__icon" />
           </div>
           <button className="nav__dark-mode-btn d-flex" id="dark-mode-btn">
-            <i className="bx bx-moon nav__icon"></i>
+            <BiMoon className="nav__icon" />
           </button>
-          <a href="login.html" className="login-signup-btn">
-            <i className="bx bx-log-in nav__icon"></i>
+          <Link to="/login" className="login-signup-btn">
+            <BiLogIn className="nav__icon" />
             <span className="d-none d-md-block">ورود | ثبت نام</span>
-          </a>
+          </Link>
         </div>
         {/* nav options ends */}
       </nav>

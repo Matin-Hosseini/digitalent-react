@@ -9,7 +9,7 @@
   right: 0;
   left: 0;
   top: 0;
-  padding: 1rem;
+  padding: 1rem !important;
   color: var(--text-color);
   background-color: var(--app-bg);
   margin: 0 auto;
@@ -106,26 +106,6 @@
   color: var(--purple);
   font-size: 2rem;
 }
-
-/* search modal starts */
-.search-modal {
-}
-.search-modal .modal-content {
-  background-color: var(--app-bg);
-  padding: 2rem;
-  border-radius: var(--border-radius);
-}
-
-.search-modal__search-icon {
-  position: absolute;
-  left: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--purple);
-  font-size: 2rem;
-  cursor: pointer;
-}
-/* search modal ends */
 
 .login-signup-btn {
   cursor: pointer;
