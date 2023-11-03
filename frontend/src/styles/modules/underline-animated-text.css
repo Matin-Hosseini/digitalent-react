@@ -1,0 +1,18 @@
+/* underline animation effect on text*/
+.underline-animated-text {
+  background-image: linear-gradient(currentColor, currentColor);
+  background: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 1),
+    rgba(255, 0, 180, 1),
+    rgba(0, 100, 200, 1)
+  );
+
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size var(--transition);
+  display: inline;
+  line-height: 2;
+  padding-bottom: 3px;
+}

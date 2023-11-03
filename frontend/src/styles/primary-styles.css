@@ -183,49 +183,6 @@ img {
 /* custom btn ends */
 
 /* components */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-.section-header__title {
-  font-family: "Persian Titraj";
-  font-size: 2.5rem;
-  margin-left: 0.5rem;
-}
-.section-header__dashed-line {
-  flex: 1;
-  border: 0.2px dashed var(--gray);
-  margin: 0 0.5rem;
-}
-.section-header__link {
-  padding: 0.5rem;
-  border-radius: 10rem;
-  display: flex;
-  align-items: center;
-  font-size: 1.3rem;
-  transition: all var(--transition);
-  color: var(--title-color);
-}
-.section-header__link:hover {
-  background-color: var(--light-gray);
-  color: #3f3f46;
-}
-.section-header__icon-container {
-  width: 1.8rem;
-  height: 1.8rem;
-  background-color: var(--red);
-  border-radius: 50%;
-  display: grid;
-  place-content: center;
-  margin-left: 0.5rem;
-  color: #fff;
-}
-.section-header__icon {
-  width: 1.2rem;
-}
-
 .section-name {
   color: var(--orange);
   margin-bottom: 1rem;
@@ -243,25 +200,6 @@ img {
   display: block;
   margin-bottom: 1.7rem;
   height: 1.8rem;
-}
-
-/* underline animation effect on text*/
-.underline-animated-text {
-  background-image: linear-gradient(currentColor, currentColor);
-  background: linear-gradient(
-    to right,
-    rgba(255, 0, 0, 1),
-    rgba(255, 0, 180, 1),
-    rgba(0, 100, 200, 1)
-  );
-
-  background-position: 100% 100%;
-  background-repeat: no-repeat;
-  background-size: 0% 2px;
-  transition: background-size var(--transition);
-  display: inline;
-  line-height: 2;
-  padding-bottom: 3px;
 }
 
 /* custom checkbox starts */

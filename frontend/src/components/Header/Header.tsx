@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 //icons
@@ -12,6 +12,7 @@ import {
   BiCartAlt,
   BiMoon,
   BiLogIn,
+  BiSun,
 } from "react-icons/bi";
 import { BsCodeSlash } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
@@ -22,6 +23,9 @@ import SearchModal from "./SearchModal/SearchModal";
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
+
+  const [theme, setTheme] = useState("light");
+
 
   return (
     <header>
@@ -126,8 +130,12 @@ const Header = () => {
           <div className="nav__shopping-cart d-flex">
             <BiCartAlt className="nav__icon" />
           </div>
-          <button className="nav__dark-mode-btn d-flex" id="dark-mode-btn">
-            <BiMoon className="nav__icon" />
+          <button className="nav__dark-mode-btn d-flex">
+            {theme === "dark" ? (
+              <BiSun className="nav__icon" />
+            ) : (
+              <BiMoon className="nav__icon" />
+            )}
           </button>
           <Link to="/login" className="login-signup-btn">
             <BiLogIn className="nav__icon" />
