@@ -21,8 +21,8 @@ export default function SpecialDiscounts() {
       <Container>
         <SectionHeader to={"/"} />
         <Row>
-          {products?.map(() => (
-            <Col sm={6} lg={4} xl={3}>
+          {products?.map((product) => (
+            <Col key={product} sm={6} lg={4} xl={3}>
               <CourseBox />
             </Col>
           ))}

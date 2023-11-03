@@ -1,0 +1,28 @@
+/* home starts */
+.home {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+    url("src/assets/images/home-page/bg-test2.jpg") no-repeat center center;
+  background-size: cover;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background var(--transitoin);
+}
+:root.dark .home {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
+    url("src/assets/images/home-page/bg-test2.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.home__title {
+  color: #fff;
+  font-size: 3.6rem;
+  margin-bottom: 7rem;
+  padding: 0 2rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* home ends */
