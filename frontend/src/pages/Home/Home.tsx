@@ -1,6 +1,7 @@
 import FunFacts from "../../components/FunFacts/FunFacts";
 import Hero from "../../components/Hero/Hero";
 import HomeSection from "../../components/HomeSection/HomeSection";
+import NewestCourses from "../../components/NewestCourses/NewestCourses";
 import SpecialDiscounts from "../../components/SpecialDiscounts/SpecialDiscounts";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         <HomeSection/>
         <SpecialDiscounts />
         <FunFacts/>
+        <NewestCourses/>
       </main>
     </>
   );

@@ -19,7 +19,7 @@ export default function SpecialDiscounts() {
   return (
     <section className="special-discount my-5">
       <Container>
-        <SectionHeader to={"/"} />
+        <SectionHeader title="تخفیفات ویژه" to={"/"} />
         <Row>
           {products?.map((product) => (
             <Col key={product} sm={6} lg={4} xl={3}>
