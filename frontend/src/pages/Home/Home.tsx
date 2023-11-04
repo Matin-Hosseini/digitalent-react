@@ -11,12 +11,12 @@ export default function Home() {
     <>
       <main>
         <Hero />
-        <HomeSection/>
+        <HomeSection />
         <SpecialDiscounts />
-        <FunFacts/>
-        <NewestCourses/>
-        <Weblog/>
-        <LatestEvents/>
+        <FunFacts />
+        <NewestCourses />
+        <Weblog />
+        <LatestEvents />
       </main>
     </>
   );

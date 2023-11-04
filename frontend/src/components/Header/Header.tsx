@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 //icons
@@ -16,35 +16,64 @@ import {
 } from "react-icons/bi";
 import { BsCodeSlash } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
+import { RiMenu3Fill } from "react-icons/ri";
+import { IoCloseSharp } from "react-icons/io5";
 
 //local files and components
 import "./Header.css";
 import SearchModal from "./SearchModal/SearchModal";
 
 const Header = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(false);
+  const navMenuElem = useRef(null);
 
   const [theme, setTheme] = useState("light");
 
+  // useEffect(() => {
+  //   function logger(e) {
+  //     console.log(e.target);
+  //     if (navMenuElem.current && !navMenuElem.current.contains(e.target)) {
+  //       console.log("close");
+  //     }
+  //   }
+
+  //   document.addEventListener("mousedown", logger);
+  //   return () => {
+  //     document.removeEventListener("mousedown", logger);
+  //   };
+  // }, []);
 
   return (
     <header>
-      {/* nav menu starts */}
-      <nav className="nav">
-        <i className="ri-menu-3-line menu-btn d-lg-none" id="menu-btn"></i>
+      <nav className="header-nav">
+        <div onClick={() => setShowSideBar(true)}>
+          <RiMenu3Fill className="menu-btn d-lg-none" />
+        </div>
         <div className="nav__logo">
           <Link to={"/"}>
             <img src="src/assets/images/app-logo/app-favicon.png" alt="logo" />
           </Link>
         </div>
-        <ul className="nav-menu" id="nav-menu">
+        {/* nav menu starts */}
+        <ul
+          ref={navMenuElem}
+          className={`nav-menu ${showSideBar && "nav-menu--open"}`}
+          id="nav-menu">
           <div className="d-flex d-lg-none justify-content-between align-items-center px-3 mt-3 mb-5">
             <div className="nav__logo">
               <Link to="/">
-                <img src="assets/images/app-logo/app-favicon.png" alt="logo" />
+                <img
+                  src="src/assets/images/app-logo/app-favicon.png"
+                  alt="logo"
+                />
               </Link>
             </div>
-            <i className="bx bx-x" id="close-sidebar-btn"></i>
+            <div
+              className="close-side-bar-btn"
+              onClick={() => setShowSideBar(false)}>
+              <IoCloseSharp />
+            </div>
           </div>
           <li className="nav-menu__item nav-menu__item--active">
             <Link to="/" className="nav-menu__link">
@@ -121,10 +150,15 @@ const Header = () => {
         {/* nav options starts */}
         <div className="nav__options d-flex justify-content-center align-items-center">
           <div className="search-modal">
-            <button className="d-flex" onClick={() => setShowModal(true)}>
+            <button
+              className="d-flex"
+              onClick={() => setShowSearchModal((prev) => !prev)}>
               <BiSearchAlt className="nav__icon" />
             </button>
-            <SearchModal show={showModal} onHide={() => setShowModal(false)} />
+            <SearchModal
+              show={showSearchModal}
+              onHide={() => setShowSearchModal(false)}
+            />
           </div>
 
           <div className="nav__shopping-cart d-flex">

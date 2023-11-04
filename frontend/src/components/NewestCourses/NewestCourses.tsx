@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import SectionHeader from "../SectionHeader/SectionHeader";
 
-import Container from "react-bootstrap/container";
-import Row from "react-bootstrap/row";
-import Col from 'react-bootstrap/Col'
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import CourseBox from "../CourseBox/CourseBox";
 
 const allCourses = [
