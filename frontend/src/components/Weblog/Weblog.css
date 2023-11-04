@@ -1,0 +1,57 @@
+@import './../../styles/modules/swiper.css';
+.articles {
+  background-color: var(--bg-gray);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.articles__title {
+  font-family: "Persian Titraj";
+  font-size: 3rem;
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+}
+.articles__title::before,
+.articles__title::after {
+  position: absolute;
+  content: "";
+  background-color: var(--red);
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 100%;
+}
+.articles__title::before {
+  width: 0.2rem;
+  height: 130%;
+  right: -0.5rem;
+  rotate: 2deg;
+}
+.articles__title::after {
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0.4;
+  animation: horizontal-moving 5s linear infinite forwards alternate;
+  z-index: -1;
+}
+@keyframes horizontal-moving {
+  from {
+    right: 0;
+  }
+  to {
+    right: 8rem;
+  }
+}
+.articles__caption {
+  letter-spacing: 2px;
+  margin: 2rem 0;
+  line-height: 1.7;
+}
+.articles__link {
+  justify-content: center;
+  gap: 0.5rem;
+  width: 15rem;
+  margin: 0 auto;
+  background-color: var(--light-gray);
+  color: #3f3f46;
+}

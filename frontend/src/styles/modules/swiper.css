@@ -1,0 +1,16 @@
+@import "./swiper-bundle.css";
+
+/* for all the swiper buttons*/
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: #fff;
+  width: 3rem !important;
+  height: 3rem !important;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow) !important;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: var(--red);
+  font-size: 1.5rem !important;
+}
