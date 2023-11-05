@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import NotFound from "./pages/404/404";
 import NotCompleted from "./pages/NotCompleted/NotCompleted";
 import AboutUs from "./pages/About-us";
+import Article from "./pages/Article";
 
 const App = () => {
   return (
@@ -15,9 +16,10 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
         <Route path="about" element={<AboutUs />} />
+        <Route path="login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/article" element={<Article />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/not-completed" element={<NotCompleted />} />
       </Routes>
