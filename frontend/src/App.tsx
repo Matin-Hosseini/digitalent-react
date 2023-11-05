@@ -9,6 +9,7 @@ import NotFound from "./pages/404/404";
 import NotCompleted from "./pages/NotCompleted/NotCompleted";
 import AboutUs from "./pages/About-us";
 import Article from "./pages/Article";
+import Course from "./pages/Course";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="about" element={<AboutUs />} />
         <Route path="login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/course" element={<Course />} />
         <Route path="/article" element={<Article />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/not-completed" element={<NotCompleted />} />

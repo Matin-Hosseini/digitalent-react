@@ -1,0 +1,55 @@
+/* course info starts */
+.course-info {
+  padding: 8rem 0 3rem;
+  font-size: 1.3rem;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+    url("src/assets/images/course-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+.course-info__title {
+  font-family: var(--title-font);
+  font-size: 4rem;
+  color: var(--light-gray);
+}
+.course-info__description {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  color: var(--gray);
+}
+.course-teacher {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.course-teacher__profile {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+.course-info__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+}
+@media (max-width: 490px) {
+  .course-info__content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+.course-rating {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stars .fa-star,
+.stars .fa-star-half-stroke {
+  color: var(--yellow);
+  width: 1.5rem;
+  height: 1.5rem;
+}
