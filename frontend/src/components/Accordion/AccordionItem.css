@@ -1,0 +1,52 @@
+.accordion-item {
+  background-color: var(--section-bg) !important;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  border: 0 !important;
+  box-shadow: 1px 1px 10px var(--purple);
+  border-radius: 2rem !important;
+}
+
+.accordion-header {
+  padding: 1rem !important;
+}
+
+.accordion-button {
+  font-size: 2rem !important;
+  font-family: "Persian Titraj";
+  padding: 0;
+  border: 0 !important;
+  color: var(--title-color) !important;
+  box-shadow: none;
+  border-radius: 2rem;
+  background-color: var(--section-bg) !important;
+}
+.accordion-button::after {
+  position: absolute;
+  left: 0 !important;
+  background-image: url("src/assets/svg/plus-icon.svg") !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  background-size: cover !important;
+}
+.accordion-button:not(.collapsed){
+  box-shadow: none !important;
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: url("src/assets/svg/minus-icon.svg") !important;
+}
+.accordion-button:focus {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+.accordion-body {
+  color: var(--gray);
+  line-height: 1.5;
+  font-size: 1.3rem;
+  padding: 2rem !important;
+}
+
+.accordion-item {
+  background-color: var(--section-bg) !important;
+}
