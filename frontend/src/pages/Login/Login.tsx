@@ -4,7 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 //local-folders
-import "./Login.css"
+import "./Login.css";
+import CustomInput from "../../components/Custom-input/Custom-input";
 
 export default function Login() {
   return (
@@ -20,26 +21,12 @@ export default function Login() {
           <p className="text-center mb-5 login-title">خوش برگشتی دوست خوبم</p>
 
           <form action="" className="login-form" id="login-form" noValidate>
-            <div className="custom-input">
-              <input
-                type="text"
-                name="identifier"
-                className="custom-input__input"
-                required
-              />
-              <label className="custom-input__label">
-                ایمیل یا شماره موبایل
-              </label>
-            </div>
-            <div className="custom-input">
-              <input
-                type="password"
-                name="password"
-                className="custom-input__input"
-                required
-              />
-              <label className="custom-input__label">رمز عبور</label>
-            </div>
+            <CustomInput
+              name="identifier"
+              label="ایمیل یا شماره موبایل"
+              type="text"
+            />
+            <CustomInput name="password" label="رمز عبور" type="password" />
 
             <div className="login-form__options">
               <div className="login-form__remember-me">
