@@ -1,3 +1,18 @@
+/* header starts */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 999999999;
+  transition: top var(--transition);
+}
+.header.hide {
+  top: calc(var(--header-height) * -1);
+}
+.header.show {
+  top: 0;
+}
+/* header ends */
+
 /* nav starts */
 .header-nav {
   direction: rtl !important;
@@ -5,10 +20,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  /* position: fixed;
   right: 0;
   left: 0;
-  top: 0;
+  top: 0; */
   padding: 1rem !important;
   color: var(--text-color);
   background-color: var(--app-bg);
@@ -37,7 +52,7 @@
   height: 3rem;
 }
 
-.close-side-bar-btn{
+.close-side-bar-btn {
   background: var(--light-gray);
   width: 3rem;
   height: 3rem;

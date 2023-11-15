@@ -23,6 +23,9 @@ import { IoCloseSharp } from "react-icons/io5";
 import "./Header.css";
 import SearchModal from "./SearchModal/SearchModal";
 
+//hooks
+import useScrollDirection from './../../hooks/scrollDirection'
+
 const Header = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showSideBar, setShowSideBar] = useState(false);
@@ -44,8 +47,11 @@ const Header = () => {
   //   };
   // }, []);
 
+  const scrollDirection = useScrollDirection();
+
   return (
-    <header>
+    <header
+      className={`header ${scrollDirection === "down" ? "hide" : "show"}`}>
       <nav className="header-nav">
         <div onClick={() => setShowSideBar(true)}>
           <RiMenu3Fill className="menu-btn d-lg-none" />
