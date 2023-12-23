@@ -1,4 +1,4 @@
-import "./UserPanel.css";
+import "./index.css";
 
 import { Link, Outlet } from "react-router-dom";
 

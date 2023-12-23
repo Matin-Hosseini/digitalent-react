@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
 //local-files
-import "./Sign-up.css";
+import "./index.css";
 import CustomInput from "../../components/Custom-input/Custom-input";
 
 export default function SignUp() {

@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 //local-folders
-import "./Login.css";
+import "./index.css";
 import CustomInput from "../../components/Custom-input/Custom-input";
 
 export default function Login() {
