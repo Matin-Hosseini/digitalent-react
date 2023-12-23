@@ -1,13 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 //icons
 import {
-  BiHomeSmile,
-  BiCategoryAlt,
-  BiBookReader,
-  BiBriefcase,
-  BiPhoneCall,
   BiSearchAlt,
   BiCartAlt,
   BiMoon,
@@ -21,10 +16,15 @@ import { IoCloseSharp } from "react-icons/io5";
 
 //local files and components
 import "./Header.css";
+import Logo from "../Logo";
 import SearchModal from "./SearchModal/SearchModal";
+import NavMenuLink from "./NavMenuLink";
 
 //hooks
-import useScrollDirection from './../../hooks/scrollDirection'
+import useScrollDirection from "./../../hooks/scrollDirection";
+
+//datas
+import navLinks from "../../data/navMenuLink";
 
 const Header = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
@@ -56,44 +56,25 @@ const Header = () => {
         <div onClick={() => setShowSideBar(true)}>
           <RiMenu3Fill className="menu-btn d-lg-none" />
         </div>
-        <div className="nav__logo">
-          <Link to={"/"}>
-            <img src="src/assets/images/app-logo/app-favicon.png" alt="logo" />
-          </Link>
-        </div>
+        <Logo />
         {/* nav menu starts */}
         <ul
           ref={navMenuElem}
           className={`nav-menu ${showSideBar && "nav-menu--open"}`}
           id="nav-menu">
           <div className="d-flex d-lg-none justify-content-between align-items-center px-3 mt-3 mb-5">
-            <div className="nav__logo">
-              <Link to="/">
-                <img
-                  src="src/assets/images/app-logo/app-favicon.png"
-                  alt="logo"
-                />
-              </Link>
-            </div>
+            <Logo />
             <div
               className="close-side-bar-btn"
               onClick={() => setShowSideBar(false)}>
               <IoCloseSharp />
             </div>
           </div>
-          <li className="nav-menu__item nav-menu__item--active">
-            <Link to="/" className="nav-menu__link">
-              <BiHomeSmile className="nav-menu__icon" />
-              <span>خانه</span>
-            </Link>
-          </li>
-          <li className="nav-menu__item h-6">
-            <Link to="/not-completed" className="nav-menu__link">
-              <BiCategoryAlt className="nav-menu__icon" />
-              <span>دسته بندی</span>
-            </Link>
-          </li>
-          <li className="nav-menu__item d-none">
+          {navLinks.map((navLink) => (
+            <NavMenuLink key={navLink.id} {...navLink} />
+          ))}
+
+          <li className="nav-menu__item d-none nav-menu__item--active">
             <BsCodeSlash />
             <Link to="/" className="nav-menu__link">
               برنامه نویسی
@@ -131,24 +112,6 @@ const Header = () => {
                 </a>
               </li>
             </ul>
-          </li>
-          <li className="nav-menu__item">
-            <Link to="/not-completed" className="nav-menu__link">
-              <BiBookReader className="nav-menu__icon" />
-              <span>بلاگ</span>
-            </Link>
-          </li>
-          <li className="nav-menu__item">
-            <Link to="/not-completed" className="nav-menu__link">
-              <BiBriefcase className="nav-menu__icon" />
-              <span>همکاری با دیجی تلنت</span>
-            </Link>
-          </li>
-          <li className="nav-menu__item">
-            <Link to="/contact-us" className="nav-menu__link">
-              <BiPhoneCall />
-              <span>تماس با ما</span>
-            </Link>
           </li>
         </ul>
         {/* nav menu ends */}

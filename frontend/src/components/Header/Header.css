@@ -90,11 +90,13 @@
   position: relative;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   transition: color var(--transition);
   cursor: pointer;
-  padding: 0 1rem;
+  padding: 0.7rem 1rem;
 }
-.nav-menu__item--active {
+.nav-menu__item--active,
+.nav-menu__item.active {
   color: var(--purple);
   background: #8696fe57;
   margin: 0 1rem;
@@ -210,8 +212,8 @@
     opacity: 0;
     box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.2);
   }
-  .nav-menu__item {
-    padding: 0;
+  .nav-menu__item.active {
+    background-color: transparent;
   }
   .nav-menu__item--active {
     margin: 0;
