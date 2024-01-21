@@ -2,13 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 //icons
-import {
-  BiSearchAlt,
-  BiCartAlt,
-  BiMoon,
-  BiLogIn,
-  BiSun,
-} from "react-icons/bi";
+import { BiSearchAlt, BiCartAlt, BiMoon, BiLogIn, BiSun } from "react-icons/bi";
 import { BsCodeSlash } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiMenu3Fill } from "react-icons/ri";
@@ -26,7 +20,7 @@ import useScrollDirection from "./../../hooks/scrollDirection";
 //datas
 import navLinks from "../../data/navMenuLink";
 
-const Header = () => {
+const Header = ({ isDark, onIsDark }) => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showSideBar, setShowSideBar] = useState(false);
   const navMenuElem = useRef(null);
@@ -133,8 +127,17 @@ const Header = () => {
           <div className="nav__shopping-cart d-flex">
             <BiCartAlt className="nav__icon" />
           </div>
-          <button className="nav__dark-mode-btn d-flex">
+          {/* <button className="nav__dark-mode-btn d-flex">
             {theme === "dark" ? (
+              <BiSun className="nav__icon" />
+            ) : (
+              <BiMoon className="nav__icon" />
+            )}
+          </button> */}
+          <button
+            className="nav__dark-mode-btn d-flex"
+            onClick={() => onIsDark(!isDark)}>
+            {isDark ? (
               <BiSun className="nav__icon" />
             ) : (
               <BiMoon className="nav__icon" />

@@ -3,6 +3,7 @@ import About from "./pages/About-us";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Article from "./pages/Article";
+import Course from './pages/Course'
 import NotCompleted from "./pages/NotCompleted";
 import NotFound from "./pages/404";
 
@@ -22,7 +23,7 @@ const routes:any = [
   { path: "/about", element: <About /> },
   { path: "/login", element: <Login /> },
   { path: "/sign-up", element: <SignUp /> },
-  { path: "/course", element: <Home /> },
+  { path: "/course", element: <Course /> },
   { path: "/article", element: <Article /> },
   { path: "/not-completed", element: <NotCompleted /> },
   { path: "*", element: <NotFound /> },
