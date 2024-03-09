@@ -1,4 +1,4 @@
-import CustomInput from "../../../components/Custom-input/Custom-input";
+import CustomInput from "../../../components/Input";
 import "./ChangePassword.css";
 
 export default function ChangePassword() {

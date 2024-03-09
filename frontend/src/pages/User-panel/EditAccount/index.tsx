@@ -1,4 +1,3 @@
-import CustomInput from "../../../components/Custom-input/Custom-input";
 import "./EditAccount.css";
 
 export default function EditAccount() {

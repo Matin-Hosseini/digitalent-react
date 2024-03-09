@@ -12,9 +12,9 @@ const App = () => {
 
   return (
     <div className={`application ${isDark ? "dark" : ""}`}>
-      <Header isDark={isDark} onIsDark={setIsDark} />
+      {/* <Header isDark={isDark} onIsDark={setIsDark} /> */}
       {router}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
