@@ -2,19 +2,25 @@ import { useRoutes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 
+//contexts
+import { ThemeContext } from "./contexts/theme";
+
+import { useContext, useEffect } from "react";
 import routes from "./routes";
-import { useState } from "react";
 
 const App = () => {
   const router = useRoutes(routes);
+  const { theme } = useContext(ThemeContext);
 
-  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    document.documentElement.className = theme;
+  }, [theme]);
 
   return (
-    <div className={`application ${isDark ? "dark" : ""}`}>
-      {/* <Header isDark={isDark} onIsDark={setIsDark} /> */}
+    <div className={`App `}>
+      <Header />
       {router}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

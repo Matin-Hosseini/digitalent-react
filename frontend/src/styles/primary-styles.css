@@ -1,7 +1,7 @@
 @import "./reset.css";
 @import "./fonts.css";
 :root {
-  --app-bg: #F4F7FB;
+  --app-bg: #f4f7fb;
   --section-bg: #f9f9f9;
 
   /* colors */

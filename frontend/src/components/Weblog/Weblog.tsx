@@ -2,16 +2,15 @@ import "./Weblog.css";
 
 import { Link } from "react-router-dom";
 
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 
 //swiper
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import "swiper/css";
-
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 //local components
 import BlogBox from "./../BlogBox/BlogBox";
@@ -70,7 +69,7 @@ export default function Weblog() {
                 }}
                 pagination={{ clickable: true }}
                 onSlideChange={() => console.log("slide change")}
-                onSwiper={(swiper: any) => console.log(swiper)}>
+              >
                 {swiperData?.map((article) => (
                   <SwiperSlide key={article}>
                     <BlogBox />
