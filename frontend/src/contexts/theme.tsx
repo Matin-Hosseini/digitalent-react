@@ -1,17 +1,29 @@
-import { createContext, useState } from "react";
+import { ReactElement, createContext, useEffect, useState } from "react";
+import useLocalStorage from "../hooks/localstorage";
 
-export const ThemeContext = createContext(null);
+interface themeContext {
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+  toggleTheme: () => void;
+}
 
-const ThemeProvider = ({ children }: { children: any }) => {
+export const ThemeContext = createContext<themeContext | null>(null);
+
+const ThemeProvider = ({ children }: { children: ReactElement }) => {
   const [theme, setTheme] = useState("light");
+  const [localStoragetheme, setLocalStorageTheme] = useLocalStorage("theme");
 
   const toggleTheme = () => {
-    let newTheme;
-    setTheme((current) => {
-      newTheme = current === "light" ? "dark" : "light";
-      return newTheme;
-    });
+    let newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    setLocalStorageTheme(newTheme);
   };
+
+  useEffect(() => {
+    if (localStoragetheme) {
+      setTheme(localStoragetheme);
+    }
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
