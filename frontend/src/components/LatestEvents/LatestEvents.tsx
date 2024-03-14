@@ -1,17 +1,13 @@
-import EventBox from "../EventBox/EventBox";
 import "./LatestEvents.css";
 
 //react-bootstrap
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 const eventsData: number[] = [1, 2, 3, 4, 5, 6];
 
 export default function LatestEvents() {
   return (
     <section className="latest-events my-5">
-      <Container>
+      {/* <Container>
         <h3 className="latest-events__subtitle">
           وقتشه یه جا با هم یاد بگیریم
         </h3>
@@ -38,7 +34,7 @@ export default function LatestEvents() {
           </div>
           مشاهده همه
         </a>
-      </Container>
+      </Container> */}
     </section>
   );
 }

@@ -1,0 +1,10 @@
+.login-register-btn {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding-inline: 2rem;
+  color: var(--text-color) !important;
+  font-size: 1.5rem !important;
+  font-family: var(--text-font);
+  border-radius: 10rem !important;
+}

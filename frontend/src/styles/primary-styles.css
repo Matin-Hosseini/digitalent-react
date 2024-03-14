@@ -1,12 +1,16 @@
 @import "./reset.css";
 @import "./fonts.css";
 :root {
-  --app-bg: #f4f7fb;
+  --app-bg: #f1eaea;
   --section-bg: #f9f9f9;
 
   /* colors */
   --title-color: #3f3f46;
   --text-color: #52525b;
+
+  --box-bg: #f9f9f9;
+  --box-radius: 0.7rem;
+  --icon-button-hover: #dbeafe;
 
   --green: #0d9488;
   --green-bg: #0d948933;
@@ -46,14 +50,16 @@
 }
 
 :root.dark {
-  /* --app-bg: #27272a; */
-  --app-bg: #000324;
-  /* --section-bg: #3f3f46; */
-  --section-bg: #293146;
+  --app-bg: #242329;
+  /* --section-bg: #3B3D3E; */
+  --section-bg: #312f3c;
+  --box-bg: #312f3c;
+  --icon-button-hover: #52525b;
 
   /* colors */
   --title-color: #fff;
-  --text-color: #f9f9f9;
+  /* --text-color: #f9f9f9; */
+  --text-color: #e2dbd0;
 
   --bg-gray: #9ca3af;
 
@@ -78,6 +84,7 @@ body {
   font-size: 1.6rem;
   color: var(--title-color);
   background-color: var(--app-bg);
+  color: var(--text-color);
   transition: background-color var(--transition);
   line-height: 1.5;
   /* padding-top: 6.5rem; */
@@ -377,3 +384,8 @@ img {
   }
 }
 /* custom checkbox ends */
+
+/*helpers*/
+.text-color {
+  color: var(--text-color);
+}

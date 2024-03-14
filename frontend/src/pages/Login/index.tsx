@@ -7,10 +7,6 @@ import "./index.css";
 export default function Login() {
   return (
     <div className="login h-dvh grid lg:grid-cols-2 items-center px-6 lg:p-0">
-      <div className="hidden lg:grid items-center bg-stone-900 h-full">
-        <img src="src/assets/images/login-page/test-illustration.jpg" alt="" />
-      </div>
-
       <div>
         <p className="text-center mb-5 login-title">خوش برگشتی دوست خوبم</p>
 
@@ -41,6 +37,10 @@ export default function Login() {
 
           <button className="login-form__btn">ورود</button>
         </form>
+      </div>
+
+      <div className="hidden lg:grid items-center bg-stone-900 h-full">
+        <img src="src/assets/images/login-page/login.png" alt="" />
       </div>
     </div>
   );

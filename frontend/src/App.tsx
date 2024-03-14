@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { useLocation, useRoutes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 
@@ -10,17 +10,23 @@ import routes from "./routes";
 
 const App = () => {
   const router = useRoutes(routes);
+
   const { theme } = useContext(ThemeContext);
+
+  const location = useLocation();
 
   useEffect(() => {
     document.documentElement.className = theme;
   }, [theme]);
 
+  const isAuthRoute =
+    location.pathname === "/login" || location.pathname === "/sign-up";
+
   return (
     <div className={`App `}>
-      <Header />
-      {router}
-      <Footer />
+      {!isAuthRoute && <Header />}
+      {/* {router} */}
+      {/* {!isAuthRoute && <Footer />} */}
     </div>
   );
 };

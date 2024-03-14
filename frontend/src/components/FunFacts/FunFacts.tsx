@@ -13,7 +13,7 @@ import Col from "react-bootstrap/Col";
 export default function FunFacts() {
   return (
     <section className="funfacts">
-      <Container>
+      {/* <Container>
         <Row>
           <Col sm={6} md={3}>
             <div className="funfact mb-5 mb-md-0">
@@ -71,7 +71,7 @@ export default function FunFacts() {
             </div>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
     </section>
   );
 }

@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
 
-import SectionHeader from "../SectionHeader/SectionHeader";
-
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import CourseBox from "../CourseBox/CourseBox";
-
 const allCourses = [
   {
     _id: "65369297c65fadb18417f319",
@@ -159,7 +152,7 @@ export default function NewestCourses() {
 
   return (
     <>
-      <Container>
+      {/* <Container>
         <SectionHeader title="جدیدترین دوره ها" to="/" />
         <Row>
           {courses?.map((course) => (
@@ -168,7 +161,7 @@ export default function NewestCourses() {
             </Col>
           ))}
         </Row>
-      </Container>
+      </Container> */}
     </>
   );
 }

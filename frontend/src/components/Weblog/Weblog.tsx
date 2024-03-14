@@ -1,19 +1,9 @@
 import "./Weblog.css";
 
-import { Link } from "react-router-dom";
-
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-
-import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
-
 //swiper
 import "swiper/css";
-import { Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 //local components
-import BlogBox from "./../BlogBox/BlogBox";
 
 const swiperData: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -22,7 +12,7 @@ export default function Weblog() {
     <section className="weblog">
       <div className="container-fluid">
         <div className="articles my-5">
-          <Row>
+          {/* <Row>
             <Col sm={5} lg={4} xl={3} className="align-self-center">
               <h2 className="articles__title">خواندنی ها</h2>
               <p className="articles__caption">
@@ -77,7 +67,7 @@ export default function Weblog() {
                 ))}
               </Swiper>
             </Col>
-          </Row>
+          </Row> */}
         </div>
       </div>
     </section>
