@@ -25,10 +25,11 @@ const App = () => {
   return (
     <div className={`App `}>
       {!isAuthRoute && <Header />}
-      {/* {router} */}
-      {/* {!isAuthRoute && <Footer />} */}
+      {router}
+      {!isAuthRoute && <Footer />}
     </div>
   );
 };
 
 export default App;
+

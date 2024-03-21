@@ -8,10 +8,10 @@
   direction: rtl;
   width: 100%;
   border: 0;
-  border: 2px solid var(--purple);
+  border: 2px solid var(--input-color);
   outline: 0;
   padding: 1rem 2rem;
-  border-radius: 10rem;
+  border-radius: .5rem;
   font-size: 1.3rem;
   color: var(--gray);
   background-color: var(--app-bg);
@@ -22,7 +22,7 @@
   top: 50%;
   right: 2rem;
   transform: translateY(-50%);
-  color: var(--purple);
+  color: var(--input-color);
   font-size: 1.4rem;
   pointer-events: none;
   padding: 0.3rem 0.5rem;
@@ -42,7 +42,7 @@
   position: absolute;
   top: 2rem;
   right: 2.5rem;
-  color: var(--purple);
+  color: var(--input-color);
   font-size: 1.4rem;
   background-color: var(--app-bg);
   padding: 0 0.5rem;

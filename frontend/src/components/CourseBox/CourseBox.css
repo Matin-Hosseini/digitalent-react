@@ -1,12 +1,8 @@
 @import "./../../styles/modules/underline-animated-text.css";
 
 .course-box {
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: var(--box-shadow);
   color: var(--gray);
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;
   position: relative;
   background-color: var(--section-bg);
   transition: var(--transition);
@@ -26,11 +22,11 @@
   border-radius: 100%;
   top: 1rem;
   right: 1rem;
-  box-shadow: var(--box-shadow);
+  /* box-shadow: var(--box-shadow); */
 }
 
 .course-box__info {
-  padding: 1rem 1rem;
+  /* padding: 1rem 1rem; */
   position: relative;
 }
 .course-box__category {
@@ -60,28 +56,26 @@
   line-height: 1.3;
   margin-bottom: 1rem;
   color: var(--title-color);
+  font-size: 1.4rem;
 }
 
 .course-box:hover .underline-animated-text {
   background-size: 100% 2px;
 }
 .course-box__price {
-  padding: 1rem;
-  border: 1px dashed var(--gray);
-  border-radius: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* border: 1px dashed var(--gray); */
+  background-color: rgba(130, 140, 154, 0.09);
 }
 .course-box__shopping-cart-icon {
   display: grid;
   place-content: center;
   padding: 0;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+
   background-color: var(--red);
-  border-top-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  border-top-left-radius: .7rem;
+  border-bottom-right-radius: .7rem;
   color: #fff;
   transition: all var(--transition);
 }
@@ -89,7 +83,7 @@
   border-radius: 50%;
 }
 .course-box__shopping-cart-icon svg {
-  width: 2rem;
+  width: 1.6rem;
 }
 .course-box__current-price {
   color: var(--green);
@@ -111,12 +105,7 @@
   transform: translateY(-50%) rotate(-10deg);
 }
 
-.course-box__time,
-.course-box__teacher-name {
-  margin-right: 0.3rem;
-}
 .course-box__ratings .star-icon {
   width: 1.5rem;
   color: var(--yellow);
 }
-

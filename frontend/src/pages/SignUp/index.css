@@ -1,50 +1,32 @@
-.sign-up {
-  max-width: 60rem;
-  margin: 10rem auto;
-  direction: ltr;
-}
-
 .sign-up__title {
   font-family: "Persian Titraj";
   font-size: 4.5rem;
   text-align: center;
-  color: var(--green);
+  color: var(--input-color);
   margin-bottom: 6rem;
 }
 
 .sign-up-form {
-  max-width: 60rem;
+  width: 75%;
   margin: auto;
   font-size: 1.3rem;
 }
 
-.sign-up-form__inputs {
-  direction: rtl;
-  display: grid;
-}
-
-@media(min-width: 768px){
-    .sign-up-form__inputs{
-        grid-template-columns: 1fr 1fr;
-        column-gap: 1.5rem
-    }
-}
-
 .sign-up-form .custom-input__input {
   border: 0;
-  border-bottom: 1px solid var(--blue);
+  border: 1px solid var(--input-color);
   border-radius: 0.5rem;
 }
 
 .sign-up-form .custom-input__label {
-  color: var(--blue);
+  color: var(--input-color);
 }
 
 .sign-up-form__btn {
   width: 100%;
-  background-color: var(--green);
+  background-color: var(--blue);
   height: 4.5rem;
-  border-radius: 10rem;
+  border-radius: 1rem;
   color: #fff;
 }
 

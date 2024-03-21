@@ -3,9 +3,9 @@
   background-image: linear-gradient(currentColor, currentColor);
   background: linear-gradient(
     to right,
-    rgba(255, 0, 0, 1),
-    rgba(255, 0, 180, 1),
-    rgba(0, 100, 200, 1)
+    rgba(255, 0, 0, 0.4),
+    rgba(255, 0, 180, 0.4),
+    rgba(0, 100, 200, 0.4)
   );
 
   background-position: 100% 100%;

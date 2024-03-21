@@ -8,3 +8,8 @@
   font-family: var(--text-font);
   border-radius: 10rem !important;
 }
+
+.login-button {
+  font-family: var(--text-font) !important;
+  font-size: 2rem;
+}

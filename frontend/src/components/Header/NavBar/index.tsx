@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import Box from "../../Box";
+import Box from "../../ContainerBox";
 
 import { FiHeart } from "react-icons/fi";
 import { IoCartOutline } from "react-icons/io5";
 
 import Icon from "../../Icon";
 
-import "./index.css";
+// import "./index.css";
 
 export default function NavBar() {
   return (
@@ -49,7 +49,11 @@ export default function NavBar() {
           <Icon>
             <FiHeart className="text-color" />
           </Icon>
-          <Link to={"/login"}>ورود</Link>
+          <Link to={"/login"}>
+            <Icon>
+              <span className="text-color">ورود | عضویت</span>
+            </Icon>
+          </Link>
         </div>
       </nav>
     </Box>

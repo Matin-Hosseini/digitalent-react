@@ -2,11 +2,8 @@
 @import "./../../styles/modules/animations.css";
 
 /* hero starts */
-:root.dark .hero {
-  background-color: #000324;
-}
 .hero {
-  background-color: #f3f3f3;
+  /* background-color: #f3f3f3; */
   min-height: calc(100dvh - var(--header-height));
   transition: var(--transition);
   padding: 5rem 0;
