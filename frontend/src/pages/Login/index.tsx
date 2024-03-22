@@ -1,10 +1,23 @@
 //local-folders
+import { useState } from "react";
 import Input from "../../components/Input";
 import Logo from "../../components/Logo";
 import UnderlinedLink from "../../components/UnderlinedLink";
 import "./index.css";
+import axios from "axios";
 
 export default function Login() {
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const body = {identifier, password}
+
+    const res = await axios.post("http://localhost:8000/api/v1/login", body)
+  };
+
   return (
     <>
       <div className="login h-dvh grid lg:grid-cols-2 px-6 lg:p-0">
@@ -17,13 +30,27 @@ export default function Login() {
               خوش برگشتی دوست خوبم
             </p>
 
-            <form action="" className="login-form" id="login-form" noValidate>
+            <form
+              action=""
+              className="login-form"
+              id="login-form"
+              noValidate
+              onSubmit={handleLogin}
+            >
               <Input
                 name="identifier"
                 label="ایمیل یا شماره موبایل"
                 type="text"
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
               />
-              <Input name="password" label="رمز عبور" type="password" />
+              <Input
+                name="password"
+                label="رمز عبور"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
               <button className="login-form__btn">ورود</button>
 

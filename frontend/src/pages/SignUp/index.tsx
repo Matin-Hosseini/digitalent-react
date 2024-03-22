@@ -8,13 +8,26 @@ import "./index.css";
 import UnderlinedLink from "../../components/UnderlinedLink";
 import Logo from "./../../components/Logo";
 
+import axios from "axios";
+
 export default function SignUp() {
   const [checkbox, setCheckbox] = useState(false);
 
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const toggleCheckbox = () => setCheckbox((prev) => !prev);
 
-  const registerHandler = (e) => {
+  const registerHandler = async (e) => {
     e.preventDefault();
+
+    if (!checkbox) return;
+
+    const body = { username, email, password };
+
+    const res = await axios.post("http://localhost:8000/api/v1/register", body);
+    console.log(res, res.cookie);
   };
   return (
     <div className="h-dvh grid lg:grid-cols-2">
@@ -34,9 +47,27 @@ export default function SignUp() {
             onSubmit={registerHandler}
           >
             <div className="sign-up-form__inputs">
-              <Input name="userName" label="نام کاربری" type="text" />
-              <Input name="email" label="ایمیل" type="email" />
-              <Input name="password" label="رمز عبور" type="password" />
+              <Input
+                name="userName"
+                label="نام کاربری"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <Input
+                name="email"
+                label="ایمیل"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Input
+                name="password"
+                label="رمز عبور"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className="mb-5 flex gap-2 items-center">
               <Checkbox

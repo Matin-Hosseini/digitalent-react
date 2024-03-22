@@ -26,6 +26,8 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { identifier, password } = req.body;
+  console.log(req.cookie)
+  const cookie = req.cookie
 
   const user = await User.findOne({
     where: {
@@ -38,7 +40,7 @@ const login = async (req, res) => {
   const token = generateToken(user.id);
   generateCookie(res, "user", token);
 
-  res.send({ msg: "user logged in" });
+  res.send({ msg: "user logged in", cookie });
 };
 
 const test = async (req, res) => {
