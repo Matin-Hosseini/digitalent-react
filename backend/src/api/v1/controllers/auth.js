@@ -1,5 +1,7 @@
-const jwt = require("jsonwebtoken");
 const { User } = require("./../models");
+const { generateToken } = require("./../../../utils/generateToken");
+const { generateCookie } = require("./../../../utils/cookie");
+const { Op } = require("sequelize");
 
 /*
  * registers new user and stores token to cookie
@@ -9,15 +11,11 @@ const { User } = require("./../models");
 
 const register = async (req, res) => {
   const newUser = await User.create(req.body);
-  const token = jwt.sign(newUser.id, process.env.JWTSECRET);
+  const token = generateToken(newUser.id);
 
-  res.cookie("user", token, {
-    httpOnly: true,
-    sameSite: true,
-    maxAge: 3 * 24 * 60 * 60 * 1000,
-  });
+  generateCookie(res, "user", token);
 
-  res.status(201).json({ msg: "New user created" });
+  res.status(201).json({ message: "New user created" });
 };
 
 /*
@@ -27,25 +25,26 @@ const register = async (req, res) => {
  */
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
+  const { identifier, password } = req.body;
 
   const user = await User.findOne({
     where: {
-      username: req.body.username,
+      [Op.or]: [{ username: identifier }, { email: identifier }],
     },
   });
 
-  if (!user)
-    return res.status(404).send({ error: "User not found" });
+  if (!user) return res.status(404).send({ error: "User not found" });
 
-  const token = jwt.sign(user.id, process.env.JWTSECRET);
-  res.cookie("user", token, {
-    httpOnly: true,
-    sameSite: true,
-    maxAge: 3 * 24 * 60 * 60 * 1000,
-  });
+  const token = generateToken(user.id);
+  generateCookie(res, "user", token);
 
-  res.send({ msg: "user logged in", user });
+  res.send({ msg: "user logged in" });
 };
 
-module.exports = { register, login };
+const test = async (req, res) => {
+  console.log(req.user);
+
+  res.status(200).json({ msg: "inside auth controller" });
+};
+
+module.exports = { register, login, test };
