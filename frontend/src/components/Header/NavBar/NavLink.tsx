@@ -10,7 +10,7 @@ export default function NavLink({
   to: string;
 }) {
   return (
-    <li className={`h-full block  group ${!megaMenu && "relative"}`}>
+    <li className={`h-full block  group ${!megaMenu ? "relative" : ""}`}>
       <RouterNavLink
         to={to}
         className="h-full leading-[50px] inline-block overflow-hidden hover:text-red-500"
