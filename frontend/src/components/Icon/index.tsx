@@ -1,11 +1,15 @@
+import { styled } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { ReactElement } from "react";
-import "./index.css";
 
-export default function Icon({ children, size }: { children: ReactElement }) {
-  return (
-    <IconButton className="IconButton">
-      {children}
-    </IconButton>
-  );
+
+const CustomIcon = styled(IconButton)({
+  // background: "red",
+  // "&:hover": {
+  //   background: "green",
+  // },
+});
+
+export default function Icon({ children, size, props }: { children: ReactElement }) {
+  return <CustomIcon className="IconButton" {...props}>{children}</CustomIcon>;
 }

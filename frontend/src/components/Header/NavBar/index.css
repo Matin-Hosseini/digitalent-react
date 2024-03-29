@@ -1,15 +1,17 @@
-.login-register-btn {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  padding-inline: 2rem;
-  color: var(--text-color) !important;
-  font-size: 1.5rem !important;
-  font-family: var(--text-font);
-  border-radius: 10rem !important;
+/* active classes for NavMenuLinks */
+
+.active {
+  position: relative;
+  color: var(--red);
 }
 
-.login-button {
-  font-family: var(--text-font) !important;
-  font-size: 2rem;
+.active::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: var(--red);
+  height: 8px;
+  bottom: -5px;
+  border-radius: 0.5rem;
+  transform: rotate(-4deg);
 }

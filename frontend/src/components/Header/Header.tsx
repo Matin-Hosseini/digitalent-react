@@ -46,7 +46,7 @@
 //           className={`nav-menu ${showSideBar && "nav-menu--open"}`}
 //           id="nav-menu"
 //         >
-//           <div className="d-flex d-lg-none justify-content-between align-items-center px-3 mt-3 mb-5">
+//           <div className="px-3 mt-3 mb-5 d-flex d-lg-none justify-content-between align-items-center">
 //             <Logo />
 //             <div
 //               className="close-side-bar-btn"

@@ -1,60 +1,17 @@
-import { Link } from "react-router-dom";
 import Box from "../../ContainerBox";
 
-import { FiHeart } from "react-icons/fi";
-import { IoCartOutline } from "react-icons/io5";
+// import NavLink from "./NavLink";
 
-import Icon from "../../Icon";
-
-// import "./index.css";
+import "./index.css";
+import NavMenu from "./NavMenu";
+import NavOptions from "./NavOptions";
 
 export default function NavBar() {
   return (
-    <Box className="">
-      <nav className="flex items-center justify-between">
-        <ul className="flex items-center gap-14">
-          <li>
-            <Link to={"/"}>خانه</Link>
-          </li>
-          <li>
-            <Link to="">برنامه نویسی</Link>
-          </li>
-          <li>
-            <Link to={"/"}>دوره ها</Link>
-          </li>
-          <li>
-            <Link to={"/"}>مقالات</Link>
-          </li>
-          <li>
-            <Link to={"/"}>تماس با ما</Link>
-          </li>
-          <li>
-            <Link to={"/"}>خانه</Link>
-          </li>
-          <li>
-            <Link to={"/"}>مقالات</Link>
-          </li>
-          <li>
-            <Link to={"/"}>تماس با ما</Link>
-          </li>
-          <li>
-            <Link to={"/"}>خانه</Link>
-          </li>
-        </ul>
-
-        <div className="flex items-center gap-4">
-          <Icon>
-            <IoCartOutline className="text-color" />
-          </Icon>
-          <Icon>
-            <FiHeart className="text-color" />
-          </Icon>
-          <Link to={"/login"}>
-            <Icon>
-              <span className="text-color">ورود | عضویت</span>
-            </Icon>
-          </Link>
-        </div>
+    <Box className="h-20" padding={0}>
+      <nav className="relative flex items-center justify-between h-full px-6">
+        <NavMenu />
+        <NavOptions />
       </nav>
     </Box>
   );
