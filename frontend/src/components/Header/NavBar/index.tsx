@@ -1,8 +1,5 @@
 import Box from "../../ContainerBox";
 
-// import NavLink from "./NavLink";
-
-import "./index.css";
 import NavMenu from "./NavMenu";
 import NavOptions from "./NavOptions";
 

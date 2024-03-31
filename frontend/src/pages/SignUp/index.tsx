@@ -74,7 +74,7 @@ export default function SignUp() {
                 sx={{
                   "& .MuiSvgIcon-root": {
                     fontSize: 27,
-                    color: "var(--primary-color)",
+                    color: "var(--text-color)",
                   },
                 }}
                 checked={checkbox}

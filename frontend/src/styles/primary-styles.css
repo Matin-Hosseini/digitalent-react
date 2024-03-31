@@ -1,8 +1,8 @@
 @import "./reset.css";
 @import "./fonts.css";
 :root {
-  --app-bg: #f1eaea;
-  --section-bg: #f9f9f9;
+  /* --app-bg: #f1eaea; */
+  /* --section-bg: #f9f9f9; */
 
   --primary-color: ;
 
@@ -51,13 +51,13 @@
   --text-font: "Vasir";
 
   /* measurements */
-  --header-height: 6.5rem;
+  --header-height: 10.75rem;
 }
 
 :root.dark {
-  --app-bg: #242329;
+  /* --app-bg: #242329; */
   /* --section-bg: #3B3D3E; */
-  --section-bg: #312f3c;
+  /* --section-bg: #312f3c; */
   --box-bg: #312f3c;
   --icon-button-hover: #52525b;
 

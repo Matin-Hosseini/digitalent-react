@@ -1,10 +1,10 @@
 import SectionHeader from "../../../../components/SectionHeader/SectionHeader";
 
 //swiper
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import "swiper/css";
-import CourseBox from "../../../../components/CourseBox/CourseBox";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import CourseBox from "../../../../components/CourseBox";
 
 const relatedCoursesData = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -46,7 +46,8 @@ export default function RelatedCourses() {
           }}
           pagination={{ clickable: true }}
           onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper: any) => console.log(swiper)}>
+          onSwiper={(swiper: any) => console.log(swiper)}
+        >
           {relatedCoursesData?.map((course) => (
             <SwiperSlide key={course}>
               <CourseBox />

@@ -7,7 +7,7 @@
   --container-xxl: 1320px;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 640px) {
   :root {
     --container: var(--container-sm);
   }
@@ -17,17 +17,17 @@
     --container: var(--container-md);
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   :root {
     --container: var(--container-lg);
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
   :root {
     --container: var(--container-xl);
   }
 }
-@media (min-width: 1400px) {
+@media (min-width: 1536px) {
   :root {
     --container: var(--container-xxl);
   }

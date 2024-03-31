@@ -149,7 +149,7 @@ import "./Header.css";
 
 //contexts
 import NavBar from "./NavBar";
-import TopBar from "./TopHeader";
+import TopBar from "./TopBar";
 
 //datas
 

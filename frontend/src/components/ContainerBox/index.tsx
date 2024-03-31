@@ -1,8 +1,14 @@
 import "./index.css";
 
-export default function ContainerBox({ children, className, padding }) {
+export default function ContainerBox({ children, className }) {
   return (
-    <div className={`container-box p-${padding} ${className}`}>{children}</div>
+    <div
+      className={`container-box ${
+        className || ""
+      }`}
+    >
+      {children}
+    </div>
   );
 }
 

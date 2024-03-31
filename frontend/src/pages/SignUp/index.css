@@ -46,3 +46,7 @@
     justify-content: space-between;
   }
 }
+
+.checkbox {
+  background-color: red;
+}

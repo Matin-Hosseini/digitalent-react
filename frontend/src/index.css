@@ -3,6 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --app-bg: #f1eaea;
+    --section-bg: #f9f9f9;
+  }
+
+  :root.dark {
+    --app-bg: #242329;
+    --section-bg: #312f3c;
+  }
+}
+
 input {
   border: 0;
   outline: 0;

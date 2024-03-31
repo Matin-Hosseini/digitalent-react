@@ -6,7 +6,7 @@ import Icon from "../../Icon";
 import ThemeBtn from "../ThemeBtn";
 import "./index.css";
 
-export default function TopHeader() {
+export default function TopBar() {
   return (
     <>
       <div className="flex items-center content-between my-3">

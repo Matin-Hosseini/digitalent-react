@@ -7,12 +7,42 @@ export default {
       container: {
         center: true,
         padding: {
-          DEFAULT: "1rem",
-          sm: "2rem",
-          lg: "4rem",
-          xl: "5rem",
-          "2xl": "6rem",
+          DEFAULT: "2rem",
+          // sm: "2rem",
+          // lg: "4rem",
+          // xl: "5rem",
+          // "2xl": "6rem",
         },
+      },
+      colors: {
+        app: {
+          light: "#f1eaea",
+          dark: "#242329",
+          DEFAULT: "#f1eaea",
+        },
+        section: {
+          light: "#f9f9f9",
+          dark: "#312f3c",
+          DEFAULT: "#f1eaea",
+        },
+        yellow: {
+          DEFAULT: "#fcc741",
+        },
+        gray: {},
+        red: {
+          DEFAULT: "#d74c4c",
+        },
+        purple: {
+          DEFAULT: "#8696fe",
+        },
+      },
+      animation: {
+        "movement-x": "movement-x 3s infinite forwards alternate",
+      },
+      borderRadius: {},
+      fontFamily: {
+        title: "Persian Titraj",
+        text: "Vasir",
       },
     },
   },

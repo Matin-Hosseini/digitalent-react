@@ -1,6 +1,6 @@
 import { useLocation, useRoutes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
+import Header from "./components/Header";
 
 //contexts
 import { ThemeContext } from "./contexts/theme";
