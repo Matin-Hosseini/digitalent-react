@@ -1,86 +1,41 @@
-import { FcCalendar, FcShare } from "react-icons/fc";
 import ContainerBox from "../../components/ContainerBox";
 import useScrollToTop from "../../hooks/scrollToTop";
-import BreadCrumb from "../../components/Breadcrumb";
 
-import CommentBox from "../../components/CommentBox";
-import ContainerBoxTitle from "../../components/ContainerBoxTitle";
+import CommentSection from "../../components/CommentSection";
+import PageInfoBox from "../../components/PageInfoBox";
 import UserInfoBox from "../../components/UserInfoBox";
-import ArticleOverView from "./ArticleOverView";
 import ArticleContent from "./ArticleContent";
+import ArticleOverView from "./ArticleOverView";
 import RelatedArticles from "./RelatedArticles";
 export default function Article() {
   useScrollToTop();
 
   return (
     <main className="container my-10">
-      <ContainerBox className={""}>
-        {/* info */}
-        <div className="grid-system">
-          <div className="col-span-8">
-            <BreadCrumb></BreadCrumb>
-          </div>
-          <div className="col-span-4">
-            <div className="flex items-center justify-between h-full pe-5">
-              <div className="flex flex-col gap-2 py-3">
-                {/* <div className="flex items-center gap-2 text-xl">
-                  <FcCalendar />
-                  <div>
-                    <span>افزوده شده در:</span>
-                    <span>12 فروردین 1403</span>
-                  </div>
-                </div> */}
-                <div className="flex items-center gap-2 text-xl">
-                  <FcCalendar />
-                  <div>
-                    <span>آخرین به روزرسانی: </span>
-                    <span>12 فروردین 1403</span>
-                  </div>
-                </div>
-              </div>
-              <button className="flex items-center gap-2 text-xl">
-                <FcShare />
-                <span>اشتراک گذاری</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </ContainerBox>
+      <PageInfoBox />
 
       {/* content */}
 
       <div className="grid-system my-12">
         <div className="col-span-12 md:col-span-12 lg:col-span-8 xl:col-span-9">
-          <div className="lg:hidden">
-            <ArticleOverView />
-          </div>
+          <ArticleOverView className="lg:hidden" />
+
           <ArticleContent />
-          <div className="lg:hidden">
-            <UserInfoBox />
-          </div>
-          <ContainerBox className={"p-5"}>
-            <ContainerBoxTitle title={"نظرات کاربران"} />
-            <div className="mt-5 divide-y">
-              <CommentBox />
-              <CommentBox />
-              <CommentBox />
-              <CommentBox />
-              <CommentBox />
-            </div>
-          </ContainerBox>
+
+          <UserInfoBox className="mb-4 lg:hidden" />
+
+          <CommentSection />
         </div>
         <div className="col-span-12 md:col-span-12 lg:col-span-4 xl:col-span-3">
           <div className="sticky top-4">
-            <div className="hidden lg:block">
-              <ArticleOverView />
-            </div>
-            <ContainerBox className={"p-5 mb-4"}>
+            <ArticleOverView className="hidden lg:block" />
+
+            <ContainerBox className="p-5 mb-4">
               <div></div>
             </ContainerBox>
             <RelatedArticles />
-            <div className="hidden lg:block">
-              <UserInfoBox />
-            </div>
+
+            <UserInfoBox className="hidden lg:block" />
           </div>
         </div>
       </div>

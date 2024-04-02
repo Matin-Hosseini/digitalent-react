@@ -3,9 +3,9 @@ import { GoCommentDiscussion } from "react-icons/go";
 import { IoCheckmarkOutline } from "react-icons/io5";
 import ContainerBox from "../../components/ContainerBox";
 
-export default function ArticleOverView() {
+export default function ArticleOverView({ className }: { className: String }) {
   return (
-    <ContainerBox className={"p-5 mb-4"}>
+    <ContainerBox className={`p-5 mb-4 ${className ? className : ""}`}>
       <div>
         <div className="flex justify-between items-center text-lg">
           <div className="flex items-center gap-2">

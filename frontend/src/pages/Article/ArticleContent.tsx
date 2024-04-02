@@ -2,7 +2,7 @@ import ContainerBox from "../../components/ContainerBox";
 import ContainerBoxTitle from "../../components/ContainerBoxTitle";
 import ArticleHeader from "./ArticleHeader";
 
-import "./Components/ArticleContent/ArticleContent.css";
+import "./ArticleContent.css";
 
 export default function Articlecontent() {
   return (
