@@ -51,7 +51,7 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={muiTheme}>
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
         <div className={`App `}>
           {!isAuthRoute && <Header />}
           {router}
