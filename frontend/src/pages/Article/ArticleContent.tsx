@@ -1,13 +1,17 @@
-import "./ArticleContent.css";
+import ContainerBox from "../../components/ContainerBox";
+import ContainerBoxTitle from "../../components/ContainerBoxTitle";
+import ArticleHeader from "./ArticleHeader";
 
-export default function ArticleContent() {
+import "./Components/ArticleContent/ArticleContent.css";
+
+export default function Articlecontent() {
   return (
-    <>
-      <div className="article-content__main-img">
-        <img src="src/assets/images/course-bg.jpg" alt="" />
-      </div>
+    <ContainerBox className="p-5 mb-4">
+      <ContainerBoxTitle title={"بازی و سرگرمی"} />
+      <ArticleHeader />
+      <div>
+        <img src="src/assets/images/about-us/offers-bg.jpg" alt="" />
 
-      <div className="container">
         <h2 className="article-content__title">توضیحات اول:</h2>
         <p className="article-content__caption">
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
@@ -106,6 +110,6 @@ export default function ArticleContent() {
           قرار گیرد.
         </p>
       </div>
-    </>
+    </ContainerBox>
   );
 }
