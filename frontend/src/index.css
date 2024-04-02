@@ -13,6 +13,9 @@
     --app-bg: #242329;
     --section-bg: #312f3c;
   }
+  .grid-system {
+    @apply grid grid-cols-12 gap-3;
+  }
 }
 
 input {
