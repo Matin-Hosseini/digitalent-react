@@ -5,15 +5,12 @@
 //custom hooks
 import { Grid } from "@mui/material";
 import ContainerBox from "../../components/ContainerBox";
-import useScrollToTop from "../../hooks/scrollToTop";
 
 import { useRef } from "react";
 import { FcCalendar, FcShare } from "react-icons/fc";
 import VideoJS from "../../components/VideoPlayer";
 
 export default function Course() {
-  useScrollToTop();
-
   const playerRef = useRef(null);
 
   const videoJsOptions = {

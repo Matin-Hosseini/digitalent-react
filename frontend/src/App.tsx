@@ -7,6 +7,7 @@ import { ThemeContext } from "./contexts/theme";
 
 import { ThemeProvider, createTheme } from "@mui/material";
 import { useContext, useEffect } from "react";
+import ScrollToTop from "./components/ScrollToTop";
 import routes from "./routes";
 
 declare module "@mui/material/styles" {
@@ -50,6 +51,7 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={muiTheme}>
+        <ScrollToTop />
         <div className={`App `}>
           {!isAuthRoute && <Header />}
           {router}
