@@ -44,6 +44,9 @@ export default {
         title: "Persian Titraj",
         text: "Vasir",
       },
+      screens: {
+        "xs": "530px"
+      }
     },
   },
   plugins: [],
