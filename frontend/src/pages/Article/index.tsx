@@ -70,7 +70,7 @@ export default function Article() {
 
       <div className="grid-system my-12">
         <div className="col-span-9">
-          <ContainerBox className="p-5 mb-4 hidden">
+          <ContainerBox className="p-5 mb-4">
             <ContainerBoxTitle title={"بازی و سرگرمی"} />
             <ArticleHeader />
             {/* content */}
@@ -180,7 +180,7 @@ export default function Article() {
           </ContainerBox>
           <ContainerBox className={"p-5"}>
             <ContainerBoxTitle title={"نظرات کاربران"} />
-            <div className="mt-5  divide-y">
+            <div className="mt-5 divide-y">
               <CommentBox />
               <CommentBox />
               <CommentBox />
@@ -219,10 +219,10 @@ export default function Article() {
               <div></div>
             </ContainerBox>
             <ContainerBox className={"p-5 mb-4"}>
-              <div className="text-green-400 font-bold relative before:absolute before:content-[''] before:w-6 before:h-2 before:rounded-xl before:-right-8 before:bg-green-500 before:top-1/2 before:-translate-y-2/4">
-                مقالات مرتبط
-              </div>
-              <div className="mt-8 space-y-8">
+              <ContainerBoxTitle title={"مقالات مرتبط"} />
+              <div className="mt-8 divide-y max-h-[38rem] overflow-auto">
+                <RelatedArticleBox />
+                <RelatedArticleBox />
                 <RelatedArticleBox />
                 <RelatedArticleBox />
                 <RelatedArticleBox />

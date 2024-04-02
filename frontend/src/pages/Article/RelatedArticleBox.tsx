@@ -3,7 +3,7 @@ import { TfiWrite } from "react-icons/tfi";
 
 export default function RelatedArticleBox() {
   return (
-    <div className="flex gap-5 border-b-4">
+    <div className="flex gap-5 border-solid py-8 border-gray-300 dark:border-gray-900">
       <img
         src="src/assets/images/about-us/offers-bg.jpg"
         alt=""
