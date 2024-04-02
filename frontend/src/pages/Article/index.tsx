@@ -8,6 +8,7 @@ import BreadCrumb from "./Breadcrumb";
 
 import { BsSuitHeart } from "react-icons/bs";
 import { GoCommentDiscussion } from "react-icons/go";
+import { IoMdThumbsDown, IoMdThumbsUp } from "react-icons/io";
 import {
   IoCheckmarkOutline,
   IoLogoInstagram,
@@ -17,7 +18,7 @@ import {
 import ArticleHeader from "./ArticleHeader";
 
 import { FaPinterestP } from "react-icons/fa6";
-import { RiFacebookFill } from "react-icons/ri";
+import { RiFacebookFill, RiShareForwardFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import ContainerBoxTitle from "../../components/ContainerBoxTitle";
 import "./Components/ArticleContent/ArticleContent.css";
@@ -33,27 +34,6 @@ export default function Article() {
       <ArticleFooter /> */}
 
       <ContainerBox className={""}>
-        {/* <Grid container spacing={2}>
-          <Grid item xs={8} sx={{ paddingTop: 0 }}>
-            <BreadCrumb></BreadCrumb>
-          </Grid>
-          <Grid item xs={4}>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xl">
-                <FcCalendar />
-                <div>
-                  <span>آخرین به روزرسانی: </span>
-                  <span>12 فروردین 1403</span>
-                </div>
-              </div>
-              <button className="flex items-center gap-2 text-xl">
-                <FcShare />
-                <span>اشتراک گذاری</span>
-              </button>
-            </div>
-          </Grid>
-        </Grid> */}
-
         {/* info */}
         <div className="grid-system">
           <div className="col-span-8">
@@ -90,7 +70,7 @@ export default function Article() {
 
       <div className="grid-system my-12">
         <div className="col-span-9">
-          <ContainerBox className="p-5 mb-4">
+          <ContainerBox className="p-5 mb-4 hidden">
             <ContainerBoxTitle title={"بازی و سرگرمی"} />
             <ArticleHeader />
             {/* content */}
@@ -201,13 +181,49 @@ export default function Article() {
           <ContainerBox className={"p-5"}>
             <ContainerBoxTitle title={"نظرات کاربران"} />
             <div className="mt-5">
-              <div>
-                <img
-                  src="src/assets/images/6a1e69a6-6922-43ab-bc85-5d8548a32e20_cover_thumb.webp"
-                  alt=""
-                  className=""
-                />
-                <div></div>
+              <div className="flex gap-6">
+                <div className="text-center">
+                  <div className="w-20 h-20 rounded-full overflow-hidden">
+                    <img
+                      src="src/assets/images/6a1e69a6-6922-43ab-bc85-5d8548a32e20_cover_thumb.webp"
+                      alt=""
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <h5 className="text-lg text-[var(--gray)]">لانا ردز</h5>
+                </div>
+                <div>
+                  <div className="flex items-center justify-between text-[var(--gray)] mb-4">
+                    <div className="flex items-center gap-4 text-lg">
+                      <span>1403/01/14</span>
+                      <span>10:28</span>
+                    </div>
+                    <button>
+                      <RiShareForwardFill />
+                    </button>
+                  </div>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
+                    با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه
+                    و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی
+                    تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای
+                    کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و
+                    آینده، شناخت فراوان جامعه و متخصصان را م
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <button className="text-[var(--gray)]">پاسخ</button>
+                    <div className="flex items-center gap-4">
+                      <button className="flex items-center gap-1 text-[var(--green)] text-lg">
+                        <span>3</span>
+                        <IoMdThumbsUp className="text-[var(--green)]" />
+                      </button>
+                      <button className="flex items-center gap-1 text-[var(--red)] text-lg">
+                        <span>4</span>
+                        <IoMdThumbsDown className="text-[var(--red)]" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </ContainerBox>
