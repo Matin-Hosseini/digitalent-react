@@ -4,7 +4,7 @@ import HomeSection from "../../components/HomeSection/HomeSection";
 import LatestEvents from "../../components/LatestEvents/LatestEvents";
 import NewestCourses from "../../components/NewestCourses/NewestCourses";
 import SpecialDiscounts from "../../components/SpecialDiscounts";
-import Weblog from "../../components/Weblog/Weblog";
+import Weblog from "../../components/Weblog";
 
 export default function Home() {
   return (
