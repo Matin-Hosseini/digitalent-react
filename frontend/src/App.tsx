@@ -5,7 +5,7 @@ import { ThemeContext } from "./contexts/theme";
 
 import { ThemeProvider, createTheme } from "@mui/material";
 import { useContext, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header";
@@ -61,7 +61,13 @@ const App = () => {
           {!isAuthRoute && <Footer />}
         </div>
 
-        <ToastContainer position="top-left" autoClose={3000} rtl={true} theme={theme} draggable />
+        <ToastContainer
+          position="top-left"
+          autoClose={3000}
+          rtl={true}
+          theme={theme}
+          draggable
+        />
       </ThemeProvider>
     </>
   );
