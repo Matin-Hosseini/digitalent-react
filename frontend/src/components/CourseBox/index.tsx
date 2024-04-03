@@ -2,15 +2,34 @@ import { Link } from "react-router-dom";
 
 import "./../../styles/modules/underline-animated-text.css";
 
-import { BsCartPlus, BsClockHistory } from "react-icons/bs";
+import { BsClockHistory } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { PiShootingStarFill, PiStudentLight } from "react-icons/pi";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import useLocalStorage from "../../hooks/localstorage";
 import ContainerBox from "../ContainerBox";
 import DiscountTimer from "./DiscountTimer";
 
-export default function CourseBox() {
+export default function CourseBox({ id }: { id: String }) {
+  const addProductToWhishlist = () => {
+    const [localStorage, setLocalStorage] = useLocalStorage("products");
+    if (!localStorage) {
+      setLocalStorage([id]);
+    } else {
+      const newProducts = [...localStorage, id];
+
+      setLocalStorage(newProducts);
+    }
+    toast("محصول به لیست علاقه مندی افزوده شد.");
+  };
+
   return (
     <ContainerBox className="group p-3">
+      {/* <ToastContainer position="top-right" rtl={true} autoClose={3000} /> */}
       <div className="course-box relative text-xl text-[var(--gray)] transition-all">
         <div className="absolute grid place-content-center bg-[var(--purple)] text-white w-14 h-14 rounded-full -top-4 -right-4 -rotate-[30deg] group-hover:-rotate-[10deg] transition-all z-50">
           25%
@@ -18,7 +37,7 @@ export default function CourseBox() {
         <Link to="/course" className="relative">
           <DiscountTimer
             className={"absolute left-3 top-3"}
-            endTime={"2024-04-01T00:00:00"}
+            endTime={"2024-04-04T00:00:00"}
           />
           <img
             src="./src/assets/images/f4aa8891-d9a5-48f6-9166-8f40fa5e5f0f_cover.webp"
@@ -38,8 +57,11 @@ export default function CourseBox() {
           </h2>
 
           <div className="bg-[rgba(130,140,154,0.09)] flex items-center justify-between p-4 rounded-lg">
-            <button className="grid place-content-center w-10 h-10 bg-[var(--red)] rounded-se-xl rounded-es-xl text-white transition-all hover:rounded-full">
-              <BsCartPlus className="w-6" />
+            <button
+              className="grid place-content-center w-10 h-10 bg-[var(--red)]  rounded-se-xl rounded-es-xl text-white transition-all hover:rounded-full"
+              onClick={addProductToWhishlist}
+            >
+              <FaRegHeart className="w-6" />
             </button>
 
             <div className="flex items-center gap-2">

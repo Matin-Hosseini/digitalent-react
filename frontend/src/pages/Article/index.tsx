@@ -14,8 +14,6 @@ export default function Article() {
     <main className="container my-10">
       <PageInfoBox />
 
-      {/* content */}
-
       <div className="grid-system my-12">
         <div className="col-span-12 md:col-span-12 lg:col-span-8 xl:col-span-9">
           <ArticleOverView className="lg:hidden" />

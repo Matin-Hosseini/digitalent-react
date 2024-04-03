@@ -23,3 +23,7 @@ input {
   outline: 0;
   color: var(--text-color);
 }
+
+.Toastify__toast-body {
+  font-family: "vasir";
+}

@@ -8,7 +8,7 @@ const navMenu = [
   { id: 2, title: "دوره ها", megaMenu: true, to: "/courses" },
   { id: 3, title: "برنامه نویسی", megaMenu: false, to: "/courses/programming" },
   { id: 4, title: "مقالات", megaMenu: false, to: "/articles" },
-  { id: 4, title: "ارتباط با ما", megaMenu: false, to: "/contact-us" },
+  { id: 5, title: "ارتباط با ما", megaMenu: false, to: "/contact-us" },
 ];
 
 export default function NavMenu() {

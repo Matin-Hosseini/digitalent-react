@@ -9,7 +9,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 
-const specialDiscountsProducts: number[] = [1, 2, 3, 4, 6, 7, 8, 9, 0];
+const specialDiscountsProducts: any[] = [
+  { id: 1, name: "" },
+  { id: 2, name: "" },
+  { id: 3, name: "" },
+  { id: 4, name: "" },
+  { id: 5, name: "" },
+  { id: 6, name: "" },
+  { id: 7, name: "" },
+];
 
 export default function SpecialDiscounts() {
   const [products, setProducts] = useState(null);
@@ -44,12 +52,10 @@ export default function SpecialDiscounts() {
               slidesPerView: 4.5,
             },
           }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           {products?.map((product) => (
-            <SwiperSlide>
-              <CourseBox key={product} />
+            <SwiperSlide key={product.id}>
+              <CourseBox {...product}/>
             </SwiperSlide>
           ))}
         </Swiper>
