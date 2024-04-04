@@ -6,10 +6,10 @@ import { IoLogoInstagram, IoLogoLinkedin } from "react-icons/io5";
 import { RiFacebookFill } from "react-icons/ri";
 import ContainerBoxTitle from "./ContainerBoxTitle";
 
-export default function UserInfoBox({ className }: { className: String }) {
+export default function UserInfoBox({ className, title, icon, color }) {
   return (
     <ContainerBox className={`p-5 ${className ? className : ""}`}>
-      <ContainerBoxTitle title={"نویسنده مقاله"} />
+      <ContainerBoxTitle title={title} icon={icon} color={color} />
       <section className="text-center">
         <img
           src="src/assets/images/6a1e69a6-6922-43ab-bc85-5d8548a32e20_cover_thumb.webp"

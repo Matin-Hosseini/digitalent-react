@@ -1,3 +1,5 @@
+import { PiArticleNyTimesLight } from "react-icons/pi";
+
 import "swiper/css";
 import ContainerBox from "../../../components/ContainerBox";
 import ContainerBoxTitle from "../../../components/ContainerBoxTitle";
@@ -10,7 +12,11 @@ const relatedArticles = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 export default function () {
   return (
     <ContainerBox className={"p-5 mb-4"}>
-      <ContainerBoxTitle title={"مقالات مرتبط"} />
+      <ContainerBoxTitle
+        title={"مقالات مرتبط"}
+        icon={<PiArticleNyTimesLight />}
+        color="blue"
+      />
       <div className="mt-8 divide-y max-h-[38rem] overflow-auto hidden lg:block">
         <RelatedArticleBox />
         <RelatedArticleBox />

@@ -1,15 +1,14 @@
-import ContainerBox from "../../components/ContainerBox";
-import useScrollToTop from "../../hooks/scrollToTop";
+import { LiaUserEditSolid } from "react-icons/lia";
 
 import CommentSection from "../../components/CommentSection";
+import ContainerBox from "../../components/ContainerBox";
 import PageInfoBox from "../../components/PageInfoBox";
 import UserInfoBox from "../../components/UserInfoBox";
 import ArticleContent from "./ArticleContent";
 import ArticleOverView from "./ArticleOverView";
 import RelatedArticles from "./RelatedArticles";
-export default function Article() {
-  useScrollToTop();
 
+export default function Article() {
   return (
     <main className="container my-10">
       <PageInfoBox />
@@ -20,7 +19,12 @@ export default function Article() {
 
           <ArticleContent />
 
-          <UserInfoBox className="mb-4 lg:hidden" />
+          <UserInfoBox
+            className="mb-4 lg:hidden"
+            title={"نویسنده"}
+            icon={<LiaUserEditSolid />}
+            color="green"
+          />
 
           <CommentSection />
         </div>
@@ -33,7 +37,12 @@ export default function Article() {
             </ContainerBox>
             <RelatedArticles />
 
-            <UserInfoBox className="hidden lg:block" />
+            <UserInfoBox
+              className="hidden lg:block"
+              title={"نویسنده"}
+              icon={<LiaUserEditSolid />}
+              color="green"
+            />
           </div>
         </div>
       </div>

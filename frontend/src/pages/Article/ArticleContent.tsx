@@ -1,3 +1,4 @@
+import { BiCategory } from "react-icons/bi";
 import ContainerBox from "../../components/ContainerBox";
 import ContainerBoxTitle from "../../components/ContainerBoxTitle";
 import ArticleHeader from "./ArticleHeader";
@@ -7,7 +8,7 @@ import "./ArticleContent.css";
 export default function Articlecontent() {
   return (
     <ContainerBox className="p-5 mb-4">
-      <ContainerBoxTitle title={"بازی و سرگرمی"} />
+      <ContainerBoxTitle title={"بازی و سرگرمی"} icon={<BiCategory />} color="red"/>
       <ArticleHeader />
       <div>
         <img src="src/assets/images/about-us/offers-bg.jpg" alt="" />
