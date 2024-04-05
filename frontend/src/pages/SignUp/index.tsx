@@ -1,14 +1,15 @@
 import Checkbox from "@mui/material/Checkbox";
 
 //local-files
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Input from "../../components/Input";
 import "./index.css";
 
 import UnderlinedLink from "../../components/UnderlinedLink";
 import Logo from "./../../components/Logo";
 
-import axios from "axios";
+import Api from "../../axios/api";
+import { authContext } from "../../contexts/auth";
 
 export default function SignUp() {
   const [checkbox, setCheckbox] = useState(false);
@@ -18,6 +19,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
 
   const toggleCheckbox = () => setCheckbox((prev) => !prev);
+  const { login } = useContext(authContext);
 
   const registerHandler = async (e) => {
     e.preventDefault();
@@ -26,8 +28,9 @@ export default function SignUp() {
 
     const body = { username, email, password };
 
-    const res = await axios.post("http://localhost:8000/api/v1/register", body);
-    console.log(res, res.cookie);
+    const res = await Api.post("/register", body);
+    login(res.data.newUser, res.data.token);
+    console.log(res);
   };
   return (
     <div className="h-dvh grid lg:grid-cols-2">

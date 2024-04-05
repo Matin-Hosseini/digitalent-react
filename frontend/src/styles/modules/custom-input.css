@@ -1,7 +1,7 @@
 /*custom inputs starts */
 .custom-input {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: .5rem !important;
   transition: all var(--transition);
 }
 .custom-input__input {
@@ -11,7 +11,7 @@
   border: 2px solid var(--input-color);
   outline: 0;
   padding: 1rem 2rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-size: 1.3rem;
   color: var(--gray);
   background-color: var(--app-bg);
@@ -66,3 +66,17 @@
 }
 
 /*custom inputs ends */
+
+.custom-input.valid .custom-input__input {
+  border-color: var(--green);
+}
+.custom-input.valid .custom-input__label {
+  color: var(--green);
+}
+
+.custom-input.error .custom-input__input {
+  border-color: var(--red);
+}
+.custom-input.error .custom-input__label {
+  color: var(--red);
+}

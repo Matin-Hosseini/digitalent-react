@@ -1,10 +1,11 @@
 //local-folders
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Input from "../../components/Input";
 import Logo from "../../components/Logo";
 import UnderlinedLink from "../../components/UnderlinedLink";
+import { max, min, required } from "../../validators/rules";
 import "./index.css";
-import axios from "axios";
 
 export default function Login() {
   const [identifier, setIdentifier] = useState("");
@@ -13,9 +14,9 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const body = {identifier, password}
+    // const body = { identifier, password };
 
-    const res = await axios.post("http://localhost:8000/api/v1/login", body)
+    // const res = await axios.post("http://localhost:8000/api/v1/login", body);
   };
 
   return (
@@ -43,6 +44,7 @@ export default function Login() {
                 type="text"
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
+                validations={[required(), min(4), max(20)]}
               />
               <Input
                 name="password"
@@ -50,6 +52,7 @@ export default function Login() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                validations={[required(), min(8)]}
               />
 
               <button className="login-form__btn">ورود</button>

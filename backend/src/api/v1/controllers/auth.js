@@ -2,6 +2,7 @@ const { User } = require("./../models");
 const { generateToken } = require("./../../../utils/generateToken");
 const { generateCookie } = require("./../../../utils/cookie");
 const { Op } = require("sequelize");
+const jwt = require("jsonwebtoken");
 
 /*
  * registers new user and stores token to cookie
@@ -13,9 +14,9 @@ const register = async (req, res) => {
   const newUser = await User.create(req.body);
   const token = generateToken(newUser.id);
 
-  generateCookie(res, "user", token);
+  // generateCookie(res, "user", token);
 
-  res.status(201).json({ message: "New user created" });
+  res.status(201).json({ message: "New user created", newUser, token });
 };
 
 /*
@@ -26,8 +27,8 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { identifier, password } = req.body;
-  console.log(req.cookie)
-  const cookie = req.cookie
+  console.log(req.cookie);
+  const cookie = req.cookie;
 
   const user = await User.findOne({
     where: {
@@ -43,10 +44,36 @@ const login = async (req, res) => {
   res.send({ msg: "user logged in", cookie });
 };
 
+const getMe = async (req, res) => {
+  const authorization = req.headers.authorization;
+
+  if (!authorization)
+    return res.status(403).json({ error: "Token not provided" });
+
+  const token = authorization.split(" ")[1];
+
+  const user = req.user;
+  // try {
+  //   const decodedToken = jwt.verify(token, process.env.JWTSECRET);
+
+  //   const targetUser = await User.findOne({
+  //     where: {
+  //       id: decodedToken.payload,
+  //     },
+  //   });
+
+  //   res.status(200).json({ user: targetUser });
+  // } catch (error) {
+  //   return res.status(403).json({ error: "Please login again, JWT fail" });
+  // }
+
+  res.status(200).send({ user });
+};
+
 const test = async (req, res) => {
   console.log(req.user);
 
   res.status(200).json({ msg: "inside auth controller" });
 };
 
-module.exports = { register, login, test };
+module.exports = { register, login, test, getMe };

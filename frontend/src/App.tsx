@@ -11,6 +11,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header";
 import ScrollToTop from "./components/ScrollToTop";
 import routes from "./routes";
+import Counter from "./components/Counter";
 
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {
@@ -68,6 +69,7 @@ const App = () => {
           theme={theme}
           draggable
         />
+        <Counter/>
       </ThemeProvider>
     </>
   );
