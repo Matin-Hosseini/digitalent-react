@@ -52,8 +52,8 @@ export default function () {
           onSwiper={(swiper) => console.log(swiper)}
         >
           {relatedArticles?.map((article) => (
-            <SwiperSlide>
-              <BlogBox key={article} />
+            <SwiperSlide  key={article}>
+              <BlogBox />
             </SwiperSlide>
           ))}
         </Swiper>
