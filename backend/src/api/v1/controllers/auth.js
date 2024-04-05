@@ -41,7 +41,7 @@ const login = async (req, res) => {
   const token = generateToken(user.id);
   generateCookie(res, "user", token);
 
-  res.send({ msg: "user logged in", cookie });
+  res.send({ user, token });
 };
 
 const getMe = async (req, res) => {

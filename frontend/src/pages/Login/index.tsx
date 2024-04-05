@@ -1,9 +1,11 @@
 //local-folders
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import { redirect, useNavigate } from "react-router-dom";
+import Api from "../../axios/api";
 import Input from "../../components/Input";
 import Logo from "../../components/Logo";
 import UnderlinedLink from "../../components/UnderlinedLink";
+import { authContext } from "../../contexts/auth";
 import { max, min, required } from "../../validators/rules";
 import "./index.css";
 
@@ -11,12 +13,21 @@ export default function Login() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
+  const { login } = useContext(authContext);
+  const navigate = useNavigate()
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // const body = { identifier, password };
+    const body = { identifier, password };
 
-    // const res = await axios.post("http://localhost:8000/api/v1/login", body);
+    try {
+      const res = await Api.post("/login", body);
+      login(res.data.user, res.data.token);
+      navigate("/");
+    } catch (error) {
+      console.log("inside login page", error);
+    }
   };
 
   return (
