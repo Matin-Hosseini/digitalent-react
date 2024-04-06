@@ -3,11 +3,14 @@
 // import RelatedCourses from "./Components/RelatedCourses";
 
 //custom hooks
-import { Grid } from "@mui/material";
+import { Grid, LinearProgress, Rating } from "@mui/material";
 import ContainerBox from "../../components/ContainerBox";
 
 import { useRef } from "react";
 import { FcCalendar, FcShare } from "react-icons/fc";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
+import { RiHeartAddLine } from "react-icons/ri";
+
 import VideoJS from "../../components/VideoPlayer";
 
 export default function Course() {
@@ -81,24 +84,89 @@ export default function Course() {
       </ContainerBox>
 
       <div className="my-20">
-        <Grid container spacing={1.5}>
-          <Grid item xs={12} lg={8} xl={8.5} xxl={9}>
+        <div className="grid-system">
+          <div className="col-span-12 lg:col-span-8 xl:col-span-9">
             <ContainerBox className={"p-4"}>
-              {/* <video className="w-full rounded-xl" controls>
-                <source
-                  src="src/assets/videos/course/video (720p).mp4"
-                  type="video/mp4"
-                />
-              </video> */}
               <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
             </ContainerBox>
-          </Grid>
-          <Grid item xs={12} lg={4} xl={3.5} xxl={3}>
+          </div>
+          <div className="col-span-12 lg:col-span-4 xl:col-span-3">
             <ContainerBox className={"h-full p-3"}>
-              <div></div>
+              <div>
+                <div className="flex items-center justify-evenly">
+                  <div className="flex flex-col items-center gap-3">
+                    <span>7</span>
+                    <h3>دانشجو</h3>
+                  </div>
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="flex flex-col items-center gap-2">
+                      <span>300,000</span>
+                      <span>270,000</span>
+                    </div>
+                    <span>تومان</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <h4>امتیاز دوره:</h4>
+                  <Rating name="read-only" value={2} readOnly sx={{}} />
+                </div>
+
+                <div>
+                  <LinearProgress
+                    value={30}
+                    variant="determinate"
+                    sx={{ direction: "rtl" }}
+                  />
+                  <div className="flex items-center gap-2">
+                    <span>30</span>
+                    <p>درصد دوره تکمیل شده است.</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 items-center">
+                  <div className="flex items-center justify-center gap-5">
+                    <div className="w-20 h-20 rounded-full overflow-hidden">
+                      <img
+                        src="src/assets/images/profile.jpg"
+                        alt=""
+                        className="h-full w-full"
+                      />
+                    </div>
+                    <h3>کسکش کون لخت</h3>
+                  </div>
+
+                  <div className="flex items-center justify-center">کاگردان فیلم سوپر</div>
+                </div>
+
+                <div className="grid grid-cols-3 text-center divide-x">
+                  <div className="">
+                    <span>3</span>
+                    <h4>دیدگاه</h4>
+                  </div>
+                  <div className="">
+                    <span>15 ساعت</span>
+                    <h4>آموزش</h4>
+                  </div>
+                  <div className="">
+                    <span>پیشرفته</span>
+                    <h4>سطح دوره</h4>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-5 h-16 text-lg">
+                  <button className="flex items-center gap-4 px-4  bg-purple-300 text-purple-700 flex-1 h-full rounded-lg">
+                    <MdOutlineAddShoppingCart />
+                    افزودن به سبد خرید
+                  </button>
+                  <button className="flex items-center justify-center bg-red-400 h-full w-16 rounded-lg">
+                    <RiHeartAddLine />
+                  </button>
+                </div>
+              </div>
             </ContainerBox>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </div>
     </main>
   );
