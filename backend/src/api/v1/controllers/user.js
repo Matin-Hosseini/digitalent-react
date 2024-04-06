@@ -4,7 +4,7 @@
  * public
  */
 
-const { User } = require("./../models");
+const { User } = require("./../../../models");
 
 const register = async (req, res) => {
   res.status(200).json({ msg: "created" });

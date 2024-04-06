@@ -1,4 +1,4 @@
-const { User } = require("./../models");
+const { User } = require("./../../../models");
 const { generateToken } = require("./../../../utils/generateToken");
 const { generateCookie } = require("./../../../utils/cookie");
 const { Op } = require("sequelize");
