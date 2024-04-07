@@ -6,11 +6,13 @@
 import { Grid, LinearProgress, Rating } from "@mui/material";
 import ContainerBox from "../../components/ContainerBox";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { FcCalendar, FcShare } from "react-icons/fc";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { RiHeartAddLine } from "react-icons/ri";
 
+import { useCookies } from "react-cookie";
+import Api from "../../axios/api";
 import VideoJS from "../../components/VideoPlayer";
 
 export default function Course() {
@@ -41,6 +43,23 @@ export default function Course() {
       videojs.log("player will dispose");
     });
   };
+  const [cookie, setCookie, removeCookie] = useCookies(["my-cookie"]);
+
+  useEffect(() => {
+    console.log(document.cookie);
+
+    setCookie("my-cookie", "this is the value", {
+      maxAge: 90000,
+    });
+
+    const getCookie = async () => {
+      console.log("sending request");
+      const res = await Api.get("/cookie", { withCredentials: true });
+      console.log(res);
+    };
+
+    getCookie();
+  }, []);
 
   return (
     <main className="container my-20">
@@ -136,7 +155,9 @@ export default function Course() {
                     <h3>کسکش کون لخت</h3>
                   </div>
 
-                  <div className="flex items-center justify-center">کاگردان فیلم سوپر</div>
+                  <div className="flex items-center justify-center">
+                    کاگردان فیلم سوپر
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-3 text-center divide-x">

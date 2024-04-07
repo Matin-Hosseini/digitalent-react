@@ -76,4 +76,15 @@ const test = async (req, res) => {
   res.status(200).json({ msg: "inside auth controller" });
 };
 
-module.exports = { register, login, test, getMe };
+const cookie = async (req, res) => {
+  res.cookie("my-cookie", "this is the new value", {
+    httpOnly: true,
+    maxAge: 100000,
+  });
+
+  console.log(req.cookies);
+
+  res.status(200).json({ message: "cookie created" });
+};
+
+module.exports = { register, login, test, getMe, cookie };
