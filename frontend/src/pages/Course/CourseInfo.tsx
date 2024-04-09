@@ -1,48 +1,22 @@
-import { useRef } from "react";
+import { Rating } from "@mui/material";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { RiHeartAddLine } from "react-icons/ri";
 import ContainerBox from "../../components/ContainerBox";
 import ProgressBar from "../../components/ProgressBar";
-import { Rating } from "@mui/material";
+import VideoPlayer from "../../components/VideoPlayer";
 
 export default function CourseInfo() {
-  const playerRef = useRef(null);
-
-  const videoJsOptions = {
-    autoplay: true,
-    controls: true,
-    responsive: true,
-    fluid: true,
-    sources: [
-      {
-        src: "src/assets/videos/course/video (720p).mp4",
-        type: "video/mp4",
-      },
-    ],
-  };
-
-  const handlePlayerReady = (player) => {
-    playerRef.current = player;
-
-    // You can handle player events here, for example:
-    player.on("waiting", () => {
-      videojs.log("player is waiting");
-    });
-
-    player.on("dispose", () => {
-      videojs.log("player will dispose");
-    });
-  };
-
   return (
     <div className="my-20">
       <div className="grid-system">
         <div className="col-span-12 lg:col-span-8 xl:col-span-9">
-          <ContainerBox className={"p-4"}>{/* <VideoPlayer /> */}</ContainerBox>
+          <ContainerBox className={"p-4 h-full"}>
+            <VideoPlayer />
+          </ContainerBox>
         </div>
         <div className="col-span-12 lg:col-span-4 xl:col-span-3">
           <ContainerBox className={"h-full p-4"}>
-            <div className=" flex flex-col justify-between gap-12 text-2xl">
+            <div className=" flex flex-col justify-between gap-12 text-2xl h-full">
               <div className="flex items-center justify-evenly">
                 <div className="flex flex-col items-center gap-3">
                   <span>7</span>

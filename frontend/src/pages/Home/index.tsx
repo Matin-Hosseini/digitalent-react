@@ -1,8 +1,7 @@
 import FunFacts from "../../components/FunFacts/FunFacts";
 import Hero from "../../components/Hero";
-import HomeSection from "../../components/HomeSection/HomeSection";
+import LatestCourses from "../../components/LatestCourses";
 import LatestEvents from "../../components/LatestEvents/LatestEvents";
-import NewestCourses from "../../components/NewestCourses/NewestCourses";
 import SpecialDiscounts from "../../components/SpecialDiscounts";
 import Weblog from "../../components/Weblog";
 
@@ -14,7 +13,7 @@ export default function Home() {
         {/* <HomeSection /> */}
         <SpecialDiscounts />
         <FunFacts />
-        <NewestCourses />
+        <LatestCourses />
         <Weblog />
         <LatestEvents />
       </main>
