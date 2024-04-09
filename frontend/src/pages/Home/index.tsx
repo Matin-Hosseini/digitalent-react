@@ -1,4 +1,4 @@
-import FunFacts from "../../components/FunFacts/FunFacts";
+import FunFacts from "../../components/FunFacts";
 import Hero from "../../components/Hero";
 import LatestCourses from "../../components/LatestCourses";
 import LatestEvents from "../../components/LatestEvents/LatestEvents";
