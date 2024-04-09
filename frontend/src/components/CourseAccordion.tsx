@@ -44,7 +44,7 @@ export default function CourseAccordion({ expanded }) {
                 آموزش برنامه نویسی css-in-js
               </Link>
 
-              <div className="flex items-center gap-4">
+              <div className="hidden xs:flex items-center gap-4">
                 <span>رایگان</span>
                 <div className="text-[var(--purple)] bg-purple-50 flex items-center gap-3 px-4 py-2 rounded-md text-base">
                   <CiTimer />
@@ -58,7 +58,7 @@ export default function CourseAccordion({ expanded }) {
                 آموزش برنامه نویسی css-in-js
               </Link>
 
-              <div className="flex items-center gap-4">
+              <div className="hidden xs:flex items-center gap-4">
                 <span>رایگان</span>
                 <div className="text-[var(--purple)] bg-purple-50 flex items-center gap-3 px-4 py-2 rounded-md text-base">
                   <CiTimer />
@@ -72,7 +72,7 @@ export default function CourseAccordion({ expanded }) {
                 آموزش برنامه نویسی css-in-js
               </Link>
 
-              <div className="flex items-center gap-4">
+              <div className="hidden xs:flex items-center gap-4">
                 <span>رایگان</span>
                 <div className="text-[var(--purple)] bg-purple-50 flex items-center gap-3 px-4 py-2 rounded-md text-base">
                   <CiTimer />

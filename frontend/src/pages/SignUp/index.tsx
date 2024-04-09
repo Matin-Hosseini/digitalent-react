@@ -29,7 +29,7 @@ export default function SignUp() {
     const body = { username, email, password };
 
     const res = await Api.post("/register", body);
-    login(res.data.newUser, res.data.token);
+    // login(res.data.newUser, res.data.token);
     console.log(res);
   };
   return (

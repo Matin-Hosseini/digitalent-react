@@ -16,6 +16,10 @@
   .grid-system {
     @apply grid grid-cols-12 gap-3;
   }
+
+  .old-price {
+    @apply relative text-[var(--gray)] text-lg me-4 before:absolute before:content-[''] before:w-full before:h-[0.1rem] before:bg-[var(--red)] before:top-1/2 before:-translate-y-2/4 before:-rotate-12;
+  }
 }
 
 input {

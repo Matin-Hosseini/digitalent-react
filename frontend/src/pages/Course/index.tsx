@@ -1,9 +1,8 @@
 // import CourseInfo from "./Components/Course-info";
-// import CourseDetails from "./Components/CourseDetails";
 // import RelatedCourses from "./Components/RelatedCourses";
 
 //custom hooks
-import { Grid, LinearProgress, Rating } from "@mui/material";
+import { Grid, Rating } from "@mui/material";
 import ContainerBox from "../../components/ContainerBox";
 
 import { useEffect, useRef } from "react";
@@ -11,9 +10,9 @@ import { FcCalendar, FcShare } from "react-icons/fc";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { RiHeartAddLine } from "react-icons/ri";
 
-import { useCookies } from "react-cookie";
-import Api from "../../axios/api";
-import VideoJS from "../../components/VideoPlayer";
+import axios from "axios";
+import ProgressBar from "../../components/ProgressBar";
+import CourseDetails from "./CourseDetails";
 
 export default function Course() {
   const playerRef = useRef(null);
@@ -43,18 +42,13 @@ export default function Course() {
       videojs.log("player will dispose");
     });
   };
-  const [cookie, setCookie, removeCookie] = useCookies(["my-cookie"]);
 
   useEffect(() => {
     console.log(document.cookie);
 
-    setCookie("my-cookie", "this is the value", {
-      maxAge: 90000,
-    });
-
     const getCookie = async () => {
       console.log("sending request");
-      const res = await Api.get("/cookie", { withCredentials: true });
+      const res = await axios.get("http://localhost:8000/api/v1/cookie");
       console.log(res);
     };
 
@@ -63,10 +57,6 @@ export default function Course() {
 
   return (
     <main className="container my-20">
-      {/* <CourseInfo />
-      <CourseDetails />
-      <RelatedCourses /> */}
-
       <ContainerBox className={"p-5"}>
         <Grid container spacing={2}>
           <Grid item xs={8}>
@@ -106,12 +96,12 @@ export default function Course() {
         <div className="grid-system">
           <div className="col-span-12 lg:col-span-8 xl:col-span-9">
             <ContainerBox className={"p-4"}>
-              <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+              {/* <VideoPlayer /> */}
             </ContainerBox>
           </div>
           <div className="col-span-12 lg:col-span-4 xl:col-span-3">
-            <ContainerBox className={"h-full p-3"}>
-              <div>
+            <ContainerBox className={"h-full p-4"}>
+              <div className=" flex flex-col justify-between gap-12 text-2xl">
                 <div className="flex items-center justify-evenly">
                   <div className="flex flex-col items-center gap-3">
                     <span>7</span>
@@ -119,25 +109,34 @@ export default function Course() {
                   </div>
                   <div className="flex flex-col items-center gap-3">
                     <div className="flex flex-col items-center gap-2">
-                      <span>300,000</span>
-                      <span>270,000</span>
+                      <span className="old-price">300,000</span>
+                      <span className="tracking-wider">270,000</span>
                     </div>
-                    <span>تومان</span>
+                    <span className="text-lg">تومان</span>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <h4>امتیاز دوره:</h4>
-                  <Rating name="read-only" value={2} readOnly sx={{}} />
+                  <Rating
+                    name="read-only"
+                    precision={0.1}
+                    value={2.5}
+                    readOnly
+                    sx={{
+                      direction: "ltr",
+                      fontSize: "2rem",
+                      ".MuiRating-iconEmpty": {
+                        color: "var(--text-color)",
+                        transition: "var(--transition)",
+                      },
+                    }}
+                  />
                 </div>
 
                 <div>
-                  <LinearProgress
-                    value={30}
-                    variant="determinate"
-                    sx={{ direction: "rtl" }}
-                  />
-                  <div className="flex items-center gap-2">
+                  <ProgressBar value={49} />
+                  <div className="flex items-center gap-2 mt-2 text-xl">
                     <span>30</span>
                     <p>درصد دوره تکمیل شده است.</p>
                   </div>
@@ -163,19 +162,19 @@ export default function Course() {
                 <div className="grid grid-cols-3 text-center divide-x">
                   <div className="">
                     <span>3</span>
-                    <h4>دیدگاه</h4>
+                    <h4 className="text-lg text-[var(--gray)]">دیدگاه</h4>
                   </div>
                   <div className="">
                     <span>15 ساعت</span>
-                    <h4>آموزش</h4>
+                    <h4 className="text-lg text-[var(--gray)]">آموزش</h4>
                   </div>
                   <div className="">
                     <span>پیشرفته</span>
-                    <h4>سطح دوره</h4>
+                    <h4 className="text-lg text-[var(--gray)]">سطح دوره</h4>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-5 h-16 text-lg">
+                <div className="flex items-center gap-5 h-16 text-xl">
                   <button className="flex items-center gap-4 px-4  bg-purple-300 text-purple-700 flex-1 h-full rounded-lg">
                     <MdOutlineAddShoppingCart />
                     افزودن به سبد خرید
@@ -189,6 +188,8 @@ export default function Course() {
           </div>
         </div>
       </div>
+
+      <CourseDetails />
     </main>
   );
 }
