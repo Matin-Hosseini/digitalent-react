@@ -3,12 +3,13 @@ import Hero from "../../components/Hero";
 import LatestCourses from "../../components/LatestCourses";
 import LatestEvents from "../../components/LatestEvents/LatestEvents";
 import SpecialDiscounts from "../../components/SpecialDiscounts";
+import Testimonial from "../../components/Testimonial";
 import Weblog from "../../components/Weblog";
 
 export default function Home() {
   return (
     <>
-      <main>
+      <main className="space-y-20">
         <Hero />
         {/* <HomeSection /> */}
         <SpecialDiscounts />
@@ -16,6 +17,7 @@ export default function Home() {
         <LatestCourses />
         <Weblog />
         <LatestEvents />
+        <Testimonial />
       </main>
     </>
   );
