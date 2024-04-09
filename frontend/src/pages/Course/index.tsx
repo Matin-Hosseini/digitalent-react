@@ -1,8 +1,3 @@
-// import CourseInfo from "./Components/Course-info";
-// import RelatedCourses from "./Components/RelatedCourses";
-
-//custom hooks
-
 import { useEffect } from "react";
 
 import axios from "axios";
