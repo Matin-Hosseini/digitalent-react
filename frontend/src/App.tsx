@@ -7,7 +7,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "./components/Footer/Footer";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ScrollToTop from "./components/ScrollToTop";
 import routes from "./routes";
@@ -69,7 +69,6 @@ const App = () => {
           theme={theme}
           draggable
         />
-        <Counter/>
       </ThemeProvider>
     </>
   );

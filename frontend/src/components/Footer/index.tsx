@@ -1,3 +1,4 @@
+import Logo from "../Logo";
 import "./Footer.css";
 
 const Footer = () => {
@@ -23,7 +24,9 @@ const Footer = () => {
           <div className="grid-system">
             <div className="col-span-12 lg:col-span-4">
               <div className="footer__company-description">
-                <h2 className="footer__logo text-danger">DigiTalent</h2>
+                <h2 className="footer__logo text-danger">
+                  <Logo />
+                </h2>
                 <p className="footer__company-caption">
                   شرکت دیجی تلنت، با افتخار و تعهد به ارائه خدمات برتر و محصولات
                   با کیفیت به عنوان یک رهنمود در زمینه آموزش آنلاین به مشتریان
