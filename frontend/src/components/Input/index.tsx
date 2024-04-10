@@ -20,7 +20,7 @@ const inputReducer = (state, action) => {
   }
 };
 
-export default function CustomInput({
+export default function Input({
   type,
   name,
   label,
