@@ -11,12 +11,13 @@ const jwt = require("jsonwebtoken");
  */
 
 const register = async (req, res) => {
+  console.log("grabnig reuest");
   const newUser = await User.create(req.body);
   const token = generateToken(newUser.id);
 
-  // generateCookie(res, "user", token);
+  generateCookie(res, "token", token);
 
-  res.status(201).json({ message: "New user created", newUser, token });
+  res.status(201).json({ message: "New user created!" });
 };
 
 /*
@@ -45,12 +46,11 @@ const login = async (req, res) => {
 };
 
 const getMe = async (req, res) => {
-  const authorization = req.headers.authorization;
+  // const authorization = req.headers.authorization;
+  // if (!authorization)
+  //   return res.status(403).json({ error: "Token not provided" });
 
-  if (!authorization)
-    return res.status(403).json({ error: "Token not provided" });
-
-  const token = authorization.split(" ")[1];
+  // const token = authorization.split(" ")[1];
 
   const user = req.user;
   // try {
@@ -71,18 +71,19 @@ const getMe = async (req, res) => {
 };
 
 const test = async (req, res) => {
-  console.log(req.user);
+  console.log(req.cookies);
 
   res.status(200).json({ msg: "inside auth controller" });
 };
 
 const cookie = async (req, res) => {
-  res.cookie("my-cookie", "this is the new value", {
-    httpOnly: true,
-    maxAge: 100000,
-  });
+  // console.log("in cookie router");
+  // res.cookie("my-cookie", "this is the new value", {
+  //   httpOnly: true,
+  //   maxAge: 100000,
+  // });
 
-  console.log(req.cookies);
+  // console.log(req.cookies);
 
   res.status(200).json({ message: "cookie created" });
 };

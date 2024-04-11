@@ -7,7 +7,8 @@ const routes = require("./src/routes/v1");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: true }));
+
 app.use(helmet());
 
 app.use(express.json());

@@ -9,6 +9,6 @@ router.post("/login", authController.login);
 router.get("/get-me", authMiddleware, authController.getMe);
 
 router.post("/someroute", authController.test);
-router.get("/cookie", authController.cookie)
+router.get("/cookie", authController.test);
 
 module.exports = router;
