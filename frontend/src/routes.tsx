@@ -1,6 +1,7 @@
 import NotFound from "./pages/404";
 import About from "./pages/About-us";
 import Article from "./pages/Article";
+import ArticleCategory from "./pages/ArticleCategory";
 import Course from "./pages/Course";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -25,6 +26,7 @@ const routes: any = [
   { path: "/sign-up", element: <SignUp /> },
   { path: "/course", element: <Course /> },
   { path: "/article", element: <Article /> },
+  { path: "/articles", element: <ArticleCategory /> },
   { path: "/not-completed", element: <NotCompleted /> },
   { path: "*", element: <NotFound /> },
 
