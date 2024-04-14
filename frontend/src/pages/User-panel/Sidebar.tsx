@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   RiCoupon2Line,
   RiDashboardLine,
@@ -6,9 +6,8 @@ import {
   RiEditLine,
   RiKeyLine,
   RiLogoutCircleRLine,
-  RiMedalLine,
-  RiMoneyDollarCircleLine,
 } from "react-icons/ri";
+import { authContext } from "../../contexts/auth";
 import PanelSidebarLink from "./SidebarLink";
 
 const userPanelSidebarMenu = [
@@ -42,15 +41,10 @@ const userPanelSidebarMenu = [
     icon: <RiCoupon2Line />,
     path: "tickets",
   },
-  {
-    id: "evehh",
-    title: "خروج از حساب",
-    icon: <RiLogoutCircleRLine />,
-    path: "get-out",
-  },
 ];
 
 export default function PanelSidebar() {
+  const AuthContext = useContext(authContext);
   const [sidebarMenu, setSidebarMenu] = useState([]);
 
   useEffect(() => {
@@ -65,6 +59,13 @@ export default function PanelSidebar() {
         {sidebarMenu.map((menu) => (
           <PanelSidebarLink key={menu.id} {...menu} />
         ))}
+        <button
+          onClick={() => AuthContext.logout()}
+          className="flex items-centerr gap-3 p-3 rounded-lg hover:text-[var(--purple)] hover:bg-[var(--bg-purple)] w-full transition"
+        >
+          <RiLogoutCircleRLine />
+          خروج از حساب
+        </button>
       </div>
     </div>
   );

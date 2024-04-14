@@ -6,7 +6,7 @@ export default function PanelSidebarLink({ path, icon, title }) {
       to={path}
       className={({ isActive }) => {
         return [
-          "flex items-centerr gap-3 p-3 rounded-lg hover:text-[var(--purple)] hover:bg-[var(--bg-purple)]",
+          "flex items-centerr gap-3 p-3 rounded-lg hover:text-[var(--purple)] hover:bg-[var(--bg-purple)] transition",
           isActive ? "bg-[var(--bg-purple)] text-[var(--purple)]" : "",
         ].join(" ");
       }}

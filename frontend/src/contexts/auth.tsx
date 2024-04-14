@@ -17,7 +17,9 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem("token", token);
   };
 
-  const logout = () => {};
+  const logout = () => {
+    console.log("logout is being called");
+  };
 
   useEffect(() => {
     const getUser = async () => {
