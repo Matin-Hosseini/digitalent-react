@@ -73,7 +73,7 @@ export default function PanelSidebar() {
     <div className="account-side-bar">
       <div className="profile"></div>
 
-      <div className="menu">
+      <div className="menu space-y-4">
         {sidebarMenu.map((menu) => (
           <PanelSidebarLink key={menu.id} {...menu} />
         ))}

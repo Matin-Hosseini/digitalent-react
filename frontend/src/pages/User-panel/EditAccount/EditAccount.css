@@ -3,10 +3,9 @@
   height: 100%;
 }
 .edit-form {
-  margin-top: 2rem;
   background-color: var(--section-bg);
   padding: 2rem;
-  border: 2px dashed var(--gray);
+  /* border: .5px dashed var(--gray); */
   border-radius: var(--border-radius);
   font-size: 1.3rem;
 }
@@ -27,7 +26,8 @@
   border-radius: 0.5rem;
   color: var(--gray);
   font-size: 1.3rem;
-  transition: var(--transition);
+  transition: all var(--transition);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 :root.dark .edit-form input {
   background-color: var(--app-bg);

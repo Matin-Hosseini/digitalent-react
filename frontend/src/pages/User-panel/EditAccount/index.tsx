@@ -26,7 +26,7 @@ export default function EditAccount() {
           <span className="error-message">این بخش را خالی نگذارید.</span>
         </div>
 
-        <button type="submit" className="edit-form__submit-btn custom-btn">
+        <button type="submit" className="custom-btn">
           ویرایش اطلاعات
         </button>
       </form>

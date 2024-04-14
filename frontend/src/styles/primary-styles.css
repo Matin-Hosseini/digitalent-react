@@ -152,7 +152,7 @@ img {
 /* custom btn starts */
 .custom-btn,
 .custom-btn--outline {
-  background-color: var(--orange);
+  background-color: var(--orange) !important;
   color: #fff;
   padding: 1rem 3rem;
   border-radius: 0.5rem;
