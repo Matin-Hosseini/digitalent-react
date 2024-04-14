@@ -18,7 +18,7 @@ export default function Tickets() {
           <p className="ticket__title">
             درخواست تخفیف برای دوره آموزش Doker مقدماتی تا پیشرفته
           </p>
-          <div className="d-flex align-items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <span className="ticket__section" data-section="finance">
               مالی
             </span>
@@ -36,7 +36,7 @@ export default function Tickets() {
             درخواست تخفیف برای دوره آموزش Doker که الان داره مید خط ددوممقدماتی
             تا پیشرفته
           </p>
-          <div className="d-flex align-items-center gap-3">
+          <div className="flex items-center gap-3">
             <span className="ticket__section" data-section="finance">
               آموزش
             </span>
@@ -53,7 +53,7 @@ export default function Tickets() {
           <p className="ticket__title">
             درخواست تخفیف برای دوره آموزش Doker مقدماتی تا پیشرفته
           </p>
-          <div className="d-flex align-items-center gap-3">
+          <div className="flex items-center gap-3">
             <span className="ticket__section" data-section="finance">
               مالی
             </span>
@@ -68,7 +68,10 @@ export default function Tickets() {
       </section>
 
       <div className="text-center">
-        <Link to="/user-panel/add-ticket" className="custom-btn add-ticket-btn gap-3">
+        <Link
+          to="/user-panel/add-ticket"
+          className="custom-btn add-ticket-btn gap-3"
+        >
           <RiAddLine />
           افزودن تیکت جدید
         </Link>
