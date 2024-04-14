@@ -215,9 +215,9 @@ export default function CourseDetails() {
                       copyToClipboard("https://bamina.ir/donya=73")
                     }
                   >
-                    <IoCopyOutline />
+                    <IoCopyOutline className="text-color" />
                   </button>
-                  <p>https://bamina.ir/donya/?p=73</p>
+                  <p className="cursor-text">https://bamina.ir/donya/?p=73</p>
                 </div>
               </ContainerBox>
 

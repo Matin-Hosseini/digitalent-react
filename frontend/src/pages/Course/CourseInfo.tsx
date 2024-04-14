@@ -1,6 +1,7 @@
-import { Rating } from "@mui/material";
+import { Avatar, Divider, Rating } from "@mui/material";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { RiHeartAddLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import ContainerBox from "../../components/ContainerBox";
 import ProgressBar from "../../components/ProgressBar";
 import VideoPlayer from "../../components/VideoPlayer";
@@ -14,14 +15,23 @@ export default function CourseInfo() {
             <VideoPlayer />
           </ContainerBox>
         </div>
-        <div className="col-span-12 lg:col-span-4 xl:col-span-3">
-          <ContainerBox className={"h-full p-4"}>
+        <div className="col-span-12 lg:col-span-4 xl:col-span-3 self-center">
+          <ContainerBox className={" p-4"}>
             <div className=" flex flex-col justify-between gap-12 text-2xl h-full">
               <div className="flex items-center justify-evenly">
                 <div className="flex flex-col items-center gap-3">
                   <span>7</span>
                   <h3>دانشجو</h3>
                 </div>
+                <Divider
+                  orientation="vertical"
+                  variant="middle"
+                  flexItem
+                  sx={{
+                    background: "var(--text-color)",
+                    transition: "all var(--transition)",
+                  }}
+                />
                 <div className="flex flex-col items-center gap-3">
                   <div className="flex flex-col items-center gap-2">
                     <span className="old-price">300,000</span>
@@ -57,32 +67,67 @@ export default function CourseInfo() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 items-center">
+              <div className="flex items-center justify-around text-xl bg-[var(--app-bg)] py-4 rounded-lg app-transition">
                 <div className="flex items-center justify-center gap-5">
-                  <div className="w-20 h-20 rounded-full overflow-hidden">
-                    <img
+                  <Link to={`/teachers`}>
+                    <Avatar
+                      alt="متین"
                       src="src/assets/images/profile.jpg"
-                      alt=""
-                      className="h-full w-full"
+                      sx={{
+                        background: "var(--section-bg)",
+                        color: "var(--text-color)",
+                        fontFamily: "var(--text-font)",
+                        transition: "var(--transition)",
+                      }}
                     />
-                  </div>
-                  <h3>کسکش کون لخت</h3>
+                  </Link>
+                  <h3>
+                    <Link to={`/teachers`}>سید رضا سید صدری</Link>
+                  </h3>
                 </div>
 
-                <div className="flex items-center justify-center">
-                  کاگردان فیلم سوپر
+                <Divider
+                  orientation="vertical"
+                  variant="middle"
+                  flexItem
+                  sx={{
+                    background: "var(--text-color)",
+                    transition: "all var(--transition)",
+                  }}
+                />
+
+                <div className="flex items-center justify-center me-5">
+                  مدرس
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 text-center divide-x">
+              <div className="flex items-center justify-around text-center">
                 <div className="">
                   <span>3</span>
                   <h4 className="text-lg text-[var(--gray)]">دیدگاه</h4>
                 </div>
-                <div className="">
+                <Divider
+                  orientation="vertical"
+                  variant="middle"
+                  flexItem
+                  sx={{
+                    background: "var(--text-color)",
+                    transition: "all var(--transition)",
+                  }}
+                />
+                <div>
                   <span>15 ساعت</span>
                   <h4 className="text-lg text-[var(--gray)]">آموزش</h4>
                 </div>
+                <Divider
+                  orientation="vertical"
+                  variant="middle"
+                  flexItem
+                  sx={{
+                    background: "var(--text-color)",
+                    transition: "all var(--transition)",
+                  }}
+                />
                 <div className="">
                   <span>پیشرفته</span>
                   <h4 className="text-lg text-[var(--gray)]">سطح دوره</h4>
