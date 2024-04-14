@@ -14,7 +14,13 @@ import useLocalStorage from "../../hooks/localstorage";
 import ContainerBox from "../ContainerBox";
 import DiscountTimer from "./DiscountTimer";
 
-export default function CourseBox({ id }: { id: String }) {
+export default function CourseBox({
+  id,
+  title,
+}: {
+  id: String;
+  title: String;
+}) {
   const addProductToWhishlist = () => {
     const [localStorage, setLocalStorage] = useLocalStorage("products");
     if (!localStorage) {
@@ -29,7 +35,6 @@ export default function CourseBox({ id }: { id: String }) {
 
   return (
     <ContainerBox className="group p-3">
-      {/* <ToastContainer position="top-right" rtl={true} autoClose={3000} /> */}
       <div className="course-box relative text-xl text-[var(--gray)] transition-all">
         <div className="absolute grid place-content-center bg-[var(--purple)] text-white w-14 h-14 rounded-full -top-4 -right-4 -rotate-[30deg] group-hover:-rotate-[10deg] transition-all z-50">
           25%
@@ -51,8 +56,7 @@ export default function CourseBox({ id }: { id: String }) {
               to="/course"
               className="underline-animated-text group-hover:bg-[length:100%_2px]"
             >
-              نجر به این هست خط ن در این عبارت درحال زیاد شدن بوده و با اضافه
-              کردن متن به خط بعدی خواهیم رتف حال حاضر با
+              {title}
             </Link>
           </h2>
 
