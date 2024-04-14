@@ -37,18 +37,6 @@ const userPanelSidebarMenu = [
     path: "courses",
   },
   {
-    id: "evea",
-    title: "داشبورد",
-    icon: <RiMoneyDollarCircleLine />,
-    path: "buyed-courses",
-  },
-  {
-    id: "feve",
-    title: "داشبورد",
-    icon: <RiMedalLine />,
-    path: "free-courses",
-  },
-  {
     id: "avae",
     title: "تیکت ها",
     icon: <RiCoupon2Line />,
