@@ -4,19 +4,28 @@ export default function Funfact({ title, icon, subtitle, counter }) {
   const [startCount, setStartCount] = useState(0);
 
   useEffect(() => {
-    // setInterval(() => {
-    //   if (startCount <= counter) {
-    //     console.log(startCount, counter);
-    //     setStartCount((prev) => prev + 1);
-    //   }
-    // }, 3000);
+    let interval = setInterval(() => {
+      setStartCount((prev) => {
+        if (prev == counter) {
+          clearInterval(interval);
+          return prev;
+        } else {
+          return prev + 1;
+        }
+      });
+    }, 50);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, [startCount]);
+
   return (
     <div className="funfact mb-5 mb-md-0">
       <div className="funfact__icon">{icon}</div>
       <div>
         <span className="funfact__count" data-count="95">
-          {counter}
+          {startCount}
         </span>
         {subtitle}
       </div>
