@@ -1,3 +1,5 @@
+const { Comment } = require("./../../../models");
+
 /*
  * registers new user and saves token to cookie
  * /register
@@ -10,4 +12,14 @@ const register = async (req, res) => {
   res.status(200).json({ msg: "created" });
 };
 
-module.exports = { register };
+const getUserComments = async (req, res) => {
+  const userComments = await Comment.findAll({
+    where: {
+      creator: req.query.userId,
+    },
+  });
+
+  res.status(200).json({ userComments });
+};
+
+module.exports = { register, getUserComments };

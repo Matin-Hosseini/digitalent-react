@@ -29,5 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  User.association = (model) => {
+    User.hasMany(model.Comment);
+  };
+
   return User;
 };
