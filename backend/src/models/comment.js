@@ -8,27 +8,24 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: "false",
         defaultValue: DataTypes.UUIDV4,
       },
-      title: {
+      text: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      course_id: {
+      resource_id: {
         type: DataTypes.UUID,
         allowNull: false,
       },
-      creator: {
+      resource_type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isIn: [["course", "article"]],
+        },
+      },
+      user_id: {
         type: DataTypes.UUID,
         allowNull: false,
-      },
-      likes: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-      },
-      dislikes: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -41,8 +38,10 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Comment.associate = (model) => {
-    Comment.belongsTo(model.Course, { foreignKey: "course_id" });
-    Comment.belongsTo(model.User, { foreignKey: "creator" });
+    Comment.belongsTo(model.Course, { foreignKey: "resource_id" });
+    // Comment.belongsTo(model.Article, { foreignKey: "resource_id" });
+    Comment.belongsTo(model.User, { foreignKey: "user_id" });
+    Comment.hasMany(model.CommentLike, {foreignKey: "comment_id"})
   };
 
   return Comment;

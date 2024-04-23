@@ -16,27 +16,24 @@ module.exports = {
         allowNull: "false",
         defaultValue: DataTypes.UUIDV4,
       },
-      title: {
+      text: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      course_id: {
+      resource_id: {
         type: DataTypes.UUID,
         allowNull: false,
       },
-      creator: {
+      resource_type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isIn: [["course", "article"]],
+        },
+      },
+      user_id: {
         type: DataTypes.UUID,
         allowNull: false,
-      },
-      likes: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-      },
-      dislikes: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -54,5 +51,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
+    await queryInterface.dropTable("comments");
   },
 };
