@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const CommentLike = sequelize.define(
-    "CommentLike",
+    "Like",
     {
       id: {
         type: DataTypes.UUID,
@@ -8,9 +8,16 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      comment_Id: {
+      resource_id: {
         type: DataTypes.UUID,
         allowNull: false,
+      },
+      resource_type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isIn: [["article", "article_comment", "course_comment"]],
+        },
       },
       user_id: {
         type: DataTypes.UUID,
@@ -29,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "comment_likes",
+      tableName: "likes",
     }
   );
 

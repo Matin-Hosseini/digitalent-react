@@ -3,22 +3,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, DataTypes) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
-    await queryInterface.createTable("comment_likes", {
+    await queryInterface.createTable("likes", {
       id: {
         type: DataTypes.UUID,
         allowNull: false,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      comment_Id: {
+      resource_id: {
         type: DataTypes.UUID,
         allowNull: false,
+      },
+      resource_type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isIn: [["article", "article_comment", "course_comment"]],
+        },
       },
       user_id: {
         type: DataTypes.UUID,
