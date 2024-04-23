@@ -125,7 +125,7 @@
 .footer__phone,
 .footer__email {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   margin-bottom: 1rem;
   gap: 0.5rem;
 }
