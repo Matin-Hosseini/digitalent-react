@@ -35,6 +35,12 @@ module.exports = {
         type: DataTypes.UUID,
         allowNull: false,
       },
+      reply_to: {
+        type: DataTypes.UUID,
+      },
+      paernt_id: {
+        type: DataTypes.UUID,
+      },
       createdAt: {
         type: DataTypes.DATE,
       },

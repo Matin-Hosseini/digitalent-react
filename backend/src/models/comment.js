@@ -27,6 +27,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         allowNull: false,
       },
+      reply_to: {
+        type: DataTypes.UUID,
+      },
+      paernt_id: {
+        type: DataTypes.UUID,
+      },
       createdAt: {
         type: DataTypes.DATE,
       },
@@ -41,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     Comment.belongsTo(model.Course, { foreignKey: "resource_id" });
     // Comment.belongsTo(model.Article, { foreignKey: "resource_id" });
     Comment.belongsTo(model.User, { foreignKey: "user_id" });
-    Comment.hasMany(model.Like, {foreignKey: "resource_id"})
+    Comment.hasMany(model.Like, { foreignKey: "resource_id" });
   };
 
   return Comment;
