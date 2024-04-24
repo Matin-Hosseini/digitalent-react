@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     Comment.belongsTo(model.Course, { foreignKey: "resource_id" });
     // Comment.belongsTo(model.Article, { foreignKey: "resource_id" });
     Comment.belongsTo(model.User, { foreignKey: "user_id" });
-    Comment.hasMany(model.CommentLike, {foreignKey: "comment_id"})
+    Comment.hasMany(model.Like, {foreignKey: "resource_id"})
   };
 
   return Comment;
