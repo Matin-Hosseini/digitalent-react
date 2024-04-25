@@ -44,30 +44,12 @@ const login = async (req, res) => {
   res.send({ user, token });
 };
 
-const getMe = async (req, res) => {
-  // const authorization = req.headers.authorization;
-  // if (!authorization)
-  //   return res.status(403).json({ error: "Token not provided" });
-
-  // const token = authorization.split(" ")[1];
-
-  const user = req.user;
-  // try {
-  //   const decodedToken = jwt.verify(token, process.env.JWTSECRET);
-
-  //   const targetUser = await User.findOne({
-  //     where: {
-  //       id: decodedToken.payload,
-  //     },
-  //   });
-
-  //   res.status(200).json({ user: targetUser });
-  // } catch (error) {
-  //   return res.status(403).json({ error: "Please login again, JWT fail" });
-  // }
-
-  res.status(200).send({ user });
-};
+/*
+ * gives the user given from auth middleware
+ * /me
+ * public
+ */
+const getMe = async (req, res) => res.status(200).json({ user: req.user });
 
 const test = async (req, res) => {
   console.log(req.cookies);

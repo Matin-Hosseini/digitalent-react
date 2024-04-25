@@ -13,11 +13,12 @@ const auth = async (req, res, next) => {
 
     const user = await User.findOne({
       where: {
-        id: decodedToken.payload,
+        id: JSON.parse(decodedToken.payload).id,
       },
     });
 
-    req.user = user;
+    const userInfo = user.toJSON();
+    req.user = JSON.parse(userInfo);
   } catch (error) {
     return res.status(403).json({ error: "Please login again, JWT fail" });
   }
