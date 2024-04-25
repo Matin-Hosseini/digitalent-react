@@ -1,3 +1,5 @@
+const hashPassword = require("./../utils/hashPassword");
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
@@ -34,9 +36,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  User.prototype.toJSON = function () {
+    //removing password to store it in jwt
+    delete this.get().password;
+    return JSON.stringify(this.get());
+  };
+
+  User.beforeCreate(async (user, options) => {
+    const hashedPassword = await hashPassword(user.password);
+    user.password = hashedPassword;
+  });
+
   User.association = (model) => {
     User.hasMany(model.Comment);
-    User.hasMany(model.Like, {foreignKey: "user_id"})
+    User.hasMany(model.Like, { foreignKey: "user_id" });
   };
 
   return User;
