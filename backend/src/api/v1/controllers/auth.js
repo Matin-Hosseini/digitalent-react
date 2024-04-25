@@ -11,9 +11,8 @@ const jwt = require("jsonwebtoken");
  */
 
 const register = async (req, res) => {
-  console.log("grabnig reuest");
   const newUser = await User.create(req.body);
-  const token = generateToken(newUser.id);
+  const token = generateToken(newUser.toJSON());
 
   generateCookie(res, "token", token);
 
