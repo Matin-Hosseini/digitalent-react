@@ -2,14 +2,13 @@ const { User } = require("./../../../models");
 const { generateToken } = require("./../../../utils/generateToken");
 const { generateCookie } = require("./../../../utils/cookie");
 const { Op } = require("sequelize");
-const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 /*
  * registers new user and stores token to cookie
  * /register
  * public
  */
-
 const register = async (req, res) => {
   const newUser = await User.create(req.body);
   const token = generateToken(newUser.toJSON());
@@ -24,11 +23,8 @@ const register = async (req, res) => {
  * /register
  * public
  */
-
 const login = async (req, res) => {
   const { identifier, password } = req.body;
-  console.log(req.cookie);
-  const cookie = req.cookie;
 
   const user = await User.findOne({
     where: {
@@ -38,10 +34,15 @@ const login = async (req, res) => {
 
   if (!user) return res.status(404).send({ error: "User not found" });
 
-  const token = generateToken(user.id);
-  generateCookie(res, "user", token);
+  const isPasswordMatch = await bcrypt.compare(password, user.password);
 
-  res.send({ user, token });
+  if (!isPasswordMatch)
+    return res.status(400).json({ error: "Wrong identifier or password" });
+
+  const token = generateToken(user.toJSON());
+  generateCookie(res, "token", token);
+
+  res.status(200).send({ msg: "User loggedin successfully" });
 };
 
 /*
@@ -51,22 +52,4 @@ const login = async (req, res) => {
  */
 const getMe = async (req, res) => res.status(200).json({ user: req.user });
 
-const test = async (req, res) => {
-  console.log(req.cookies);
-
-  res.status(200).json({ msg: "inside auth controller" });
-};
-
-const cookie = async (req, res) => {
-  // console.log("in cookie router");
-  // res.cookie("my-cookie", "this is the new value", {
-  //   httpOnly: true,
-  //   maxAge: 100000,
-  // });
-
-  // console.log(req.cookies);
-
-  res.status(200).json({ message: "cookie created" });
-};
-
-module.exports = { register, login, test, getMe, cookie };
+module.exports = { register, login, getMe };
