@@ -73,6 +73,7 @@ module.exports = (sequelize, DataTypes) => {
   Course.associate = (model) => {
     Course.belongsTo(model.Category, { foreignKey: "category_id" });
     Course.hasMany(model.Comment, { foreignKey: "course_id" });
+    Course.hasMany(model.Session, { foreignKey: "course_id" });
   };
 
   return Course;
