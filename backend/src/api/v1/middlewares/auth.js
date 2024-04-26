@@ -5,9 +5,6 @@ const auth = async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) return res.status(401).json({ error: "Please login!" });
 
-  // if (!authorization)
-  //   return res.status(403).json({ error: "Token not provided" });
-
   try {
     const decodedToken = jwt.verify(token, process.env.JWTSECRET);
 
@@ -20,6 +17,7 @@ const auth = async (req, res, next) => {
     const userInfo = user.toJSON();
     req.user = JSON.parse(userInfo);
   } catch (error) {
+    console.log("token expired! please login");
     return res.status(403).json({ error: "Please login again, JWT fail" });
   }
 
