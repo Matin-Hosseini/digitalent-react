@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../../../models");
+const asyncHandler = require("express-async-handler");
 
-const auth = async (req, res, next) => {
+const auth = asyncHandler(async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) return res.status(401).json({ error: "Please login!" });
 
@@ -22,6 +23,6 @@ const auth = async (req, res, next) => {
   }
 
   next();
-};
+});
 
 module.exports = auth;

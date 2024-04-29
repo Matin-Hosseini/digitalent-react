@@ -3,27 +3,28 @@ const { generateToken } = require("./../../../utils/generateToken");
 const { generateCookie } = require("./../../../utils/cookie");
 const { Op } = require("sequelize");
 const bcrypt = require("bcrypt");
+const asyncHandler = require("express-async-handler");
 
 /*
  * registers new user and stores token to cookie
  * /register
  * public
  */
-const register = async (req, res) => {
+const register = asyncHandler(async (req, res) => {
   const newUser = await User.create(req.body);
   const token = generateToken(newUser.toJSON());
 
   generateCookie(res, "token", token);
 
   res.status(201).json({ message: "New user created!" });
-};
+});
 
 /*
  * loggs user in and stores token in cookie
  * /register
  * public
  */
-const login = async (req, res) => {
+const login = asyncHandler( async (req, res) => {
   const { identifier, password } = req.body;
 
   const user = await User.findOne({
@@ -43,7 +44,7 @@ const login = async (req, res) => {
   generateCookie(res, "token", token);
 
   res.status(200).send({ msg: "User loggedin successfully" });
-};
+})
 
 /*
  * gives the user given from auth middleware
