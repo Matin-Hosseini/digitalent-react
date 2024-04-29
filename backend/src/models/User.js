@@ -15,14 +15,27 @@ module.exports = (sequelize, DataTypes) => {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isIn: [["USER", "ADMIN", "TEACHER", "AUTHOR", "SUPPORTER"]],
+        },
+        defaultValue: "USER",
+      },
+      cover: {
+        type: DataTypes.STRING,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -45,6 +58,8 @@ module.exports = (sequelize, DataTypes) => {
   User.beforeCreate(async (user, options) => {
     const hashedPassword = await hashPassword(user.password);
     user.password = hashedPassword;
+
+    if ((await User.count()) === 0) user.role = "ADMIN";
   });
 
   User.association = (model) => {
