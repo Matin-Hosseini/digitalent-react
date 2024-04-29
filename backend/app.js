@@ -22,12 +22,6 @@ app.get("/", (req, res) => {
   res.json({ msg: "hello", config: [{ id: 1 }, { id: 2 }] });
 });
 
-app.use((error, req, res, next) => {
-  console.log("inside error handling");
-  error.statuscode = error.statuscode || 500;
-  console.log(error);
-});
-
 app.use("/api/v1", routes);
 
 app.use(notFound);

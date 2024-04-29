@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
   User.prototype.toJSON = function () {
     //removing password to store it in jwt
     delete this.get().password;
-    return JSON.stringify(this.get());
+    return this.get()
   };
 
   User.beforeCreate(async (user, options) => {

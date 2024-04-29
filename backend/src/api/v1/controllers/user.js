@@ -1,12 +1,11 @@
-const { Comment } = require("./../../../models");
+const { Comment, User } = require("./../../../models");
+const asyncHandler = require("express-async-handler");
 
 /*
  * registers new user and saves token to cookie
  * /register
  * public
  */
-
-const { User } = require("./../../../models");
 
 const register = async (req, res) => {
   res.status(200).json({ msg: "created" });
@@ -22,4 +21,26 @@ const getUserComments = async (req, res) => {
   res.status(200).json({ userComments });
 };
 
-module.exports = { register, getUserComments };
+/*
+ * updates user info
+ * /user/info
+ * private(admin, supporter, user)
+ */
+
+const changeUserInfo = asyncHandler(async (req, res) => {
+  if (!["USER", "ADMIN", "SUPPORTER"].includes(req.user.role))
+    return res.status(403).json({ error: "This route is private" });
+
+  const user = await User.findOne({
+    where: {
+      id: req.user.id,
+    },
+  });
+
+  user.set(req.body);
+  await user.save();
+
+  res.status(200).json({ msg: "User updated!" });
+});
+
+module.exports = { register, getUserComments, changeUserInfo };
