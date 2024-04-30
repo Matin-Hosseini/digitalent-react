@@ -1,8 +1,9 @@
 import Api from "../api";
 
 const postNewsletter = async (reqBody: { email: string }) => {
-  const res = await Api.post("/newsletter/create", reqBody);
-  return res;
+  return await Api.post("/newsletter/create", reqBody)
+    .then((res) => res)
+    .catch((error) => error);
 };
 
 export { postNewsletter };

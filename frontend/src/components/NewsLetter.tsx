@@ -10,9 +10,14 @@ export default function NewsLetter() {
     e.preventDefault();
 
     const res = await postNewsletter({ email });
+    console.log(res);
     if (res.status === 201) {
       toast("ایمیل شما با موفقیت ثبت شد.");
       setEmail("");
+    } else if (res.response.status === 400) {
+      toast("آدرس ایمیل وجود دارد.");
+    } else {
+      toast("خطا در ارسال اطلاعات");
     }
   };
 
@@ -28,6 +33,7 @@ export default function NewsLetter() {
             action=""
             className="max-w-[40rem] flex flex-col md:flex-row gap-3"
             onSubmit={submitHandler}
+            noValidate
           >
             <input
               type="email"
