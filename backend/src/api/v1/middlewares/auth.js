@@ -11,12 +11,12 @@ const auth = asyncHandler(async (req, res, next) => {
 
     const user = await User.findOne({
       where: {
-        id: JSON.parse(decodedToken.payload).id,
+        id: decodedToken.payload.id,
       },
     });
 
     const userInfo = user.toJSON();
-    req.user = JSON.parse(userInfo);
+    req.user = userInfo;
   } catch (error) {
     console.log("token expired! please login");
     return res.status(403).json({ error: "Please login again, JWT fail" });
