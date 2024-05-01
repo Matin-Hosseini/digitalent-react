@@ -32,6 +32,7 @@ const routes: any = [
     path: "/user-panel",
     element: <UserPanel />,
     children: [
+      { path: "", element: <UserDashBoard /> },
       { path: "dashboard", element: <UserDashBoard /> },
       { path: "edit-account", element: <EditAccount /> },
       { path: "change-password", element: <ChangePassword /> },
