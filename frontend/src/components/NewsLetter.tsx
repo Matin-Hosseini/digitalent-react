@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Input from "./Input";
 import { postNewsletter } from "../axios/Requests/Newsletter";
 import { toast } from "react-toastify";
 

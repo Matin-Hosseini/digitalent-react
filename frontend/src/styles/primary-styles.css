@@ -73,10 +73,15 @@
   --footer-bg: var(--app-bg);
 }
 
+.app-transition {
+  transition: all var(--transition);
+}
+
 *,
 *::before,
 *::after {
   box-sizing: inherit;
+  font-family: var(--text-font);
 }
 
 html {
@@ -193,6 +198,13 @@ img {
   border: 1px solid var(--title-color);
   color: var(--title-color);
 }
+.custom-btn-green {
+  background-color: var(--green) !important;
+}
+.custom-btn-purple {
+  background-color: var(--purple) !important;
+}
+
 /* custom btn ends */
 
 /* components */
