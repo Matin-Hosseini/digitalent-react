@@ -4,6 +4,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      transitionDuration: {
+        250: "250ms",
+      },
       container: {
         center: true,
         padding: {
@@ -45,8 +48,8 @@ export default {
         text: "Vasir",
       },
       screens: {
-        "xs": "530px"
-      }
+        xs: "530px",
+      },
     },
   },
   plugins: [],
