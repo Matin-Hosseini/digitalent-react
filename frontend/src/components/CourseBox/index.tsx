@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useLocalStorage from "../../hooks/localstorage";
 import ContainerBox from "../ContainerBox";
 import DiscountTimer from "./DiscountTimer";
+import { useEffect, useState } from "react";
 
 export default function CourseBox({
   id,
@@ -21,16 +22,30 @@ export default function CourseBox({
   id: String;
   title: String;
 }) {
-  const addProductToWhishlist = () => {
-    const [localStorage, setLocalStorage] = useLocalStorage("products");
-    if (!localStorage) {
-      setLocalStorage([id]);
-    } else {
-      const newProducts = [...localStorage, id];
+  // const [localStorage, setLocalStorage] = useLocalStorage("products");
 
-      setLocalStorage(newProducts);
-    }
-    toast("محصول به لیست علاقه مندی افزوده شد.");
+  const [courses, setCourses] = useState(
+    JSON.parse(localStorage.getItem("products")) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(courses));
+  }, [courses]);
+
+  const addProductToWhishlist = () => {
+    // if (!localStorage) {
+    //   setLocalStorage([id]);
+    // } else {
+    //   const productExists = localStorage.some(
+    //     (product: string) => product === id
+    //   );
+    //   if (productExists) return toast("محصول در لیست علاقه مندی شما وجود دارد");
+    //   const newProducts = [...localStorage, id];
+    //   setLocalStorage(newProducts);
+    //   toast("محصول به لیست علاقه مندی افزوده شد.");
+    // }
+
+    setCourses((prev: string[]) => [...prev, id]);
   };
 
   return (
@@ -42,7 +57,7 @@ export default function CourseBox({
         <Link to="/course" className="relative">
           <DiscountTimer
             className={"absolute left-3 top-3"}
-            endTime={"2024-04-04T00:00:00"}
+            endTime={"2024-05-04T00:00:00"}
           />
           <img
             src="./src/assets/images/f4aa8891-d9a5-48f6-9166-8f40fa5e5f0f_cover.webp"
