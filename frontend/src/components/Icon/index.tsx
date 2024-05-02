@@ -4,7 +4,7 @@ import { ReactElement } from "react";
 
 
 const CustomIcon = styled(IconButton)({
-  // background: "red",
+  background: "var(--section-bg)",
   // "&:hover": {
   //   background: "green",
   // },

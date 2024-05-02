@@ -18,7 +18,7 @@ export default function Home() {
         <LatestCourses />
         <Weblog />
         <LatestEvents />
-        <Testimonial />
+        {/* <Testimonial /> */}
         <NewsLetter />
       </main>
     </>

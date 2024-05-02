@@ -5,6 +5,8 @@ import SectionHeader from "../SectionHeader/SectionHeader";
 //<-------------- Swiper -------------->
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -31,6 +33,7 @@ export default function SpecialDiscounts() {
       <div className="container">
         <SectionHeader title="تخفیفات ویژه" to={"/"} />
         <Swiper
+          modules={[Autoplay]}
           spaceBetween={15}
           breakpoints={{
             400: {
@@ -52,10 +55,14 @@ export default function SpecialDiscounts() {
               slidesPerView: 4.5,
             },
           }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
         >
           {products?.map((product) => (
             <SwiperSlide key={product.id}>
-              <CourseBox {...product}/>
+              <CourseBox {...product} />
             </SwiperSlide>
           ))}
         </Swiper>

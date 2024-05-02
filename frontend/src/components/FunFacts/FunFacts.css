@@ -2,7 +2,7 @@
 .funfacts {
   padding: 10rem 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("src/assets/images/about-us/story.jpg") center;
+    url("/src/assets/images/about-us/story.jpg") center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;

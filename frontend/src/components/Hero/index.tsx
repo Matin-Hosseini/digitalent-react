@@ -33,7 +33,7 @@ const Hero = () => {
           <Link to={"/sign-up"} className="custom-btn">
             بزن بریم
           </Link>
-          <Link to={"/course-category"} className="custom-btn--outline">
+          <Link to={"/courses"} className="custom-btn--outline">
             دوره میخوام!
           </Link>
         </div>

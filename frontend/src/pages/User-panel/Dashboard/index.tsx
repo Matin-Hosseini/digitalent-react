@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import "./Dashboard.css";
 
 //react-icons
@@ -7,8 +8,13 @@ import {
   RiMessage3Line,
   RiQuestionFill,
 } from "react-icons/ri";
+import { authContext } from "../../../contexts/auth";
 
 export default function UserDashBoard() {
+  const { userInfo } = useContext(authContext);
+
+  useEffect(() => {}, []);
+
   return (
     <div className="">
       <section className="boxes">
@@ -51,19 +57,19 @@ export default function UserDashBoard() {
         <div className="user-info__content">
           <div>
             <span>نام و نام خانوادگی: </span>
-            <span>سید متین حسینی</span>
+            <span>{userInfo.name || "وارد نشده"}</span>
           </div>
           <div>
             <span>نام کاربری: </span>
-            <span>matin-5500</span>
+            <span>{userInfo.username}</span>
           </div>
           <div>
             <span>ایمیل: </span>
-            <span>koenigsegg.matin@gmail.com</span>
+            <span>{userInfo.email}</span>
           </div>
           <div>
             <span>شماره موبایل: </span>
-            <span>0912932354</span>
+            <span>{userInfo.phone || "وارد نشده"}</span>
           </div>
         </div>
       </section>

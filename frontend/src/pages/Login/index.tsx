@@ -14,17 +14,18 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const { login } = useContext(authContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const body = { identifier, password };
 
     try {
       const res = await Api.post("/login", body);
-      login(res.data.user, res.data.token);
-      navigate("/");
+      console.log(res);
+      // login(res.data.user, res.data.token);
+      // navigate("/");
     } catch (error) {
       console.log("inside login page", error);
     }
