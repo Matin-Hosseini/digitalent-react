@@ -26,7 +26,6 @@ const getUserComments = async (req, res) => {
  * /user/info
  * private(admin, supporter, user)
  */
-
 const changeUserInfo = asyncHandler(async (req, res) => {
   if (!["USER", "ADMIN", "SUPPORTER"].includes(req.user.role))
     return res.status(403).json({ error: "This route is private" });
