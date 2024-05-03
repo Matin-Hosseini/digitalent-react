@@ -25,7 +25,7 @@ export default function NavOptions() {
     setAnchorEl(null);
   };
 
-  const { wishlistCourses, courses } = useContext(CoursesContext);
+  const { wishlistCourses } = useContext(CoursesContext);
 
   // const [wishlistCourses, setWishlistCourses] = useState([]);
 

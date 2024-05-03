@@ -40,6 +40,21 @@ export default function CoursesProvider({ children }) {
     setStorageWishlistCourses([...storageWishlistCourses, targetCourse]);
     toast("دوره به لیست علاقه مندی افزوده شد.");
   };
+
+  const removeCourseFromWishlist = (id) => {
+    const targetCourse = courses.find((course) => course.id === id);
+
+    setWishlistCourses((prevCourses) =>
+      prevCourses.filter((course) => course.id !== id)
+    );
+
+    setStorageWishlistCourses(
+      storageWishlistCourses.filter((course) => course.id !== id)
+    );
+
+    toast("دوره از لیست علاقه مندی حذف شد.");
+  };
+
   const addCourseToCart = () => {};
 
   //lifecycle
@@ -54,6 +69,7 @@ export default function CoursesProvider({ children }) {
         wishlistCourses,
         cartCourses,
         addCourseToWishlist,
+        removeCourseFromWishlist,
         addCourseToCart,
       }}
     >

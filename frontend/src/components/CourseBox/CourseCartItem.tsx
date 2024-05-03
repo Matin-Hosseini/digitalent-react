@@ -2,15 +2,21 @@ import { Button, Divider, Stack } from "@mui/material";
 import { LuTrash } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
+import IconButton from "../mui-customs/IconButton";
+import { GoTrash } from "react-icons/go";
+import { useContext } from "react";
+import { CoursesContext } from "../../contexts/courses";
 
 export default function CourseCartItem({
   isCartProduct,
+  id,
   title,
   price,
 }: {
-  isCartProduct: boolean;
-  title: String;
-  price: Number;
+  isCartProduct?: boolean;
+  id: string;
+  title: string;
+  price: number;
 }) {
   const buttonStyles = {
     color: "var(--gray)",
@@ -20,7 +26,9 @@ export default function CourseCartItem({
     flex: 1,
     paddingBlock: "4px",
   };
-  
+
+  const { removeCourseFromWishlist } = useContext(CoursesContext);
+
   return (
     <>
       <div className="flex gap-3 py-4">
@@ -69,20 +77,27 @@ export default function CourseCartItem({
               </Button>
             </Stack>
           ) : (
-            <Button
-              sx={{
-                marginInlineStart: "auto",
-                fontSize: "1rem",
-                color: "var(--purple)",
-                background: "#8696fe24",
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-              }}
-            >
-              <MdAddShoppingCart />
-              افزودن به سبد خرید
-            </Button>
+            <div className="flex items-center gap-3 justify-end">
+              <IconButton
+                sx={{
+                  fontSize: "1rem",
+                  color: "var(--purple)",
+                  background: "#8696fe24",
+                }}
+              >
+                <MdAddShoppingCart />
+              </IconButton>
+              <IconButton
+                onClick={() => removeCourseFromWishlist(id)}
+                sx={{
+                  fontSize: ".5rem",
+                  color: "var(--red)",
+                  background: "#ff56562b",
+                }}
+              >
+                <GoTrash />
+              </IconButton>
+            </div>
           )}
         </div>
       </div>
