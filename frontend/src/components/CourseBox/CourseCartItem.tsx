@@ -27,7 +27,8 @@ export default function CourseCartItem({
     paddingBlock: "4px",
   };
 
-  const { removeCourseFromWishlist } = useContext(CoursesContext);
+  const { removeCourseFromWishlist, addCourseToCart } =
+    useContext(CoursesContext);
 
   return (
     <>
@@ -79,6 +80,7 @@ export default function CourseCartItem({
           ) : (
             <div className="flex items-center gap-3 justify-end">
               <IconButton
+                onClick={() => addCourseToCart(id)}
                 sx={{
                   fontSize: "1rem",
                   color: "var(--purple)",

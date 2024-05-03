@@ -8,6 +8,8 @@ export default function CoursesProvider({ children }) {
   //custom hooks
   const [storageWishlistCourses, setStorageWishlistCourses] =
     useLocalStorage("wishlistCourses");
+  const [storageCartCourses, setStorageCartCourses] =
+    useLocalStorage("cartCourses");
 
   const [courses, setCourses] = useState([]);
   const [wishlistCourses, setWishlistCourses] = useState(
@@ -42,8 +44,6 @@ export default function CoursesProvider({ children }) {
   };
 
   const removeCourseFromWishlist = (id) => {
-    const targetCourse = courses.find((course) => course.id === id);
-
     setWishlistCourses((prevCourses) =>
       prevCourses.filter((course) => course.id !== id)
     );
@@ -55,7 +55,41 @@ export default function CoursesProvider({ children }) {
     toast("دوره از لیست علاقه مندی حذف شد.");
   };
 
-  const addCourseToCart = () => {};
+  const addCourseToCart = (id) => {
+    const targetCourse = courses.find((course) => course.id === id);
+
+    if (!storageCartCourses) {
+      setCartCourses([targetCourse]);
+      setStorageCartCourses([targetCourse]);
+
+      //removing course from wishlist
+      setWishlistCourses((prevCourses) =>
+        prevCourses.filter((course) => course.id !== id)
+      );
+
+      //removing course from localstorage wishlist
+      setStorageWishlistCourses(
+        storageWishlistCourses.filter((course) => course.id !== id)
+      );
+
+      toast("محصول به سبد خرید افزوده شد.");
+      return;
+    }
+
+    setCartCourses((prev) => [...prev, targetCourse]);
+    setStorageCartCourses([...storageCartCourses, targetCourse]);
+    
+    //removing course from wishlist
+    setWishlistCourses((prevCourses) =>
+      prevCourses.filter((course) => course.id !== id)
+    );
+
+    //removing course from localstorage wishlist
+    setStorageWishlistCourses(
+      storageWishlistCourses.filter((course) => course.id !== id)
+    );
+    toast("محصول به سبد خرید افزوده شد.");
+  };
 
   //lifecycle
   useEffect(() => {

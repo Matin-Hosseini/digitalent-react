@@ -25,17 +25,7 @@ export default function NavOptions() {
     setAnchorEl(null);
   };
 
-  const { wishlistCourses } = useContext(CoursesContext);
-
-  // const [wishlistCourses, setWishlistCourses] = useState([]);
-
-  // useEffect(() => {
-  //   const calculatedWishlistCourses = courses.filter((course: any) => {
-  //     return wishlistCoursesIDs.indexOf(course.id) !== -1;
-  //   });
-
-  //   setWishlistCourses(calculatedWishlistCourses);
-  // }, [wishlistCoursesIDs]);
+  const { wishlistCourses, cartCourses } = useContext(CoursesContext);
 
   return (
     <div className="flex items-center gap-4 h-full">
@@ -63,17 +53,20 @@ export default function NavOptions() {
           <ContainerBox className={"p-5"}>
             <p className="mb-4">سبد خرید</p>
             <div className="divide-y divide-solid divide-gray-600 max-h-[32rem] overflow-auto ">
-              <CourseCartItem isCartProduct />
-              <CourseCartItem isCartProduct />
-              <CourseCartItem isCartProduct />
-              <CourseCartItem isCartProduct />
+              {cartCourses?.length === 0 ? (
+                <div className="h-[20rem] border border-[var(--red)] border-dashed rounded-lg flex items-center justify-center text-center">
+                  <div className="">
+                    <MdOutlineRemoveShoppingCart className="text-[var(--red)] w-16 h-16 m-auto" />
+                    <p>سبد خرید شما خالی می باشد.</p>
+                  </div>
+                </div>
+              ) : (
+                cartCourses.map((course) => (
+                  <CourseCartItem isCartProduct key={course.id} {...course} />
+                ))
+              )}
             </div>
-            <div className="h-[20rem] border border-[var(--red)] border-dashed rounded-lg flex items-center justify-center text-center hidden">
-              <div className="">
-                <MdOutlineRemoveShoppingCart className="text-[var(--red)] w-16 h-16 m-auto" />
-                <p>سبد خرید شما خالی می باشد.</p>
-              </div>
-            </div>
+
             <button className="custom-btn custom-btn-green mt-8 w-full ">
               پرداخت
             </button>
@@ -96,11 +89,7 @@ export default function NavOptions() {
           <div className="divide-y divide-solid divide-gray-600 max-h-[32rem] overflow-auto ">
             {wishlistCourses.length !== 0 ? (
               wishlistCourses.map((course) => (
-                <CourseCartItem
-                  isCartProduct={false}
-                  key={course.id}
-                  {...course}
-                />
+                <CourseCartItem key={course.id} {...course} />
               ))
             ) : (
               <div className="h-[20rem] border border-[var(--red)] border-dashed rounded-lg flex items-center justify-center text-center">
