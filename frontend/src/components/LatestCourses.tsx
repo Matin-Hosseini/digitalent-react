@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CourseBox from "./CourseBox";
 import SectionHeader from "./SectionHeader/SectionHeader";
 
-import allCourses from './../data/courses'
+import allCourses from "./../data/courses";
 
 export default function LatestCourses() {
   const [courses, setCourses] = useState([]);

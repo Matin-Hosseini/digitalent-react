@@ -38,7 +38,7 @@ export default function CourseCartItem({
               220,000 تومان
             </span> */}
             <span className="text-[var(--green)] text-xl">
-              {price.toLocaleString()} تومان
+              {/* {price.toLocaleString()} تومان */}
             </span>
           </div>
           {isCartProduct ? (

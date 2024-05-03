@@ -6,13 +6,16 @@ import App from "./App";
 import AuthProvider from "./contexts/auth";
 import ThemeProvider from "./contexts/theme";
 import "./index.css";
+import CoursesProvider from "./contexts/courses";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
-    <ThemeProvider>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </ThemeProvider>
+    <CoursesProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </ThemeProvider>
+    </CoursesProvider>
   </BrowserRouter>
 );

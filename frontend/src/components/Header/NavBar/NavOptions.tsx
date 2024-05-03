@@ -11,6 +11,7 @@ import { Menu } from "@mui/material";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import useLocalStorage from "../../../hooks/localstorage";
 import allcourses from "./../../../data/courses";
+import { CoursesContext } from "../../../contexts/courses";
 
 export default function NavOptions() {
   const { userInfo, isLoggedIn } = useContext(authContext);
@@ -24,20 +25,17 @@ export default function NavOptions() {
     setAnchorEl(null);
   };
 
-  const [wishListCourses, setWishListCourses] = useState([]);
-  
+  const { wishlistCourses, courses } = useContext(CoursesContext);
 
-  useEffect(() => {
-    const [localStorage, setLocalStorage] = useLocalStorage("products");
+  // const [wishlistCourses, setWishlistCourses] = useState([]);
 
-    localStorage?.forEach((storageCourse: string) => {
-      allcourses?.forEach((course) => {
-        if (course.id === storageCourse) {
-          setWishListCourses((prevCourses) => [...prevCourses, course]);
-        }
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   const calculatedWishlistCourses = courses.filter((course: any) => {
+  //     return wishlistCoursesIDs.indexOf(course.id) !== -1;
+  //   });
+
+  //   setWishlistCourses(calculatedWishlistCourses);
+  // }, [wishlistCoursesIDs]);
 
   return (
     <div className="flex items-center gap-4 h-full">
@@ -96,20 +94,24 @@ export default function NavOptions() {
         >
           <p className="mb-4">لیست علاقه مندی</p>
           <div className="divide-y divide-solid divide-gray-600 max-h-[32rem] overflow-auto ">
-            {wishListCourses.map((course) => (
-              <CourseCartItem
-                isCartProduct={false}
-                key={course.id}
-                {...course}
-              />
-            ))}
+            {wishlistCourses.length !== 0 ? (
+              wishlistCourses.map((course) => (
+                <CourseCartItem
+                  isCartProduct={false}
+                  key={course.id}
+                  {...course}
+                />
+              ))
+            ) : (
+              <div className="h-[20rem] border border-[var(--red)] border-dashed rounded-lg flex items-center justify-center text-center">
+                <div className="">
+                  <MdOutlineRemoveShoppingCart className="text-[var(--red)] w-16 h-16 m-auto" />
+                  <p>لیست علاقه مندی شما خالی می باشد.</p>
+                </div>
+              </div>
+            )}
           </div>
-          <div className="h-[20rem] border border-[var(--red)] border-dashed rounded-lg flex items-center justify-center text-center hidden">
-            <div className="">
-              <MdOutlineRemoveShoppingCart className="text-[var(--red)] w-16 h-16 m-auto" />
-              <p>لیست علاقه مندی شما خالی می باشد.</p>
-            </div>
-          </div>
+
           <button className="custom-btn custom-btn-purple mt-8 w-full ">
             افزودن همه به سبر خرید
           </button>

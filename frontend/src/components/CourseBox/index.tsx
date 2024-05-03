@@ -13,7 +13,8 @@ import "react-toastify/dist/ReactToastify.css";
 import useLocalStorage from "../../hooks/localstorage";
 import ContainerBox from "../ContainerBox";
 import DiscountTimer from "./DiscountTimer";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CoursesContext } from "../../contexts/courses";
 
 export default function CourseBox({
   id,
@@ -22,31 +23,7 @@ export default function CourseBox({
   id: String;
   title: String;
 }) {
-  // const [localStorage, setLocalStorage] = useLocalStorage("products");
-
-  const [courses, setCourses] = useState(
-    JSON.parse(localStorage.getItem("products")) || []
-  );
-
-  useEffect(() => {
-    localStorage.setItem("products", JSON.stringify(courses));
-  }, [courses]);
-
-  const addProductToWhishlist = () => {
-    // if (!localStorage) {
-    //   setLocalStorage([id]);
-    // } else {
-    //   const productExists = localStorage.some(
-    //     (product: string) => product === id
-    //   );
-    //   if (productExists) return toast("محصول در لیست علاقه مندی شما وجود دارد");
-    //   const newProducts = [...localStorage, id];
-    //   setLocalStorage(newProducts);
-    //   toast("محصول به لیست علاقه مندی افزوده شد.");
-    // }
-
-    setCourses((prev: string[]) => [...prev, id]);
-  };
+  const { addCourseToWishlist } = useContext(CoursesContext);
 
   return (
     <ContainerBox className="group p-3">
@@ -78,7 +55,7 @@ export default function CourseBox({
           <div className="bg-[rgba(130,140,154,0.09)] flex items-center justify-between p-4 rounded-lg">
             <button
               className="grid place-content-center w-10 h-10 bg-[var(--red)]  rounded-se-xl rounded-es-xl text-white transition-all hover:rounded-full"
-              onClick={addProductToWhishlist}
+              onClick={() => addCourseToWishlist(id)}
             >
               <FaRegHeart className="w-6" />
             </button>

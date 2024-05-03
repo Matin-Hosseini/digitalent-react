@@ -13,6 +13,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import routes from "./routes";
 import Counter from "./components/Counter";
 import Api from "./axios/api";
+import LatestCourses from "./components/LatestCourses";
+import { WishlistContext } from "./contexts/courses";
 
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {
@@ -55,18 +57,6 @@ const App = () => {
     },
   });
 
-  const [data, setData] = useState(localStorage.getItem("myData") || "");
-
-  // useEffect to synchronize state with localStorage
-  useEffect(() => {
-    // Save data to localStorage whenever it changes
-    localStorage.setItem("myData", data);
-  }, [data]); // Add data as a dependency to trigger the effect when it changes
-
-  const handleChange = (e) => {
-    setData(e.target.value);
-  };
-
   return (
     <>
       <ThemeProvider theme={muiTheme}>
@@ -86,10 +76,6 @@ const App = () => {
           draggable
         />
       </ThemeProvider>
-      {/* <div>
-        <input type="text" value={data} onChange={handleChange} />
-        <p>Data: {data}</p>
-      </div> */}
     </>
   );
 };
