@@ -7,6 +7,18 @@ import { GoTrash } from "react-icons/go";
 import { useContext } from "react";
 import { CoursesContext } from "../../contexts/courses";
 
+const removeIconButtonStyles = {
+  fontSize: "1rem",
+  color: "var(--purple)",
+  background: "#8696fe24",
+};
+
+const addToCartIconButtonStyles = {
+  fontSize: ".5rem",
+  color: "var(--red)",
+  background: "#ff56562b",
+};
+
 export default function CourseCartItem({
   isCartProduct,
   id,
@@ -27,7 +39,7 @@ export default function CourseCartItem({
     paddingBlock: "4px",
   };
 
-  const { removeCourseFromWishlist, addCourseToCart } =
+  const { removeCourseFromWishlist, addCourseToCart, removeCourseFromCart } =
     useContext(CoursesContext);
 
   return (
@@ -53,6 +65,7 @@ export default function CourseCartItem({
           {isCartProduct ? (
             <div className="flex justify-end">
               <IconButton
+                onClick={() => removeCourseFromCart(id)}
                 sx={{
                   fontSize: ".5rem",
                   color: "var(--red)",
@@ -66,21 +79,13 @@ export default function CourseCartItem({
             <div className="flex items-center gap-3 justify-end">
               <IconButton
                 onClick={() => addCourseToCart(id)}
-                sx={{
-                  fontSize: "1rem",
-                  color: "var(--purple)",
-                  background: "#8696fe24",
-                }}
+                sx={removeIconButtonStyles}
               >
                 <MdAddShoppingCart />
               </IconButton>
               <IconButton
                 onClick={() => removeCourseFromWishlist(id)}
-                sx={{
-                  fontSize: ".5rem",
-                  color: "var(--red)",
-                  background: "#ff56562b",
-                }}
+                sx={addToCartIconButtonStyles}
               >
                 <GoTrash />
               </IconButton>

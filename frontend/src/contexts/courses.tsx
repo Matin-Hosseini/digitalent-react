@@ -70,7 +70,7 @@ export default function CoursesProvider({ children }) {
     toast("دوره از لیست علاقه مندی حذف شد.");
   };
 
-  const addCourseToCart = (id) => {
+  const addCourseToCart = (id: string) => {
     const targetCourse = courses.find((course) => course.id === id);
 
     if (!storageCartCourses) {
@@ -106,6 +106,16 @@ export default function CoursesProvider({ children }) {
     toast("دوره به سبد خرید افزوده شد.");
   };
 
+  const removeCourseFromCart = (id: string) => {
+    setCartCourses((prevCourses) =>
+      prevCourses.filter((course) => course.id !== id)
+    );
+    setStorageCartCourses(
+      storageCartCourses.filter((course) => course.id !== id)
+    );
+    toast("دوره از سبد خرید حذف شد.");
+  };
+
   //lifecycle
   useEffect(() => {
     setCourses(allCourses);
@@ -121,6 +131,7 @@ export default function CoursesProvider({ children }) {
         addAllWishlistCoursesToCart,
         removeCourseFromWishlist,
         addCourseToCart,
+        removeCourseFromCart
       }}
     >
       {children}
