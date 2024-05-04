@@ -25,7 +25,8 @@ export default function NavOptions() {
     setAnchorEl(null);
   };
 
-  const { wishlistCourses, cartCourses } = useContext(CoursesContext);
+  const { wishlistCourses, cartCourses, addAllWishlistCoursesToCart } =
+    useContext(CoursesContext);
 
   return (
     <div className="flex items-center gap-4 h-full">
@@ -61,7 +62,7 @@ export default function NavOptions() {
                   </div>
                 </div>
               ) : (
-                cartCourses.map((course) => (
+                cartCourses?.map((course) => (
                   <CourseCartItem isCartProduct key={course.id} {...course} />
                 ))
               )}
@@ -101,7 +102,11 @@ export default function NavOptions() {
             )}
           </div>
 
-          <button className="custom-btn custom-btn-purple mt-8 w-full ">
+          <button
+            className="custom-btn custom-btn-purple mt-8 w-full "
+            onClick={addAllWishlistCoursesToCart}
+            disabled={wishlistCourses.length === 0}
+          >
             افزودن همه به سبر خرید
           </button>
         </ContainerBox>

@@ -1,0 +1,26 @@
+<Stack
+              direction="row"
+              sx={{
+                border: "1px solid var(--gray)",
+                maxWidth: 120,
+                borderRadius: 1,
+                marginRight: "auto",
+              }}
+              divider={
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  sx={{
+                    background: "var(--gray)",
+                    height: 23,
+                    alignSelf: "center",
+                  }}
+                />
+              }
+            >
+              <Button sx={buttonStyles}>+</Button>
+              <Button sx={buttonStyles}>1</Button>
+              <Button sx={{ ...buttonStyles, color: "var(--red)" }}>
+                <LuTrash className="w-6" />
+              </Button>
+            </Stack>

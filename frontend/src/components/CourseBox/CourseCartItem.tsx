@@ -43,40 +43,25 @@ export default function CourseCartItem({
         <div className="flex-1">
           <h2 className="line-clamp-1 text-2xl">{title}</h2>
           <div className="flex flex-col items-start gap-2 my-3 h-16">
-            {/* <span className="overflow-hidden inline-block relative  text-[var(--gray)] text-lg before:absolute before:content-[''] before:w-full before:h-[0.1rem] before:bg-[var(--red)] before:top-1/2 before:-translate-y-2/4 before:-rotate-12">
+            <span className="overflow-hidden inline-block relative  text-[var(--gray)] text-lg before:absolute before:content-[''] before:w-full before:h-[0.1rem] before:bg-[var(--red)] before:top-1/2 before:-translate-y-2/4 before:-rotate-12">
               220,000 تومان
-            </span> */}
+            </span>
             <span className="text-[var(--green)] text-xl">
-              {/* {price.toLocaleString()} تومان */}
+              {price.toLocaleString()} تومان
             </span>
           </div>
           {isCartProduct ? (
-            <Stack
-              direction="row"
-              sx={{
-                border: "1px solid var(--gray)",
-                maxWidth: 120,
-                borderRadius: 1,
-                marginRight: "auto",
-              }}
-              divider={
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  sx={{
-                    background: "var(--gray)",
-                    height: 23,
-                    alignSelf: "center",
-                  }}
-                />
-              }
-            >
-              <Button sx={buttonStyles}>+</Button>
-              <Button sx={buttonStyles}>1</Button>
-              <Button sx={{ ...buttonStyles, color: "var(--red)" }}>
-                <LuTrash className="w-6" />
-              </Button>
-            </Stack>
+            <div className="flex justify-end">
+              <IconButton
+                sx={{
+                  fontSize: ".5rem",
+                  color: "var(--red)",
+                  background: "#ff56562b",
+                }}
+              >
+                <GoTrash />
+              </IconButton>
+            </div>
           ) : (
             <div className="flex items-center gap-3 justify-end">
               <IconButton

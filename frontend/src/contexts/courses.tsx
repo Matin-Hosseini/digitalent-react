@@ -15,7 +15,7 @@ export default function CoursesProvider({ children }) {
   const [wishlistCourses, setWishlistCourses] = useState(
     storageWishlistCourses || []
   );
-  const [cartCourses, setCartCourses] = useState([]);
+  const [cartCourses, setCartCourses] = useState(storageCartCourses || []);
 
   //functions
   const addCourseToWishlist = (id: string) => {
@@ -41,6 +41,21 @@ export default function CoursesProvider({ children }) {
     setWishlistCourses((prev) => [...prev, targetCourse]);
     setStorageWishlistCourses([...storageWishlistCourses, targetCourse]);
     toast("دوره به لیست علاقه مندی افزوده شد.");
+  };
+
+  const addAllWishlistCoursesToCart = () => {
+    const newCourseCartsWithDuplicate = [...wishlistCourses, ...cartCourses];
+    const newCourseCarts = Array.from(
+      new Set(newCourseCartsWithDuplicate.map(JSON.stringify))
+    ).map(JSON.parse);
+
+    setCartCourses(newCourseCarts);
+    setStorageCartCourses(newCourseCarts);
+
+    //cleaning wishlist courses
+    setWishlistCourses([]);
+    setStorageWishlistCourses([]);
+    toast("دوره ها به سبد خرید انتقال داده شدند.");
   };
 
   const removeCourseFromWishlist = (id) => {
@@ -72,13 +87,13 @@ export default function CoursesProvider({ children }) {
         storageWishlistCourses.filter((course) => course.id !== id)
       );
 
-      toast("محصول به سبد خرید افزوده شد.");
+      toast("دوره به سبد خرید افزوده شد.");
       return;
     }
 
     setCartCourses((prev) => [...prev, targetCourse]);
     setStorageCartCourses([...storageCartCourses, targetCourse]);
-    
+
     //removing course from wishlist
     setWishlistCourses((prevCourses) =>
       prevCourses.filter((course) => course.id !== id)
@@ -88,7 +103,7 @@ export default function CoursesProvider({ children }) {
     setStorageWishlistCourses(
       storageWishlistCourses.filter((course) => course.id !== id)
     );
-    toast("محصول به سبد خرید افزوده شد.");
+    toast("دوره به سبد خرید افزوده شد.");
   };
 
   //lifecycle
@@ -103,6 +118,7 @@ export default function CoursesProvider({ children }) {
         wishlistCourses,
         cartCourses,
         addCourseToWishlist,
+        addAllWishlistCoursesToCart,
         removeCourseFromWishlist,
         addCourseToCart,
       }}
