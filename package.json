@@ -8,7 +8,8 @@
     "app:dev": "concurrently \"cd frontend && npm run dev\" \"nodemon backend/index.js\"",
     "server": "node ./backend/index.js",
     "server:dev": "nodemon ./backend/index.js",
-    "client": "cd frontend && npm run dev"
+    "client": "cd frontend && npm run dev",
+    "start": "node backend/index.js"
   },
   "author": "",
   "license": "ISC",
