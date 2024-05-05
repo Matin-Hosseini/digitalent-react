@@ -1,34 +1,46 @@
 //local-folders
-import { useContext, useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
-import Api from "../../axios/api";
-import Input from "../../components/Input";
 import Logo from "../../components/Logo";
 import UnderlinedLink from "../../components/UnderlinedLink";
-import { authContext } from "../../contexts/auth";
-import { max, min, required } from "../../validators/rules";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import "./index.css";
+import ThreeDotsLoading from "../../components/Loaders/ThreeDots";
+
+const schema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "این فیلد اجباری است." })
+    .email({ message: "ایمیل نا معتبر می باشد." }),
+  password: z
+    .string()
+    .min(1, { message: "این فیلد اجباری است." })
+    .min(3, { message: "رمز عبور باید حداقل 3 کاراکتر باشد." }),
+});
+
+type FormFields = z.infer<typeof schema>;
 
 export default function Login() {
-  const [identifier, setIdentifier] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    setError,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm<FormFields>({
+    resolver: zodResolver(schema),
+  });
 
-  const { login } = useContext(authContext);
-  const navigate = useNavigate();
+  console.log(watch());
 
-  const handleLogin = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const loginSubmitHandler: SubmitHandler<FormFields> = async (data) => {
+    await setTimeout(() => {}, 2000);
 
-    const body = { identifier, password };
-
-    try {
-      const res = await Api.post("/login", body);
-      console.log(res);
-      // login(res.data.user, res.data.token);
-      // navigate("/");
-    } catch (error) {
-      console.log("inside login page", error);
-    }
+    setError("root", {
+      message: "ارور ست شده",
+    });
+    console.log(data);
   };
 
   return (
@@ -48,38 +60,58 @@ export default function Login() {
               className="login-form"
               id="login-form"
               noValidate
-              onSubmit={handleLogin}
+              onSubmit={handleSubmit(loginSubmitHandler)}
             >
-              <Input
-                name="identifier"
-                label="ایمیل یا شماره موبایل"
-                type="text"
-                value={identifier}
-                onChange={(e) => setIdentifier(e.target.value)}
-                validations={[required(), min(4), max(20)]}
-              />
-              <Input
-                name="password"
-                label="رمز عبور"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                validations={[required(), min(8)]}
-              />
-
-              <button className="login-form__btn">ورود</button>
-
-              <div className="mt-10">
-                <p className="flex justify-center items-center gap-2 mb-8">
-                  <span>رمز عبور خود را فراموش کرده اید؟</span>
-                  <UnderlinedLink to={"/"}>بازیابی رمز</UnderlinedLink>
-                </p>
-                <p className="flex justify-center items-center gap-2 mb-8">
-                  <span>هنوز ثبت نام نکرده اید؟</span>
-                  <UnderlinedLink to={"/sign-up"}>ثبت نام</UnderlinedLink>
-                </p>
+              <div className={`custom-input mt-8`}>
+                <input
+                  type="text"
+                  className="custom-input__input"
+                  {...register("email")}
+                  required
+                />
+                <label className="custom-input__label">
+                  {"نام کاربری یا ایمیل"}
+                </label>
               </div>
+              {errors.email && (
+                <div className="text-red-400">{errors.email.message}</div>
+              )}
+
+              <div className={`custom-input mt-8`}>
+                <input
+                  type="password"
+                  className="custom-input__input"
+                  {...register("password")}
+                  required
+                />
+                <label className="custom-input__label">{"رمز عبور"}</label>
+              </div>
+              {errors.password && (
+                <div className="text-red-400 ">{errors.password.message}</div>
+              )}
+
+              <button
+                className="login-form__btn mt-8"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? <ThreeDotsLoading /> : "ورود"}
+              </button>
+              {errors.root && (
+                <div className="text-red-400">{errors.root.message}</div>
+              )}
             </form>
+
+            <div className="mt-10">
+              <p className="flex justify-center items-center gap-2 mb-8">
+                <span>رمز عبور خود را فراموش کرده اید؟</span>
+                <UnderlinedLink to={"/"}>بازیابی رمز</UnderlinedLink>
+              </p>
+              <p className="flex justify-center items-center gap-2 mb-8">
+                <span>هنوز ثبت نام نکرده اید؟</span>
+                <UnderlinedLink to={"/sign-up"}>ثبت نام</UnderlinedLink>
+              </p>
+            </div>
           </div>
         </div>
         <div className="hidden lg:grid items-center bg-stone-900 h-full">
