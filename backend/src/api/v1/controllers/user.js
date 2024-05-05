@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Comment, User } = require("./../../../models");
 const asyncHandler = require("express-async-handler");
 
@@ -27,6 +28,8 @@ const getUserComments = async (req, res) => {
  * private(admin, supporter, user)
  */
 const changeUserInfo = asyncHandler(async (req, res) => {
+  const { username, email } = req.body;
+
   if (!["USER", "ADMIN", "SUPPORTER"].includes(req.user.role))
     return res.status(403).json({ error: "This route is private" });
 
@@ -35,6 +38,19 @@ const changeUserInfo = asyncHandler(async (req, res) => {
       id: req.user.id,
     },
   });
+
+  if (username !== user.username || email !== user.email) {
+    const SimilarUser = await User.findOne({
+      where: {
+        [Op.or]: [{ username }, { email }],
+      },
+    });
+
+    if (SimilarUser)
+      return res
+        .status(400)
+        .json({ error: "User with this username or email alread exists" });
+  }
 
   user.set(req.body);
   await user.save();
