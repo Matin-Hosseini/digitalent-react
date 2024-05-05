@@ -24,7 +24,7 @@
 
 .sign-up-form__btn {
   width: 100%;
-  background-color: var(--blue);
+  background-color: var(--blue) !important;
   height: 4.5rem;
   border-radius: 1rem;
   color: #fff;
