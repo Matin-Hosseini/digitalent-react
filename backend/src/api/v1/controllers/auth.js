@@ -24,7 +24,7 @@ const register = asyncHandler(async (req, res) => {
  * /register
  * public
  */
-const login = asyncHandler( async (req, res) => {
+const login = asyncHandler(async (req, res) => {
   const { identifier, password } = req.body;
 
   const user = await User.findOne({
@@ -43,8 +43,8 @@ const login = asyncHandler( async (req, res) => {
   const token = generateToken(user.toJSON());
   generateCookie(res, "token", token);
 
-  res.status(200).send({ msg: "User loggedin successfully" });
-})
+  res.status(200).send({ msg: "User loggedin successfully", user });
+});
 
 /*
  * gives the user given from auth middleware
