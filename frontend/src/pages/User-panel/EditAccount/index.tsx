@@ -1,96 +1,124 @@
 import { useContext, useEffect, useState } from "react";
 import "./EditAccount.css";
 import { authContext } from "../../../contexts/auth";
-import { getUserInfo, updateUserInfo } from "../../../axios/Requests/User";
 import { toast } from "react-toastify";
+import { z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  emailValidator,
+  nameValidator,
+  phoneValidator,
+  usernameValidator,
+} from "../../../validators/schemas";
+import ThreeDotsLoading from "../../../components/Loaders/ThreeDots";
+import Api from "../../../axios/api";
+import { Button } from "@mui/material";
 
 export default function EditAccount() {
   const { userInfo, changeUserInfo } = useContext(authContext);
 
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  const schema = z.object({
+    name: nameValidator,
+    username: usernameValidator,
+    phone: phoneValidator,
+    email: emailValidator,
+  });
+
+  type FormFields = z.infer<typeof schema>;
 
   useEffect(() => {
     console.log(userInfo);
-
-    setName(userInfo.name || "");
-    setUsername(userInfo.username);
-    setPhone(userInfo.phone || "");
-    setEmail(userInfo.email);
+    setValue("name", userInfo.name || "");
+    setValue("email", userInfo.email || "");
+    setValue("username", userInfo.username || "");
+    setValue("phone", userInfo.phone || "");
   }, [userInfo]);
 
-  const submitHandler = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm<FormFields>({
+    resolver: zodResolver(schema),
+  });
 
-    const newInfo = {
-      name,
-      username,
-      email,
-      phone,
-    };
+  console.log(watch());
 
-    const isUserUpdated = await updateUserInfo(newInfo);
-
-    if (isUserUpdated) {
-      toast("ویرایش اطلاعات با موفقیت انجام شد.");
-      const userNewInfo = await getUserInfo();
-      changeUserInfo(userNewInfo);
+  const submitHandler: SubmitHandler<FormFields> = async (data) => {
+    try {
+      await Api.put("/user/info", data);
+      toast("ویرایش اطلاعات انجام شد.");
+      changeUserInfo({
+        ...userInfo,
+        username: data.username,
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+      });
+    } catch (error) {
+      if (error.response.status === 400) {
+        return toast("کاربری با این نام کاربری یا ایمیل قبلا ثبت شده است");
+      }
+      toast("خطایی به وجود آمده است!");
     }
   };
 
   return (
     <section className="edit">
-      <form action="" className="edit-form" onSubmit={submitHandler}>
+      <form className="edit-form" onSubmit={handleSubmit(submitHandler)}>
         <h1 className="title text-info mb-4">ویرایش حساب کاربری</h1>
-        <div>
+        <div className="input-box">
           <label>نام و نام خانوادگی</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <span className="error-message">این بخش را خالی نگذارید.</span>
+          <input type="text" {...register("name")} />
+          {errors.name && (
+            <span className="error-message">{errors.name.message}</span>
+          )}
         </div>
-        <div>
+        <div className="input-box">
           <label>نام کاربری</label>
-          <input
-            type="text"
-            id="userName"
-            placeholder=""
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <span className="error-message">این بخش را خالی نگذارید.</span>
+          <input type="text" {...register("username")} />
+          {errors.username && (
+            <span className="error-message">{errors.username.message}</span>
+          )}
         </div>
-        <div>
+        <div className="input-box">
           <label>شماره موبایل</label>
-          <input
-            type="text"
-            id="phone"
-            placeholder=""
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-          <span className="error-message">این بخش را خالی نگذارید.</span>
+          <input type="text" {...register("phone")} />
+          {errors.phone && (
+            <span className="error-message">{errors.phone.message}</span>
+          )}
         </div>
-        <div>
+        <div className="input-box">
           <label>ایمیل</label>
-          <input
-            type="text"
-            id="email"
-            placeholder=""
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <span className="error-message">این بخش را خالی نگذارید.</span>
+          <input type="text" {...register("email")} />
+          {errors.email && (
+            <span className="error-message">{errors.email.message}</span>
+          )}
         </div>
 
-        <button type="submit" className="custom-btn">
-          ویرایش اطلاعات
-        </button>
+        <Button
+          sx={{
+            color: "white",
+            fontSize: 17,
+            background: "var(--blue)",
+            borderRadius: 2,
+            width: "15rem",
+            height: "4.5rem",
+            "&:hover": {
+              background: "#51a0b6",
+            },
+            "&:disabled": {
+              background: "#51a0b6",
+            },
+          }}
+          disabled={isSubmitting}
+          type="submit"
+        >
+          {isSubmitting ? <ThreeDotsLoading /> : "ویرایش اطلاعات"}
+        </Button>
       </form>
     </section>
   );

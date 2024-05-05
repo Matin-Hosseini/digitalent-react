@@ -5,7 +5,7 @@ import { User } from "./../types/User";
 
 type AuthContext = {
   isLoggedIn: boolean;
-  userInfo: {};
+  userInfo: User;
   getUser: () => void;
   login: (userData: User) => void;
   logout: () => void;
