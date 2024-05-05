@@ -11,6 +11,19 @@ const asyncHandler = require("express-async-handler");
  * public
  */
 const register = asyncHandler(async (req, res) => {
+  const { username, email } = req.body;
+
+  const user = await User.findOne({
+    where: {
+      [Op.or]: [{ username }, { email }],
+    },
+  });
+
+  if (user)
+    return res
+      .status(400)
+      .json({ error: "username or email is already taken" });
+
   const newUser = await User.create(req.body);
   const token = generateToken(newUser.toJSON());
 
