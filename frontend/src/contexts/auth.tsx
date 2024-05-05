@@ -6,6 +6,7 @@ import { User } from "./../types/User";
 type AuthContext = {
   isLoggedIn: boolean;
   userInfo: {};
+  getUser: () => void;
   login: (userData: User) => void;
   logout: () => void;
   changeUserInfo: (newInfo: User) => void;
@@ -31,25 +32,25 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUserInfo(newInfo);
   };
 
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const res = await Api.get("/me");
-        setIsLoggedIn(true);
-        setUserInfo(res.data.user);
-      } catch (error) {
-        setIsLoggedIn(false);
-        setUserInfo(null);
-        console.log("AuthContext: error");
-      }
-    };
+  const getUser = async () => {
+    try {
+      const res = await Api.get("/me");
+      setIsLoggedIn(true);
+      setUserInfo(res.data.user);
+    } catch (error) {
+      setIsLoggedIn(false);
+      setUserInfo(null);
+      console.log("AuthContext: error");
+    }
+  };
 
+  useEffect(() => {
     getUser();
   }, []);
 
   return (
     <authContext.Provider
-      value={{ isLoggedIn, userInfo, login, logout, changeUserInfo }}
+      value={{ isLoggedIn, userInfo, getUser, login, logout, changeUserInfo }}
     >
       {children}
     </authContext.Provider>

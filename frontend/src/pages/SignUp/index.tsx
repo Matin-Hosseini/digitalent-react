@@ -1,37 +1,74 @@
 import Checkbox from "@mui/material/Checkbox";
 
-//local-files
-import { useContext, useState } from "react";
-import Input from "../../components/Input";
 import "./index.css";
 
 import UnderlinedLink from "../../components/UnderlinedLink";
 import Logo from "./../../components/Logo";
-
+import { useContext, useState } from "react";
+import { Controller, SubmitHandler, get, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Api from "../../axios/api";
+import { toast } from "react-toastify";
 import { authContext } from "../../contexts/auth";
+import { useNavigate } from "react-router-dom";
+import ThreeDotsLoading from "../../components/Loaders/ThreeDots";
+
+const schema = z.object({
+  username: z
+    .string()
+    .min(1, { message: "این فیلد اجباری است." })
+    .min(3, { message: "نام کاربری باید حداقل 3 کاراکتر باشد." }),
+  email: z
+    .string()
+    .min(1, { message: "این فیلد اجباری است." })
+    .email({ message: "ایمیل نامعتبر می باشد." }),
+  password: z
+    .string()
+    .min(1, { message: "این فیلد اجباری می باشد." })
+    .min(8, { message: "رمز عبور باید حداقل 8 کاراکتر باشد." })
+    .regex(/[A-Za-z]/, {
+      message: "رمز عبور باید شامل حداقل یک حرف انگلیسی باشد.",
+    })
+    .regex(/[0-9]/, {
+      message: "رمز عبور باید شامل حداقل یک عدد باشد.",
+    }),
+  chekcbox: z
+    .boolean()
+    .refine((val) => val === true, { message: "تیک این گزینه را بزنید." }),
+});
+
+type FormFields = z.infer<typeof schema>;
 
 export default function SignUp() {
-  const [checkbox, setCheckbox] = useState(false);
+  const { getUser } = useContext(authContext);
+  const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
-  const toggleCheckbox = () => setCheckbox((prev) => !prev);
-  const { login } = useContext(authContext);
+  const registerSubmitHandler: SubmitHandler<FormFields> = async (data) => {
+    try {
+      await Api.post("/register", data);
+      getUser();
+      toast("ثبت نام با موفقیت انجام شد.");
 
-  const registerHandler = async (e) => {
-    e.preventDefault();
-
-    if (!checkbox) return;
-
-    const body = { username, email, password };
-
-    const res = await Api.post("/register", body);
-    // login(res.data.newUser, res.data.token);
-    console.log(res);
+      setTimeout(() => {
+        navigate("/user-panel");
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 400) {
+        return toast("نام کاربری یا ایمیل قبلا استفاده شده است.");
+      }
+      toast("خطایی رخ داده است.");
+    }
   };
+
   return (
     <div className="h-dvh grid lg:grid-cols-2">
       <div className="grid">
@@ -47,51 +84,81 @@ export default function SignUp() {
             action=""
             className="sign-up-form"
             noValidate
-            onSubmit={registerHandler}
+            onSubmit={handleSubmit(registerSubmitHandler)}
           >
             <div className="sign-up-form__inputs">
-              <Input
-                name="userName"
-                label="نام کاربری"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-              <Input
-                name="email"
-                label="ایمیل"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Input
-                name="password"
-                label="رمز عبور"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className={`custom-input mt-8`}>
+                <input
+                  type="text"
+                  className="custom-input__input"
+                  {...register("username")}
+                  required
+                />
+                <label className="custom-input__label">{"نام کاربری"}</label>
+              </div>
+              {errors.username && (
+                <div className="text-red-400">{errors.username.message}</div>
+              )}
+            </div>
+            <div className="sign-up-form__inputs">
+              <div className={`custom-input mt-8`}>
+                <input
+                  type="email"
+                  className="custom-input__input"
+                  {...register("email")}
+                  required
+                />
+                <label className="custom-input__label">{"ایمیل"}</label>
+              </div>
+              {errors.email && (
+                <div className="text-red-400">{errors.email.message}</div>
+              )}
+            </div>
+            <div className="sign-up-form__inputs">
+              <div className={`custom-input mt-8`}>
+                <input
+                  type="text"
+                  className="custom-input__input"
+                  {...register("password")}
+                  required
+                />
+                <label className="custom-input__label">{"رمز عبور"}</label>
+              </div>
+              {errors.password && (
+                <div className="text-red-400">{errors.password.message}</div>
+              )}
             </div>
             <div className="mb-5 flex gap-2 items-center">
-              <Checkbox
-                sx={{
-                  "& .MuiSvgIcon-root": {
-                    fontSize: 27,
-                    color: "var(--text-color)",
-                  },
-                }}
-                checked={checkbox}
-                onChange={toggleCheckbox}
+              <Controller
+                name="chekcbox"
+                defaultValue={false}
+                control={control}
+                render={({ field }) => (
+                  <>
+                    <Checkbox
+                      {...field}
+                      sx={{
+                        "& .MuiSvgIcon-root": {
+                          fontSize: 27,
+                          color: "var(--text-color)",
+                        },
+                      }}
+                    />
+                  </>
+                )}
               />
-              <p
-                onClick={toggleCheckbox}
-                className="cursor-pointer text-lg flex items-center gap-2"
-              >
+              <p className="cursor-pointer text-lg flex items-center gap-2">
                 <UnderlinedLink to={"/"}>شرایط و قوانین</UnderlinedLink>
                 <span>سایت را می پذیرم.</span>
               </p>
             </div>
-            <button className="sign-up-form__btn">ثبت نام</button>
+            {errors.chekcbox && (
+              <div className="text-red-400">{errors.chekcbox.message}</div>
+            )}
+
+            <button className="sign-up-form__btn">
+              {isSubmitting ? <ThreeDotsLoading /> : "ثبت نام"}
+            </button>
 
             <p className="text-center mt-8 flex items-center gap-2 justify-center">
               <span>حساب کاربری دارید؟</span>
