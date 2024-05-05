@@ -1,19 +1,24 @@
 import { createContext, useEffect, useState } from "react";
 import Api from "../axios/api";
 
-export const authContext = createContext({
-  isLoggedIn: false,
-  userInfo: {},
-  login: (userData, token) => {},
-  logout: () => {},
-  changeUserInfo: (newInfo) => {},
-});
+import { User } from "./../types/User";
 
-const AuthProvider = ({ children }) => {
+type AuthContext = {
+  isLoggedIn: boolean;
+  userInfo: {};
+  login: (userData: User) => void;
+  logout: () => void;
+  changeUserInfo: (newInfo: User) => void;
+};
+
+export const authContext = createContext<AuthContext | null>(null);
+
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({});
 
-  const login = (userData, token) => {
+  const login = (userData: User) => {
+    setIsLoggedIn(true);
     setUserInfo(userData);
   };
 
@@ -21,23 +26,21 @@ const AuthProvider = ({ children }) => {
     console.log("logout is being called");
   };
 
-  const changeUserInfo = (newInfo) => {
-    console.log("changing user info", newInfo.user);
+  const changeUserInfo = (newInfo: User) => {
+    // console.log("changing user info", newInfo.user);
     setUserInfo(newInfo);
   };
 
   useEffect(() => {
     const getUser = async () => {
-      const token = localStorage.getItem("token");
       try {
-        const res = await Api.get("/me", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        console.log(res.data);
+        const res = await Api.get("/me");
         setIsLoggedIn(true);
         setUserInfo(res.data.user);
       } catch (error) {
-        console.log(error, "inside auth context, you should probably login");
+        setIsLoggedIn(false);
+        setUserInfo(null);
+        console.log("AuthContext: error");
       }
     };
 

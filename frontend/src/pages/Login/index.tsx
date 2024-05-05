@@ -4,43 +4,47 @@ import UnderlinedLink from "../../components/UnderlinedLink";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 import "./index.css";
 import ThreeDotsLoading from "../../components/Loaders/ThreeDots";
+import Api from "../../axios/api";
+import { toast } from "react-toastify";
+import { useContext } from "react";
+import { authContext } from "../../contexts/auth";
 
 const schema = z.object({
-  email: z
-    .string()
-    .min(1, { message: "این فیلد اجباری است." })
-    .email({ message: "ایمیل نا معتبر می باشد." }),
-  password: z
-    .string()
-    .min(1, { message: "این فیلد اجباری است." })
-    .min(3, { message: "رمز عبور باید حداقل 3 کاراکتر باشد." }),
+  identifier: z.string().min(1, { message: "این فیلد اجباری است." }),
+  password: z.string().min(1, { message: "این فیلد اجباری است." }),
 });
 
 type FormFields = z.infer<typeof schema>;
 
 export default function Login() {
+  const { login } = useContext(authContext);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
-    setError,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
   });
 
-  console.log(watch());
-
   const loginSubmitHandler: SubmitHandler<FormFields> = async (data) => {
-    await setTimeout(() => {}, 2000);
+    try {
+      const res = await Api.post("/login", data);
+      console.log(res.data.user);
+      toast("خوش آمدید.");
+      login(res.data.user);
 
-    setError("root", {
-      message: "ارور ست شده",
-    });
-    console.log(data);
+      setTimeout(() => {
+        navigate("/user-panel");
+      }, 2000);
+    } catch (error) {
+      toast("اطلاعات وارد شده درست نمی باشد.");
+    }
   };
 
   return (
@@ -66,15 +70,15 @@ export default function Login() {
                 <input
                   type="text"
                   className="custom-input__input"
-                  {...register("email")}
+                  {...register("identifier")}
                   required
                 />
                 <label className="custom-input__label">
                   {"نام کاربری یا ایمیل"}
                 </label>
               </div>
-              {errors.email && (
-                <div className="text-red-400">{errors.email.message}</div>
+              {errors.identifier && (
+                <div className="text-red-400">{errors.identifier.message}</div>
               )}
 
               <div className={`custom-input mt-8`}>
