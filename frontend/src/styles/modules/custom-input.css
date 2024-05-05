@@ -1,7 +1,7 @@
 /*custom inputs starts */
 .custom-input {
   position: relative;
-  margin-bottom: .5rem !important;
+  /* margin-bottom: .5rem !important; */
   transition: all var(--transition);
 }
 .custom-input__input {

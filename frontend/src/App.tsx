@@ -3,7 +3,7 @@ import { useLocation, useRoutes } from "react-router-dom";
 //contexts
 import { ThemeContext } from "./contexts/theme";
 
-import { Button, ThemeProvider, createTheme } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,14 +11,10 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ScrollToTop from "./components/ScrollToTop";
 import routes from "./routes";
-import Counter from "./components/Counter";
-import Api from "./axios/api";
-import LatestCourses from "./components/LatestCourses";
-import { WishlistContext } from "./contexts/courses";
 
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {
-    xs: true; // removes the `xs` breakpoint
+    xs: true;
     sm: true;
     md: true;
     lg: true;

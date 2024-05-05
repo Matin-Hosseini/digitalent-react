@@ -1,69 +1,38 @@
-import { useReducer } from "react";
-import validator from "../../validators/validator";
-import "./Custom-input.css";
+import { InputHTMLAttributes } from "react";
+// import "./Custom-input.css";
+import { FieldError } from "react-hook-form";
 
-const inputReducer = (state, action) => {
-  switch (action.type) {
-    case "CHANGE": {
-      const { isValid, errorMessage } = validator(
-        action.value,
-        action.validations
-      );
-
-      return {
-        ...state,
-        value: action.value,
-        isValid,
-        errorMessage,
-      };
-    }
-  }
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  type: string;
+  name?: string;
+  label: string;
+  hasError?: FieldError;
+  errorMessage?: string;
 };
 
 export default function Input({
   type,
   name,
   label,
-  value,
-  onChange,
-  validations,
-}) {
-  const [mainInput, dispatch] = useReducer(inputReducer, {
-    value: "",
-    isValid: null,
-    errorMessage: "",
-  });
-
+  hasError,
+  errorMessage,
+  ...rest
+}: InputProps) {
   return (
     <div className="mb-6">
-      <div
-        className={`custom-input ${
-          mainInput.isValid === true
-            ? "valid"
-            : mainInput.isValid === false
-            ? "error"
-            : ""
-        }`}
-      >
+      <div className={`custom-input`}>
         <input
           type={type}
           name={name}
           className="custom-input__input"
-          value={value}
-          // value={mainInput.value}
-          // onChange={(e) =>
-          //   dispatch({ type: "CHANGE", value: e.target.value, validations })
-          // }
-          onChange={onChange}
+          {...rest}
           required
         />
         <label className="custom-input__label">{label}</label>
       </div>
-      {mainInput.errorMessage && (
-        <span className={`text-[var(--red)] h-8 block`}>
-          {mainInput.errorMessage}
-        </span>
-      )}
+      {/* {hasError && (
+        <span className={`text-[var(--red)] h-8 block`}>{errorMessage}</span>
+      )} */}
     </div>
   );
 }
