@@ -1,6 +1,8 @@
 const { Op } = require("sequelize");
 const { Comment, User } = require("./../../../models");
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcrypt");
+const hashPassword = require("../../../utils/hashPassword");
 
 /*
  * registers new user and saves token to cookie
@@ -58,4 +60,20 @@ const changeUserInfo = asyncHandler(async (req, res) => {
   res.status(200).json({ msg: "User updated!" });
 });
 
-module.exports = { register, getUserComments, changeUserInfo };
+const changeUserPassword = async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+
+  const user = await User.findOne({ where: { id: req.user.id } });
+
+  const isPasswordMatch = await bcrypt.compare(currentPassword, user.password);
+  if (!isPasswordMatch)
+    return res.status(400).json({ error: "password is incorrect" });
+
+  const userNewPassword = hashPassword(newPassword);
+  user.password = userNewPassword;
+  user.save();
+
+  return res.status(200).json({ msg: "User password changed" });
+};
+
+module.exports = { register, getUserComments, changeUserInfo, changeUserPassword };
