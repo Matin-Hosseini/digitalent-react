@@ -1,10 +1,14 @@
 import "./index.css";
 
-// type containerBoxProps {
-//   className?: React.class 
-// }
+type ContainerBoxProps = {
+  className?: string;
+  children: React.ReactNode;
+};
 
-export default function ContainerBox({ children, className }) {
+export default function ContainerBox({
+  children,
+  className,
+}: ContainerBoxProps) {
   return (
     <div className={`container-box shadow-xl ${className || ""}`}>
       {children}

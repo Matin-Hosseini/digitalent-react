@@ -20,7 +20,7 @@ export default function CourseBox({
   id,
   title,
 }: {
-  id: String;
+  id: string;
   title: String;
 }) {
   const { addCourseToWishlist } = useContext(CoursesContext);

@@ -4,7 +4,7 @@ const Logo = () => {
   return (
     <div className="nav__logo">
       <Link to={"/"}>
-        <img src="/src/assets/images/app-logo/app-favicon.png" alt="logo" />
+        <img src="/images/app-logo/app-favicon.png" alt="logo" />
       </Link>
     </div>
   );

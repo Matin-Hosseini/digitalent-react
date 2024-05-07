@@ -13,11 +13,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
 
 export default function CommentSection() {
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const fullScreen = useMediaQuery("(min-width:600px)");
 
   const [open, setOpen] = useState(false);
   return (

@@ -115,7 +115,7 @@ export default function VideoPlayer() {
   return (
     <ReactPlayer
       className="player"
-      url="src/components/test.mp4"
+      url="/src/components/test.mp4"
       // url="https://www.youtube.com/watch?v=9DqW9R8Lfmw"
       width="100%"
       height="100%"

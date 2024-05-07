@@ -1,27 +1,193 @@
+// import { createContext, useEffect, useState } from "react";
+// import allCourses from "../data/courses";
+// import useLocalStorage from "../hooks/localstorage";
+// import { toast } from "react-toastify";
+
+// type coursesContextType = {
+//   courses: Course[];
+//   wishlistCourses: Course[];
+//   cartCourses: Course[];
+//   addCourseToWishlist: (id: string) => void;
+//   addAllWishlistCoursesToCart: () => void;
+//   removeCourseFromWishlist: (id: string) => void;
+//   addCourseToCart: (id: string) => void;
+//   removeCourseFromCart: (id: string) => void;
+// };
+
+// export const CoursesContext = createContext<coursesContextType | null>(null);
+
+// export default function CoursesProvider({ children }) {
+//   //custom hooks
+//   const [storageWishlistCourses, setStorageWishlistCourses] =
+//     useLocalStorage("wishlistCourses");
+//   const [storageCartCourses, setStorageCartCourses] =
+//     useLocalStorage("cartCourses");
+
+//   const [courses, setCourses] = useState([]);
+//   const [wishlistCourses, setWishlistCourses] = useState(
+//     storageWishlistCourses || []
+//   );
+//   const [cartCourses, setCartCourses] = useState(storageCartCourses || []);
+
+//   //functions
+//   const addCourseToWishlist = (id: string) => {
+//     const targetCourse = courses.find((course) => course.id === id);
+
+//     //whenever there is no wishlist course in the localstorage
+//     if (!storageWishlistCourses) {
+//       setWishlistCourses([targetCourse]);
+//       setStorageWishlistCourses([targetCourse]);
+//       toast("دوره به لیست علاقه مندی افزوده شد.");
+//       return;
+//     }
+
+//     const courseExists = wishlistCourses.some(
+//       (course) => course.id === targetCourse.id
+//     );
+
+//     if (courseExists) {
+//       toast("دوره در لیست علاقه مندی شما وجود دارد.");
+//       return;
+//     }
+
+//     setWishlistCourses((prev) => [...prev, targetCourse]);
+//     setStorageWishlistCourses([...storageWishlistCourses, targetCourse]);
+//     toast("دوره به لیست علاقه مندی افزوده شد.");
+//   };
+
+//   const addAllWishlistCoursesToCart = () => {
+//     const newCourseCartsWithDuplicate = [...wishlistCourses, ...cartCourses];
+//     const newCourseCarts = Array.from(
+//       new Set(newCourseCartsWithDuplicate.map(JSON.stringify))
+//     ).map(JSON.parse);
+
+//     setCartCourses(newCourseCarts);
+//     setStorageCartCourses(newCourseCarts);
+
+//     //cleaning wishlist courses
+//     setWishlistCourses([]);
+//     setStorageWishlistCourses([]);
+//     toast("دوره ها به سبد خرید انتقال داده شدند.");
+//   };
+
+//   const removeCourseFromWishlist = (id: string) => {
+//     setWishlistCourses((prevCourses: Course[]) =>
+//       prevCourses.filter((course: Course) => course.id !== id)
+//     );
+
+//     setStorageWishlistCourses(
+//       storageWishlistCourses.filter((course) => course.id !== id)
+//     );
+
+//     toast("دوره از لیست علاقه مندی حذف شد.");
+//   };
+
+//   const addCourseToCart = (id: string) => {
+//     const targetCourse = courses.find((course) => course.id === id);
+
+//     if (!storageCartCourses) {
+//       setCartCourses([targetCourse]);
+//       setStorageCartCourses([targetCourse]);
+
+//       //removing course from wishlist
+//       setWishlistCourses((prevCourses) =>
+//         prevCourses.filter((course) => course.id !== id)
+//       );
+
+//       //removing course from localstorage wishlist
+//       setStorageWishlistCourses(
+//         storageWishlistCourses.filter((course) => course.id !== id)
+//       );
+
+//       toast("دوره به سبد خرید افزوده شد.");
+//       return;
+//     }
+
+//     setCartCourses((prev) => [...prev, targetCourse]);
+//     setStorageCartCourses([...storageCartCourses, targetCourse]);
+
+//     //removing course from wishlist
+//     setWishlistCourses((prevCourses) =>
+//       prevCourses.filter((course) => course.id !== id)
+//     );
+
+//     //removing course from localstorage wishlist
+//     setStorageWishlistCourses(
+//       storageWishlistCourses.filter((course) => course.id !== id)
+//     );
+//     toast("دوره به سبد خرید افزوده شد.");
+//   };
+
+//   const removeCourseFromCart = (id: string) => {
+//     setCartCourses((prevCourses) =>
+//       prevCourses.filter((course) => course.id !== id)
+//     );
+//     setStorageCartCourses(
+//       storageCartCourses.filter((course) => course.id !== id)
+//     );
+//     toast("دوره از سبد خرید حذف شد.");
+//   };
+
+//   //lifecycle
+//   useEffect(() => {
+//     setCourses(allCourses);
+//   }, []);
+
+//   return (
+//     <CoursesContext.Provider
+//       value={{
+//         courses,
+//         wishlistCourses,
+//         cartCourses,
+//         addCourseToWishlist,
+//         addAllWishlistCoursesToCart,
+//         removeCourseFromWishlist,
+//         addCourseToCart,
+//         removeCourseFromCart,
+//       }}
+//     >
+//       {children}
+//     </CoursesContext.Provider>
+//   );
+// }
+
 import { createContext, useEffect, useState } from "react";
 import allCourses from "../data/courses";
 import useLocalStorage from "../hooks/localstorage";
 import { toast } from "react-toastify";
-export const CoursesContext = createContext({});
+
+type coursesContextType = {
+  courses: Course[];
+  wishlistCourses: Course[];
+  cartCourses: Course[];
+  addCourseToWishlist: (id: string) => void;
+  addAllWishlistCoursesToCart: () => void;
+  removeCourseFromWishlist: (id: string) => void;
+  addCourseToCart: (id: string) => void;
+  removeCourseFromCart: (id: string) => void;
+};
+
+export const CoursesContext = createContext<coursesContextType | null>(null);
 
 export default function CoursesProvider({ children }) {
-  //custom hooks
+  // custom hooks
   const [storageWishlistCourses, setStorageWishlistCourses] =
     useLocalStorage("wishlistCourses");
   const [storageCartCourses, setStorageCartCourses] =
     useLocalStorage("cartCourses");
 
-  const [courses, setCourses] = useState([]);
-  const [wishlistCourses, setWishlistCourses] = useState(
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [wishlistCourses, setWishlistCourses] = useState<Course[]>(
     storageWishlistCourses || []
   );
-  const [cartCourses, setCartCourses] = useState(storageCartCourses || []);
+  const [cartCourses, setCartCourses] = useState<Course[]>(
+    storageCartCourses || []
+  );
 
-  //functions
+  // functions
   const addCourseToWishlist = (id: string) => {
     const targetCourse = courses.find((course) => course.id === id);
 
-    //whenever there is no wishlist course in the localstorage
     if (!storageWishlistCourses) {
       setWishlistCourses([targetCourse]);
       setStorageWishlistCourses([targetCourse]);
@@ -45,33 +211,42 @@ export default function CoursesProvider({ children }) {
 
   const addAllWishlistCoursesToCart = () => {
     const newCourseCartsWithDuplicate = [...wishlistCourses, ...cartCourses];
-    const newCourseCarts = Array.from(
-      new Set(newCourseCartsWithDuplicate.map(JSON.stringify))
-    ).map(JSON.parse);
+
+    const newCourseCarts = newCourseCartsWithDuplicate.reduce(
+      (acc, current) => {
+        const x = acc.find((item) => item.id === current.id);
+        if (!x) {
+          return acc.concat([current]);
+        } else {
+          return acc;
+        }
+      },
+      []
+    );
 
     setCartCourses(newCourseCarts);
     setStorageCartCourses(newCourseCarts);
 
-    //cleaning wishlist courses
+    // cleaning wishlist courses
     setWishlistCourses([]);
     setStorageWishlistCourses([]);
     toast("دوره ها به سبد خرید انتقال داده شدند.");
   };
 
-  const removeCourseFromWishlist = (id) => {
-    setWishlistCourses((prevCourses) =>
-      prevCourses.filter((course) => course.id !== id)
+  const removeCourseFromWishlist = (id: string) => {
+    setWishlistCourses((prevCourses: Course[]) =>
+      prevCourses.filter((course: Course) => course.id !== id)
     );
 
     setStorageWishlistCourses(
-      storageWishlistCourses.filter((course) => course.id !== id)
+      storageWishlistCourses.filter((course: Course) => course.id !== id)
     );
 
     toast("دوره از لیست علاقه مندی حذف شد.");
   };
 
   const addCourseToCart = (id: string) => {
-    const targetCourse = courses.find((course) => course.id === id);
+    const targetCourse = courses.find((course: Course) => course.id === id);
 
     if (!storageCartCourses) {
       setCartCourses([targetCourse]);
@@ -84,7 +259,7 @@ export default function CoursesProvider({ children }) {
 
       //removing course from localstorage wishlist
       setStorageWishlistCourses(
-        storageWishlistCourses.filter((course) => course.id !== id)
+        storageWishlistCourses.filter((course: Course) => course.id !== id)
       );
 
       toast("دوره به سبد خرید افزوده شد.");
@@ -95,13 +270,13 @@ export default function CoursesProvider({ children }) {
     setStorageCartCourses([...storageCartCourses, targetCourse]);
 
     //removing course from wishlist
-    setWishlistCourses((prevCourses) =>
-      prevCourses.filter((course) => course.id !== id)
+    setWishlistCourses((prevCourses: Course[]) =>
+      prevCourses.filter((course: Course) => course.id !== id)
     );
 
     //removing course from localstorage wishlist
     setStorageWishlistCourses(
-      storageWishlistCourses.filter((course) => course.id !== id)
+      storageWishlistCourses.filter((course: Course) => course.id !== id)
     );
     toast("دوره به سبد خرید افزوده شد.");
   };
@@ -111,12 +286,12 @@ export default function CoursesProvider({ children }) {
       prevCourses.filter((course) => course.id !== id)
     );
     setStorageCartCourses(
-      storageCartCourses.filter((course) => course.id !== id)
+      storageCartCourses.filter((course: Course) => course.id !== id)
     );
     toast("دوره از سبد خرید حذف شد.");
   };
 
-  //lifecycle
+  // lifecycle
   useEffect(() => {
     setCourses(allCourses);
   }, []);
@@ -131,7 +306,7 @@ export default function CoursesProvider({ children }) {
         addAllWishlistCoursesToCart,
         removeCourseFromWishlist,
         addCourseToCart,
-        removeCourseFromCart
+        removeCourseFromCart,
       }}
     >
       {children}

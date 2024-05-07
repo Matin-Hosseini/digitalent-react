@@ -1,4 +1,14 @@
-export default function ContainerBoxTitle({ title, icon, color }) {
+type ContainerBoxTitleProps = {
+  title: String;
+  icon: React.ReactNode;
+  color: String;
+};
+
+export default function ContainerBoxTitle({
+  title,
+  icon,
+  color,
+}: ContainerBoxTitleProps) {
   let mainColor = null;
   switch (color) {
     case "yellow":

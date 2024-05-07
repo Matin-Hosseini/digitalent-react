@@ -7,7 +7,8 @@ export default function NavLink({
   path,
 }: {
   title: String;
-  megamenu: boolean;
+  megamenu?: boolean | any;
+  submenu?: any;
   path: string;
 }) {
   return (
@@ -26,22 +27,26 @@ export default function NavLink({
 
       {megamenu && (
         <div
-        className={`absolute top-full right-0 z-50 flex flex-col flex-wrap items-start ${
-          megamenu ? "w-full" : "w-[30rem]"
-        } gap-3 p-4 transition-all bg-[var(--section-bg)] max-h-64 border border-t-2 border-[var(--red)] shadow-lg rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible`}
-      >
-        {megamenu.map(menu => (
-          <Link to={"/"} key={menu.id}>{menu.title}</Link>
-        ))}
-      </div>
+          className={`absolute top-full right-0 z-50 flex flex-col flex-wrap items-start ${
+            megamenu ? "w-full" : "w-[30rem]"
+          } gap-3 p-4 transition-all bg-[var(--section-bg)] max-h-64 border border-t-2 border-[var(--red)] shadow-lg rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible`}
+        >
+          {megamenu.map((menu) => (
+            <Link to={"/"} key={menu.id}>
+              {menu.title}
+            </Link>
+          ))}
+        </div>
       )}
 
       {submenu && (
         <div
           className={`absolute top-full right-0 z-50 flex flex-col flex-wrap items-start w-[30rem] gap-3 p-4 transition-all bg-[var(--section-bg)] max-h-64 border border-t-2 border-[var(--red)] shadow-lg rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible`}
         >
-          {submenu.map(menu => (
-            <Link to={"/"} key={menu.id}>{menu.title}</Link>
+          {submenu.map((menu) => (
+            <Link to={"/"} key={menu.id}>
+              {menu.title}
+            </Link>
           ))}
         </div>
       )}
