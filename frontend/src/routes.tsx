@@ -1,29 +1,33 @@
-import NotFound from "./pages/404";
-import About from "./pages/About-us";
-import Article from "./pages/Article";
-import ArticleCategory from "./pages/ArticleCategory";
-import Course from "./pages/Course";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import NotCompleted from "./pages/NotCompleted";
-import SignUp from "./pages/SignUp";
+import { lazy } from "react";
 
-//user panel
-import UserPanel from "./pages/User-panel";
-import ChangePassword from "./pages/User-panel/ChangePassword";
-import MyAllCourses from "./pages/User-panel/Courses";
-import UserDashBoard from "./pages/User-panel/Dashboard";
-import EditAccount from "./pages/User-panel/EditAccount";
-import Tickets from "./pages/User-panel/Tickets";
-import AddTicket from "./pages/User-panel/Tickets/AddTicket";
+const Home = lazy(() => import("./pages/Home"));
+const NotFound = lazy(() => import("./pages/404"));
+const About = lazy(() => import("./pages/About-us"));
+const Article = lazy(() => import("./pages/Article"));
+const ArticleCategory = lazy(() => import("./pages/ArticleCategory"));
+const Course = lazy(() => import("./pages/Course"));
+const CourseCategory = lazy(() => import("./pages/CourseCategory"));
+const Login = lazy(() => import("./pages/Login"));
+const NotCompleted = lazy(() => import("./pages/NotCompleted"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+
+//user-panel
+const UserPanel = lazy(() => import("./pages/User-panel"));
+const ChangePassword = lazy(() => import("./pages/User-panel/ChangePassword"));
+const MyAllCourses = lazy(() => import("./pages/User-panel/Courses"));
+const UserDashBoard = lazy(() => import("./pages/User-panel/Dashboard"));
+const EditAccount = lazy(() => import("./pages/User-panel/EditAccount"));
+const Tickets = lazy(() => import("./pages/User-panel/Tickets"));
+const AddTicket = lazy(() => import("./pages/User-panel/Tickets/AddTicket"));
 
 const routes: any = [
   { path: "/", element: <Home /> },
   { path: "/about", element: <About /> },
   { path: "/login", element: <Login /> },
   { path: "/sign-up", element: <SignUp /> },
-  { path: "/course", element: <Course /> },
-  { path: "/article", element: <Article /> },
+  { path: "/course/:short_name", element: <Course /> },
+  { path: "/courses", element: <CourseCategory /> },
+  { path: "/article/:short_name", element: <Article /> },
   { path: "/articles", element: <ArticleCategory /> },
   { path: "/not-completed", element: <NotCompleted /> },
   { path: "*", element: <NotFound /> },
