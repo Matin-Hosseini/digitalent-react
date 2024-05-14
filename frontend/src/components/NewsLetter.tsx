@@ -2,6 +2,8 @@ import { useState } from "react";
 import { postNewsletter } from "../axios/Requests/Newsletter";
 import { toast } from "react-toastify";
 
+import postIllustration from "./../assets/images/post-illustration-2.png";
+
 export default function NewsLetter() {
   const [email, setEmail] = useState("");
 
@@ -46,11 +48,7 @@ export default function NewsLetter() {
         </div>
 
         <div className="absolute max-w-[700px] left-0 bottom-0 hidden lg:block">
-          <img
-            src="/src/assets/images/post-illustration-2.png"
-            alt=""
-            className="w-full h-full"
-          />
+          <img src={postIllustration} alt="" className="w-full h-full" />
         </div>
       </div>
     </div>

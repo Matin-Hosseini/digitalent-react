@@ -7,17 +7,7 @@ import CourseInfo from "./CourseInfo";
 import RelatedCourses from "./RelatedCourses";
 
 export default function Course() {
-  useEffect(() => {
-    console.log(document.cookie);
-
-    const getCookie = async () => {
-      console.log("sending request");
-      const res = await axios.get("http://localhost:8000/api/v1/cookie");
-      console.log(res);
-    };
-
-    getCookie();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <main className="container my-20">

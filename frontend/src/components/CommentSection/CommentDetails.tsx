@@ -25,7 +25,7 @@ export default function CommentDetails({ reply }: { reply: Boolean }) {
           <div className="flex items-center gap-6 mb-3">
             <div className="flex items-center gap-4">
               <div>
-                <h6 className="text-2xl">لانا ردز</h6>
+                <h6 className="text-2xl">متین حسینی</h6>
                 <span className="text-lg text-[var(--gray)]">کاربر</span>
               </div>
             </div>
@@ -43,7 +43,7 @@ export default function CommentDetails({ reply }: { reply: Boolean }) {
 
           {reply && (
             <span className="text-[var(--gray)] text-xl">
-              در پاسخ به {"لاناردز"}
+              در پاسخ به {"علیرضا دهقان"}
             </span>
           )}
         </div>

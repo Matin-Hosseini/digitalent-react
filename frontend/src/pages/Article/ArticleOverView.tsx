@@ -3,7 +3,15 @@ import { GoCommentDiscussion } from "react-icons/go";
 import { IoCheckmarkOutline } from "react-icons/io5";
 import ContainerBox from "../../components/ContainerBox";
 
-export default function ArticleOverView({ className }: { className: String }) {
+type ArticleOverViewProps = {
+  className: String;
+  article: any;
+};
+
+export default function ArticleOverView({
+  className,
+  article,
+}: ArticleOverViewProps) {
   return (
     <ContainerBox className={`p-5 mb-4 ${className ? className : ""}`}>
       <div>
@@ -12,7 +20,7 @@ export default function ArticleOverView({ className }: { className: String }) {
             <BsSuitHeart />
             <div className="flex items-center gap-3">
               <p className="hidden xs:block">پسندیده شده:</p>
-              <span>243</span>
+              <span>{article.likes}</span>
             </div>
           </div>
           <div className="flex items-center gap-2">

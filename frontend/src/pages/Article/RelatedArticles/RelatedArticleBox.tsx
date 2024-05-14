@@ -1,14 +1,11 @@
 import { LuCalendarPlus } from "react-icons/lu";
 import { TfiWrite } from "react-icons/tfi";
+import img from "./../../../assets/images/articles/udp-vs-tcp/cover.png";
 
 export default function RelatedArticleBox() {
   return (
     <div className="flex gap-5 border-solid py-8 border-gray-300 dark:border-gray-900">
-      <img
-        src="src/assets/images/about-us/offers-bg.jpg"
-        alt=""
-        className="w-32 rounded-lg"
-      />
+      <img src={img} alt="" className="w-32 rounded-lg" />
       <div>
         <h3 className="line-clamp-2 text-2xl mb-6">
           راه های جدید به وجود آمده جهت بررسی و به دست آوردن سود بیشتر

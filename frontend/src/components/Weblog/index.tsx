@@ -12,8 +12,16 @@ import BlogBox from "../BlogBox";
 //local components
 
 const swiperData: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+import allArticles from "../../data/articles";
+import { useEffect, useState } from "react";
 
 export default function Weblog() {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    setArticles(allArticles);
+  }, []);
+
   return (
     <section className="weblog container">
       <div className="articles my-5 bg-[#C2C2C2] dark:bg-[#474554] p-6">
@@ -59,11 +67,10 @@ export default function Weblog() {
                 },
               }}
               pagination={{ clickable: true }}
-              onSlideChange={() => console.log("slide change")}
             >
-              {swiperData?.map((article) => (
-                <SwiperSlide key={article}>
-                  <BlogBox />
+              {articles?.map((article) => (
+                <SwiperSlide key={article.id}>
+                  <BlogBox {...article} />
                 </SwiperSlide>
               ))}
             </Swiper>

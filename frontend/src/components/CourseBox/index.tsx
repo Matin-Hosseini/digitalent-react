@@ -7,14 +7,14 @@ import { FaRegHeart } from "react-icons/fa";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { PiShootingStarFill, PiStudentLight } from "react-icons/pi";
 
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import useLocalStorage from "../../hooks/localstorage";
 import ContainerBox from "../ContainerBox";
 import DiscountTimer from "./DiscountTimer";
 import { useContext, useEffect, useState } from "react";
 import { CoursesContext } from "../../contexts/courses";
+
+import courseCover from "./../../assets/images/html-course-cover.jpg";
 
 export default function CourseBox({
   id,
@@ -36,11 +36,7 @@ export default function CourseBox({
             className={"absolute left-3 top-3"}
             endTime={"2024-05-04T00:00:00"}
           />
-          <img
-            src="./src/assets/images/f4aa8891-d9a5-48f6-9166-8f40fa5e5f0f_cover.webp"
-            alt=""
-            className="rounded-lg mb-3"
-          />
+          <img src={courseCover} alt="" className="rounded-lg mb-3 h-[16rem]" />
         </Link>
         <div className="relative">
           <h2 className="line-clamp-2 mb-5 text-2xl text-[var(--title-color)] h-24">

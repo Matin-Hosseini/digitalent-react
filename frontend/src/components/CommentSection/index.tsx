@@ -65,7 +65,7 @@ export default function CommentSection() {
                 <div className="flex items-center gap-6 mb-3">
                   <div className="flex items-center gap-4">
                     <div>
-                      <h6 className="text-2xl">لانا ردز</h6>
+                      <h6 className="text-2xl">علیرضا دهقان</h6>
                       <span className="text-lg text-[var(--gray)]">
                         ثبت نظر جدید
                       </span>

@@ -1,7 +1,7 @@
 type ContainerBoxTitleProps = {
   title: String;
-  icon: React.ReactNode;
-  color: String;
+  icon?: React.ReactNode;
+  color?: String;
 };
 
 export default function ContainerBoxTitle({

@@ -1,17 +1,41 @@
 import { BiCategory } from "react-icons/bi";
 import ContainerBox from "../../components/ContainerBox";
 import ContainerBoxTitle from "../../components/ContainerBoxTitle";
-import ArticleHeader from "./ArticleHeader";
+import firstImage from "./../../assets/images/articles/single/1.png";
+import { GoEye } from "react-icons/go";
+import { RxTimer } from "react-icons/rx";
 
 import "./ArticleContent.css";
 
-export default function Articlecontent() {
+export default function Articlecontent({ article }) {
   return (
     <ContainerBox className="p-5 mb-4">
-      <ContainerBoxTitle title={"بازی و سرگرمی"} icon={<BiCategory />} color="red"/>
-      <ArticleHeader />
+      <ContainerBoxTitle
+        title={"بازی و سرگرمی"}
+        icon={<BiCategory />}
+        color="red"
+      />
+      <div className="flex flex-col sm:flex-row gap-5 justify-between items-center mb-10">
+        <div className=" ">
+          <h1 className="text-5xl  mb-8 leading-[4.5rem]">{article.title}</h1>
+          <div className="flex items-center gap-2 text-xl text-slate-400 dark:text-slate-200">
+            <p>انتشار:</p>
+            <span>1402/12/4</span>
+          </div>
+        </div>
+        <div className="flex items-center justify-evenly text-gray-500 dark:text-gray-300 bg-[rgba(140,140,140,0.09)] rounded-lg py-4 gap-4 w-full sm:w-auto sm:bg-transparent">
+          <div className="flex flex-col items-center gap-2">
+            <GoEye />
+            <span className="text-lg">280 بازدید</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <RxTimer />
+            <span className="text-lg">8 دقیقه</span>
+          </div>
+        </div>
+      </div>
       <div>
-        <img src="src/assets/images/about-us/offers-bg.jpg" alt="" />
+        <img src={firstImage} alt="" />
 
         <h2 className="article-content__title">توضیحات اول:</h2>
         <p className="article-content__caption">

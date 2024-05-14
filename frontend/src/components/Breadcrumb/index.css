@@ -1,63 +1,23 @@
 .breadcrumb {
-  list-style: none;
-  overflow: hidden;
-  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 100%;
+  padding: 0 2rem;
 }
-.breadcrumb li {
-  float: right;
-}
-.breadcrumb li a {
-  padding: 10px 55px 10px 20px;
-  background: green;
-  /* fallback color */
-  background: var(--app-bg);
+
+.breadcrumb-item:not(:last-child) {
   position: relative;
-  display: block;
-  /* float: right; */
 }
-.breadcrumb li a:after {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  /* Go big on the size, and let overflow hide */
-  border-bottom: 50px solid transparent;
-  border-right: 30px solid var(--app-bg);
+
+.breadcrumb-item:not(:last-child)::after {
+  content: "";
   position: absolute;
+  width: 1px;
+  height: 80%;
+  left: -1rem;
   top: 50%;
-  margin-top: -50px;
-  right: 100%;
-  z-index: 2;
-}
-.breadcrumb li a:before {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  /* Go big on the size, and let overflow hide */
-  border-bottom: 50px solid transparent;
-  border-right: 35px solid var(--section-bg);
-  position: absolute;
-  top: 50%;
-  margin-top: -50px;
-  margin-right: 1px;
-  right: 100%;
-  z-index: 1;
-}
-.breadcrumb li:last-child a {
-  /* background: white !important; */
-  /* color: black; */
-  pointer-events: none;
-  cursor: default;
-}
-.breadcrumb li:last-child a:after {
-  /* border: 0; */
-}
-.breadcrumb li:last-child a:before {
-  border: 0;
-}
-.breadcrumb li a:hover {
-  /* background: hsla(34, 85%, 25%, 1); */
+  transform: rotate(10deg) translateY(-50%);
+  background-color: var(--text-color);
+  opacity: .7;
 }

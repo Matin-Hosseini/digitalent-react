@@ -1,22 +1,23 @@
 import "./index.css";
+import { Link } from "react-router-dom";
 
-export default function BreadCrumb() {
+type BreadcrumbProps = {
+  course?: boolean;
+  article?: boolean;
+};
+
+export default function BreadCrumb({ course, article }: BreadcrumbProps) {
   return (
     <ul className="breadcrumb">
-      <li>
-        <a href="#">خانه</a>
+      <li className="breadcrumb-item">
+        <Link to="/">خانه</Link>
       </li>
-      <li>
-        <a href="#">دوره</a>
+      <li className="breadcrumb-item">
+        {course && <Link to="/courses">دوره</Link>}
+        {article && <Link to="/articles">مقاله</Link>}
       </li>
-      {/* <li>
-        <a href="#">صقحه اصلی دوره</a>
-      </li>
-      <li>
-        <a href="#">حالا اینجای دوره</a>
-      </li> */}
-      <li>
-        <a href="#">تایتل دوره</a>
+      <li className="breadcrumb-item">
+        <Link to="#">تایتل دوره</Link>
       </li>
     </ul>
   );

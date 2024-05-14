@@ -4,13 +4,13 @@ import ContainerBox from "./ContainerBox";
 
 export default function PageInfoBox() {
   return (
-    <ContainerBox className={""}>
-      <div className="grid-system">
+    <ContainerBox className={"p-4"}>
+      <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
         <div className="col-span-8">
           <BreadCrumb></BreadCrumb>
         </div>
         <div className="col-span-4">
-          <div className="flex items-center justify-between h-full pe-5">
+          <div className="flex items-center justify-between gap-6 pe-5">
             <div className="flex flex-col gap-2 py-3">
               {/* <div className="flex items-center gap-2 text-xl">
                   <FcCalendar />

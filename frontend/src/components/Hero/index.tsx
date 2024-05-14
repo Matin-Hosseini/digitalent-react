@@ -3,6 +3,8 @@ import "./../../styles/modules/animations.css";
 import "./../../styles/modules/split-container.css";
 import "./Hero.css";
 
+import heroBg from "./../../assets/images/hero-bg.jpg";
+
 const Hero = () => {
   return (
     <section className="hero split-container-left relative py-20">
@@ -41,7 +43,7 @@ const Hero = () => {
       {/* second element */}
       <div className="hero__image-wrapper self-center split-container-left__second">
         <div className="hero__image relative overflow-hidden border-[1rem] border-solid border-l-0 border-[var(--section-bg)] transition-all duration-200 rounded-[0_25rem_25rem_0] shadow-xl">
-          <img src="./src/assets/images/banner-2-1.jpg" alt="" />
+          <img src={heroBg} alt="" />
         </div>
       </div>
 

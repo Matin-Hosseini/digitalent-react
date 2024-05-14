@@ -53,7 +53,7 @@ export default function () {
         >
           {relatedArticles?.map((article) => (
             <SwiperSlide  key={article}>
-              <BlogBox />
+              {/* <BlogBox /> */}
             </SwiperSlide>
           ))}
         </Swiper>
