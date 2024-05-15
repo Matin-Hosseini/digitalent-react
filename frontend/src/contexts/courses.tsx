@@ -2,16 +2,18 @@ import { createContext, useContext, useEffect, useState } from "react";
 import allCourses from "../data/courses";
 import useLocalStorage from "../hooks/localstorage";
 import { toast } from "react-toastify";
+import { Course } from "../types/Course";
+import removeDuplicates from "./../utils/removeDuplicates";
 
 type CoursesContextType = {
   courses: Course[];
   wishlistCourses: Course[];
   cartCourses: Course[];
-  addCourseToWishlist: (id: string) => void;
+  addCourseToWishlist: (id: React.Key | any) => void;
   addAllWishlistCoursesToCart: () => void;
-  removeCourseFromWishlist: (id: string) => void;
-  addCourseToCart: (id: string) => void;
-  removeCourseFromCart: (id: string) => void;
+  removeCourseFromWishlist: (id: React.Key | any) => void;
+  addCourseToCart: (id: React.Key | any) => void;
+  removeCourseFromCart: (id: React.Key | any) => void;
 };
 
 export const CoursesContext = createContext<CoursesContextType | null>(null);
@@ -31,13 +33,13 @@ export default function CoursesProvider({
   const [wishlistCourses, setWishlistCourses] = useState<Course[]>(
     storageWishlistCourses || []
   );
-  const [cartCourses, setCartCourses] = useState<Course[]>(
+  const [cartCourses, setCartCourses] = useState<Course[] | []>(
     storageCartCourses || []
   );
 
   // functions
   const addCourseToWishlist = (id: string) => {
-    const targetCourse = courses.find((course) => course.id === id);
+    const targetCourse: any = courses.find((course) => course.id === id);
 
     if (!storageWishlistCourses) {
       setWishlistCourses([targetCourse]);
@@ -63,17 +65,7 @@ export default function CoursesProvider({
   const addAllWishlistCoursesToCart = () => {
     const newCourseCartsWithDuplicate = [...wishlistCourses, ...cartCourses];
 
-    const newCourseCarts = newCourseCartsWithDuplicate.reduce(
-      (acc, current) => {
-        const x = acc.find((item) => item.id === current.id);
-        if (!x) {
-          return acc.concat([current]);
-        } else {
-          return acc;
-        }
-      },
-      []
-    );
+    const newCourseCarts = removeDuplicates(newCourseCartsWithDuplicate);
 
     setCartCourses(newCourseCarts);
     setStorageCartCourses(newCourseCarts);
@@ -96,8 +88,10 @@ export default function CoursesProvider({
     toast("دوره از لیست علاقه مندی حذف شد.");
   };
 
-  const addCourseToCart = (id: string) => {
-    const targetCourse = courses.find((course: Course) => course.id === id);
+  const addCourseToCart = (id: React.Key) => {
+    const targetCourse: any = courses.find(
+      (course: Course) => course.id === id
+    );
 
     if (!storageCartCourses) {
       setCartCourses([targetCourse]);
@@ -117,8 +111,10 @@ export default function CoursesProvider({
       return;
     }
 
-    setCartCourses((prev) => [...prev, targetCourse]);
-    setStorageCartCourses([...storageCartCourses, targetCourse]);
+    setCartCourses((prev) => removeDuplicates([...prev, targetCourse]));
+    setStorageCartCourses(
+      removeDuplicates([...storageCartCourses, targetCourse])
+    );
 
     //removing course from wishlist
     setWishlistCourses((prevCourses: Course[]) =>
@@ -170,7 +166,7 @@ export const useCoursesContext = () => {
   console.log(context);
 
   if (!context)
-    return new Error("CoursesContext must be used in CoursesProvider");
+    throw new Error("CoursesContext must be used in CoursesProvider");
 
   return context;
 };

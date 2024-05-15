@@ -5,27 +5,23 @@ import SectionHeader from "../SectionHeader/SectionHeader";
 //<-------------- Swiper -------------->
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
+import { Autoplay } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
-
-const specialDiscountsProducts: any[] = [
-  { id: 1, name: "" },
-  { id: 2, name: "" },
-  { id: 3, name: "" },
-  { id: 4, name: "" },
-  { id: 5, name: "" },
-  { id: 6, name: "" },
-  { id: 7, name: "" },
-];
+import { useCoursesContext } from "../../contexts/courses";
+import { Course } from "../../types/Course";
 
 export default function SpecialDiscounts() {
-  const [products, setProducts] = useState(null);
+  const { courses: allCourses } = useCoursesContext();
+
+  const [courses, setCourses] = useState<Course[]>([]);
 
   useEffect(() => {
-    setProducts(specialDiscountsProducts);
+    const specialDiscountCourses = allCourses.filter(
+      (course: any) => course.discount > 40
+    );
+    setCourses(specialDiscountCourses);
   }, []);
 
   return (
@@ -60,9 +56,9 @@ export default function SpecialDiscounts() {
             disableOnInteraction: false,
           }}
         >
-          {products?.map((product) => (
-            <SwiperSlide key={product.id}>
-              <CourseBox {...product} />
+          {courses?.map((course: Course) => (
+            <SwiperSlide key={course.id}>
+              <CourseBox {...course} />
             </SwiperSlide>
           ))}
         </Swiper>

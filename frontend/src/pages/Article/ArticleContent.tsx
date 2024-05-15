@@ -6,8 +6,9 @@ import { GoEye } from "react-icons/go";
 import { RxTimer } from "react-icons/rx";
 
 import "./ArticleContent.css";
+import { Article } from "../../types/Article";
 
-export default function Articlecontent({ article }) {
+export default function Articlecontent({ article }: { article: Article }) {
   return (
     <ContainerBox className="p-5 mb-4">
       <ContainerBoxTitle

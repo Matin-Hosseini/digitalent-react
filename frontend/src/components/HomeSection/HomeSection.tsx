@@ -148,7 +148,7 @@ import HomeCategory from "./HomeCategory/HomeCategory";
 
 export default function HomeSection() {
   console.log("render home section");
-  const [categories, setCategories] = useState(homeCategories);
+  const [categories] = useState(homeCategories);
 
   useEffect(() => {
     // setCategories(homeCategories);

@@ -24,7 +24,7 @@ const accordionStyles = {
   // },
 };
 
-export default function CourseAccordion({ expanded }) {
+export default function CourseAccordion({ expanded }: { expanded: boolean }) {
   return (
     <ContainerBox className={"p-3"}>
       <Accordion sx={accordionStyles} defaultExpanded={expanded}>

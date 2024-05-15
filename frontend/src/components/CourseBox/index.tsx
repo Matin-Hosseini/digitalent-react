@@ -11,19 +11,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 import ContainerBox from "../ContainerBox";
 import DiscountTimer from "./DiscountTimer";
-import { useContext } from "react";
-import { CoursesContext } from "../../contexts/courses";
+import { useCoursesContext } from "../../contexts/courses";
 
 import courseCover from "./../../assets/images/html-course-cover.jpg";
+import { Course } from "../../types/Course";
 
-export default function CourseBox({
-  id,
-  title,
-}: {
-  id: string;
-  title: String;
-}) {
-  const { addCourseToWishlist } = useContext(CoursesContext);
+export default function CourseBox({ id, title }: Course) {
+  const { addCourseToWishlist } = useCoursesContext();
 
   return (
     <ContainerBox className="group p-3">

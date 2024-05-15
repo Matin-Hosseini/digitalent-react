@@ -1,11 +1,9 @@
-import { Button, Divider, Stack } from "@mui/material";
-import { LuTrash } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
 import IconButton from "../mui-customs/IconButton";
 import { GoTrash } from "react-icons/go";
-import { useContext } from "react";
-import { CoursesContext } from "../../contexts/courses";
+import { useCoursesContext } from "../../contexts/courses";
+import { Course } from "../../types/Course";
 
 const removeIconButtonStyles = {
   fontSize: "1rem",
@@ -19,17 +17,16 @@ const addToCartIconButtonStyles = {
   background: "#ff56562b",
 };
 
+type CourseCartItemProps = Course & {
+  isCartProduct?: boolean;
+};
+
 export default function CourseCartItem({
   isCartProduct,
   id,
   title,
   price,
-}: {
-  isCartProduct?: boolean;
-  id: string;
-  title: string;
-  price: number;
-}) {
+}: CourseCartItemProps) {
   // const buttonStyles = {
   //   color: "var(--gray)",
   //   fontSize: 14,
@@ -40,7 +37,7 @@ export default function CourseCartItem({
   // };
 
   const { removeCourseFromWishlist, addCourseToCart, removeCourseFromCart } =
-    useContext(CoursesContext);
+    useCoursesContext();
 
   return (
     <>

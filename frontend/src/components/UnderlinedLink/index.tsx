@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
-import "./index.css"
+import "./index.css";
 
-export default function UnderlinedLink({to, children}){
-    return (
-        <Link to={to} className="underlined-link">{children}</Link>
-    )
+type UnderlinedLinkProps = {
+  to: any;
+  children: React.ReactNode;
+};
+
+export default function UnderlinedLink({ to, children }: UnderlinedLinkProps) {
+  return (
+    <Link to={to} className="underlined-link">
+      {children}
+    </Link>
+  );
 }

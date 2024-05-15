@@ -1,14 +1,14 @@
-type Course = {
-  id: string;
-  title: string;
-  des: string;
-  price: number;
-  discountPercentage?: number;
-  students: number;
-  teacher: string;
-  time: number;
-  rate: number;
-  createdAt?: string;
-  updatedAt?: string;
-  __v?: number;
+export type Course = {
+  id?: React.Key | any;
+  title?: String;
+  des?: String;
+  price: Number;
+  discount?: Number;
+  students?: Number;
+  teacher?: String;
+  time?: Number;
+  rate?: Number;
+  createdAt?: String;
+  updatedAt?: String;
+  __v?: Number;
 };

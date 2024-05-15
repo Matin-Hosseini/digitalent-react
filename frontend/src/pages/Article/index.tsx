@@ -13,7 +13,7 @@ import articles from "../../data/articles";
 import { useEffect, useState } from "react";
 
 export default function Article() {
-  const [article, setArticle] = useState({});
+  const [article, setArticle] = useState<any>({});
   const { short_name } = useParams();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Article() {
         <div className="col-span-12 md:col-span-12 lg:col-span-8 xl:col-span-9">
           <ArticleOverView className="lg:hidden" article={article} />
 
-          <ArticleContent article={article}/>
+          <ArticleContent article={article} />
 
           <UserInfoBox
             className="mb-4 lg:hidden"

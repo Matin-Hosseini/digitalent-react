@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import CourseBox from "../../components/CourseBox";
-import ContainerBox from "../../components/ContainerBox";
 import ContainerBoxTitle from "../../components/ContainerBoxTitle";
+import { Course } from "../../types/Course";
 
 const relatedCourses = [
   {
@@ -131,7 +131,7 @@ export default function RelatedCourses() {
           },
         }}
       >
-        {relatedCourses?.map((course) => (
+        {relatedCourses?.map((course: Course) => (
           <SwiperSlide key={course.id}>
             <CourseBox {...course} />
           </SwiperSlide>

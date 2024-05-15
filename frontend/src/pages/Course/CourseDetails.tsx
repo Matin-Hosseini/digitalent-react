@@ -71,7 +71,7 @@ export default function CourseDetails() {
           <Tabs
             variant="scrollable"
             value={value}
-            onChange={(e, newValue) => setValue(newValue)}
+            onChange={(_, newValue) => setValue(newValue)}
             aria-label="basic tabs example"
             sx={{
               fontFamily: "vasir",

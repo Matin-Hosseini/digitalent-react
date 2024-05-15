@@ -8,9 +8,10 @@ import CourseBox from "../../components/CourseBox";
 
 import allCourses from "./../../data/courses";
 import { useEffect, useState } from "react";
+import { Course } from "../../types/Course";
 
 export default function CourseCategory() {
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     setCourses(allCourses);

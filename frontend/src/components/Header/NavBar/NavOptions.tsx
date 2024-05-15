@@ -10,6 +10,7 @@ import CourseCartItem from "../../CourseBox/CourseCartItem";
 import { Menu } from "@mui/material";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { useCoursesContext } from "../../../contexts/courses";
+import { Course } from "../../../types/Course";
 
 export default function NavOptions() {
   const { isLoggedIn } = useAuthContext();

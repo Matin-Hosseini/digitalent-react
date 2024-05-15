@@ -1,11 +1,10 @@
 import { Box, Modal } from "@mui/material";
 import ThreeDotsLoading from "./ThreeDots";
 import Logo from "../Logo";
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/theme";
+import { useThemeContext } from "../../contexts/theme";
 
 export default function GloablLoading() {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useThemeContext();
 
   return (
     <Modal

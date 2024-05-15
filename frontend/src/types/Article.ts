@@ -1,5 +1,5 @@
 export type Article = {
-  id?: String;
+  id?: React.Key;
   cover?: any;
   title?: String;
   views?: Number;

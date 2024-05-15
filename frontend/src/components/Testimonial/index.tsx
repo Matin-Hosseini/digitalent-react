@@ -12,7 +12,7 @@ import TestimoinalBox from "./TestimonialBox";
 const testimoinalsData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function App() {
-  const [testimonials, setTestimonials] = useState([]);
+  const [testimonials, setTestimonials] = useState<number[]>([]);
 
   useEffect(() => {
     setTestimonials(testimoinalsData);

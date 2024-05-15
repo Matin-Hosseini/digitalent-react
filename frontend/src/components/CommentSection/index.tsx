@@ -5,11 +5,8 @@ import CommentItem from "./CommentItem";
 import {
   Avatar,
   Dialog,
-  DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
-  Divider,
   useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";

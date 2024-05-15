@@ -6,7 +6,19 @@ import { IoLogoInstagram, IoLogoLinkedin } from "react-icons/io5";
 import { RiFacebookFill } from "react-icons/ri";
 import ContainerBoxTitle from "./ContainerBoxTitle";
 
-export default function UserInfoBox({ className, title, icon, color }) {
+type UserInfoBoxProps = {
+  className?: String;
+  title: String;
+  icon?: React.ReactNode;
+  color?: String;
+};
+
+export default function UserInfoBox({
+  className,
+  title,
+  icon,
+  color,
+}: UserInfoBoxProps) {
   return (
     <ContainerBox className={`p-5 ${className ? className : ""}`}>
       <ContainerBoxTitle title={title} icon={icon} color={color} />
