@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ScrollToTop from "./components/ScrollToTop";
 import routes from "./routes";
+import GloablLoading from "./components/Loaders/Gloabal";
 
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {
@@ -60,7 +61,7 @@ const App = () => {
 
         <div className={`App `}>
           {!isAuthRoute && <Header />}
-          <Suspense fallback={<h1>loading...</h1>}>{router}</Suspense>
+          <Suspense fallback={<GloablLoading />}>{router}</Suspense>
           {!isAuthRoute && <Footer />}
         </div>
 

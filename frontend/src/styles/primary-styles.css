@@ -171,6 +171,10 @@ img {
   transition: all var(--transition);
 }
 
+.custom-btn--outline {
+  background-color: transparent !important;
+}
+
 .custom-btn:hover {
   color: #fff;
 }
