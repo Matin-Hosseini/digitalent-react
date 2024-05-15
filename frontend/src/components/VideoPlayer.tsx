@@ -1,6 +1,7 @@
 import ReactPlayer from "react-player";
 
 import { useState } from "react";
+import videoUrl from "./test.mp4";
 
 import "./VideoPlayer.css";
 
@@ -115,7 +116,7 @@ export default function VideoPlayer() {
   return (
     <ReactPlayer
       className="player"
-      url="/src/components/test.mp4"
+      url={videoUrl}
       // url="https://www.youtube.com/watch?v=9DqW9R8Lfmw"
       width="100%"
       height="100%"

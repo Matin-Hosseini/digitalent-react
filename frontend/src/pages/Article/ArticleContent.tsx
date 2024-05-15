@@ -1,7 +1,6 @@
 import { BiCategory } from "react-icons/bi";
 import ContainerBox from "../../components/ContainerBox";
 import ContainerBoxTitle from "../../components/ContainerBoxTitle";
-import firstImage from "./../../assets/images/articles/single/1.png";
 import { GoEye } from "react-icons/go";
 import { RxTimer } from "react-icons/rx";
 
@@ -36,7 +35,7 @@ export default function Articlecontent({ article }: { article: Article }) {
         </div>
       </div>
       <div>
-        <img src={firstImage} alt="" />
+        <img src={article.cover} alt="" />
 
         <h2 className="article-content__title">توضیحات اول:</h2>
         <p className="article-content__caption">
