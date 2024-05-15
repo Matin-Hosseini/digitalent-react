@@ -1,15 +1,15 @@
 import { Avatar, IconButton, Menu } from "@mui/material";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { BiLogoDiscourse } from "react-icons/bi";
 import { BsFillTicketPerforatedFill } from "react-icons/bs";
 import { CgLogOut } from "react-icons/cg";
 import { FiUser } from "react-icons/fi";
 import { LuPanelRight } from "react-icons/lu";
 import { Link } from "react-router-dom";
-import { authContext } from "../../../contexts/auth";
+import { useAuthContext } from "../../../contexts/auth";
 
 export default function UserMenu() {
-  const { userInfo } = useContext(authContext);
+  const { userInfo } = useAuthContext();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

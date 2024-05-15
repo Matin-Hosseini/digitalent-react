@@ -1,162 +1,9 @@
-// import { createContext, useEffect, useState } from "react";
-// import allCourses from "../data/courses";
-// import useLocalStorage from "../hooks/localstorage";
-// import { toast } from "react-toastify";
-
-// type coursesContextType = {
-//   courses: Course[];
-//   wishlistCourses: Course[];
-//   cartCourses: Course[];
-//   addCourseToWishlist: (id: string) => void;
-//   addAllWishlistCoursesToCart: () => void;
-//   removeCourseFromWishlist: (id: string) => void;
-//   addCourseToCart: (id: string) => void;
-//   removeCourseFromCart: (id: string) => void;
-// };
-
-// export const CoursesContext = createContext<coursesContextType | null>(null);
-
-// export default function CoursesProvider({ children }) {
-//   //custom hooks
-//   const [storageWishlistCourses, setStorageWishlistCourses] =
-//     useLocalStorage("wishlistCourses");
-//   const [storageCartCourses, setStorageCartCourses] =
-//     useLocalStorage("cartCourses");
-
-//   const [courses, setCourses] = useState([]);
-//   const [wishlistCourses, setWishlistCourses] = useState(
-//     storageWishlistCourses || []
-//   );
-//   const [cartCourses, setCartCourses] = useState(storageCartCourses || []);
-
-//   //functions
-//   const addCourseToWishlist = (id: string) => {
-//     const targetCourse = courses.find((course) => course.id === id);
-
-//     //whenever there is no wishlist course in the localstorage
-//     if (!storageWishlistCourses) {
-//       setWishlistCourses([targetCourse]);
-//       setStorageWishlistCourses([targetCourse]);
-//       toast("دوره به لیست علاقه مندی افزوده شد.");
-//       return;
-//     }
-
-//     const courseExists = wishlistCourses.some(
-//       (course) => course.id === targetCourse.id
-//     );
-
-//     if (courseExists) {
-//       toast("دوره در لیست علاقه مندی شما وجود دارد.");
-//       return;
-//     }
-
-//     setWishlistCourses((prev) => [...prev, targetCourse]);
-//     setStorageWishlistCourses([...storageWishlistCourses, targetCourse]);
-//     toast("دوره به لیست علاقه مندی افزوده شد.");
-//   };
-
-//   const addAllWishlistCoursesToCart = () => {
-//     const newCourseCartsWithDuplicate = [...wishlistCourses, ...cartCourses];
-//     const newCourseCarts = Array.from(
-//       new Set(newCourseCartsWithDuplicate.map(JSON.stringify))
-//     ).map(JSON.parse);
-
-//     setCartCourses(newCourseCarts);
-//     setStorageCartCourses(newCourseCarts);
-
-//     //cleaning wishlist courses
-//     setWishlistCourses([]);
-//     setStorageWishlistCourses([]);
-//     toast("دوره ها به سبد خرید انتقال داده شدند.");
-//   };
-
-//   const removeCourseFromWishlist = (id: string) => {
-//     setWishlistCourses((prevCourses: Course[]) =>
-//       prevCourses.filter((course: Course) => course.id !== id)
-//     );
-
-//     setStorageWishlistCourses(
-//       storageWishlistCourses.filter((course) => course.id !== id)
-//     );
-
-//     toast("دوره از لیست علاقه مندی حذف شد.");
-//   };
-
-//   const addCourseToCart = (id: string) => {
-//     const targetCourse = courses.find((course) => course.id === id);
-
-//     if (!storageCartCourses) {
-//       setCartCourses([targetCourse]);
-//       setStorageCartCourses([targetCourse]);
-
-//       //removing course from wishlist
-//       setWishlistCourses((prevCourses) =>
-//         prevCourses.filter((course) => course.id !== id)
-//       );
-
-//       //removing course from localstorage wishlist
-//       setStorageWishlistCourses(
-//         storageWishlistCourses.filter((course) => course.id !== id)
-//       );
-
-//       toast("دوره به سبد خرید افزوده شد.");
-//       return;
-//     }
-
-//     setCartCourses((prev) => [...prev, targetCourse]);
-//     setStorageCartCourses([...storageCartCourses, targetCourse]);
-
-//     //removing course from wishlist
-//     setWishlistCourses((prevCourses) =>
-//       prevCourses.filter((course) => course.id !== id)
-//     );
-
-//     //removing course from localstorage wishlist
-//     setStorageWishlistCourses(
-//       storageWishlistCourses.filter((course) => course.id !== id)
-//     );
-//     toast("دوره به سبد خرید افزوده شد.");
-//   };
-
-//   const removeCourseFromCart = (id: string) => {
-//     setCartCourses((prevCourses) =>
-//       prevCourses.filter((course) => course.id !== id)
-//     );
-//     setStorageCartCourses(
-//       storageCartCourses.filter((course) => course.id !== id)
-//     );
-//     toast("دوره از سبد خرید حذف شد.");
-//   };
-
-//   //lifecycle
-//   useEffect(() => {
-//     setCourses(allCourses);
-//   }, []);
-
-//   return (
-//     <CoursesContext.Provider
-//       value={{
-//         courses,
-//         wishlistCourses,
-//         cartCourses,
-//         addCourseToWishlist,
-//         addAllWishlistCoursesToCart,
-//         removeCourseFromWishlist,
-//         addCourseToCart,
-//         removeCourseFromCart,
-//       }}
-//     >
-//       {children}
-//     </CoursesContext.Provider>
-//   );
-// }
-
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import allCourses from "../data/courses";
 import useLocalStorage from "../hooks/localstorage";
 import { toast } from "react-toastify";
 
-type coursesContextType = {
+type CoursesContextType = {
   courses: Course[];
   wishlistCourses: Course[];
   cartCourses: Course[];
@@ -167,9 +14,13 @@ type coursesContextType = {
   removeCourseFromCart: (id: string) => void;
 };
 
-export const CoursesContext = createContext<coursesContextType | null>(null);
+export const CoursesContext = createContext<CoursesContextType | null>(null);
 
-export default function CoursesProvider({ children }) {
+export default function CoursesProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   // custom hooks
   const [storageWishlistCourses, setStorageWishlistCourses] =
     useLocalStorage("wishlistCourses");
@@ -313,3 +164,13 @@ export default function CoursesProvider({ children }) {
     </CoursesContext.Provider>
   );
 }
+
+export const useCoursesContext = () => {
+  const context = useContext(CoursesContext);
+  console.log(context);
+
+  if (!context)
+    return new Error("CoursesContext must be used in CoursesProvider");
+
+  return context;
+};

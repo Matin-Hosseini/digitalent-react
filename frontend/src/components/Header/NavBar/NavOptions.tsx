@@ -1,20 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { FiHeart, FiUser } from "react-icons/fi";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { authContext } from "../../../contexts/auth";
+import { useAuthContext } from "../../../contexts/auth";
 import UserMenu from "./UserMenu";
 import IconButton from "../../mui-customs/IconButton";
 import ContainerBox from "../../ContainerBox";
 import CourseCartItem from "../../CourseBox/CourseCartItem";
 import { Menu } from "@mui/material";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-import useLocalStorage from "../../../hooks/localstorage";
-import allcourses from "./../../../data/courses";
-import { CoursesContext } from "../../../contexts/courses";
+import { useCoursesContext } from "../../../contexts/courses";
 
 export default function NavOptions() {
-  const { userInfo, isLoggedIn } = useContext(authContext);
+  const { isLoggedIn } = useAuthContext();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -26,7 +24,7 @@ export default function NavOptions() {
   };
 
   const { wishlistCourses, cartCourses, addAllWishlistCoursesToCart } =
-    useContext(CoursesContext);
+    useCoursesContext();
 
   return (
     <div className="flex items-center gap-4 h-full">
@@ -62,7 +60,7 @@ export default function NavOptions() {
                   </div>
                 </div>
               ) : (
-                cartCourses?.map((course) => (
+                cartCourses?.map((course: Course) => (
                   <CourseCartItem isCartProduct key={course.id} {...course} />
                 ))
               )}
@@ -89,7 +87,7 @@ export default function NavOptions() {
           <p className="mb-4">لیست علاقه مندی</p>
           <div className="divide-y divide-solid divide-gray-600 max-h-[32rem] overflow-auto ">
             {wishlistCourses.length !== 0 ? (
-              wishlistCourses.map((course) => (
+              wishlistCourses.map((course: Course) => (
                 <CourseCartItem key={course.id} {...course} />
               ))
             ) : (

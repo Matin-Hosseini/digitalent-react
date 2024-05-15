@@ -1,22 +1,22 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import useLocalStorage from "../hooks/localstorage";
 
-type theme = "dark" | "light";
+type Theme = "dark" | "light";
 
-type themeContext = {
-  theme: theme;
-  setTheme: React.Dispatch<React.SetStateAction<theme>>;
-  toggleTheme: () => void;
+type ThemeContextProps = {
+  theme?: Theme;
+  setTheme?: React.Dispatch<React.SetStateAction<Theme>>;
+  toggleTheme?: () => void;
 };
 
-export const ThemeContext = createContext<themeContext | null>(null);
+export const ThemeContext = createContext<ThemeContextProps | null>(null);
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<theme>("light");
+  const [theme, setTheme] = useState<Theme>("light");
   const [localStoragetheme, setLocalStorageTheme] = useLocalStorage("theme");
 
   const toggleTheme = () => {
-    const newTheme: theme = theme === "light" ? "dark" : "light";
+    const newTheme: Theme = theme === "light" ? "dark" : "light";
 
     setTheme(newTheme);
     setLocalStorageTheme(newTheme);
@@ -28,11 +28,25 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.className = theme;
+  }, [theme]);
+
   return (
     <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
+};
+
+export const useThemeContext = () => {
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error("Theme context muse be used in a ThemeProvider");
+  }
+
+  return context;
 };
 
 export default ThemeProvider;

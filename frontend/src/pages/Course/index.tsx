@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-import axios from "axios";
 import PageInfoBox from "../../components/PageInfoBox";
 import CourseDetails from "./CourseDetails";
 import CourseInfo from "./CourseInfo";

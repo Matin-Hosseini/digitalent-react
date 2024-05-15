@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { FunFact } from "../../../data/FunFact";
 
-export default function Funfact({ title, icon, subtitle, counter }) {
+export default function Funfact({ title, icon, subtitle, counter }: FunFact) {
   const [startCount, setStartCount] = useState(0);
 
   useEffect(() => {

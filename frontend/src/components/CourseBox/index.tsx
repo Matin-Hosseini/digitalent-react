@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import ContainerBox from "../ContainerBox";
 import DiscountTimer from "./DiscountTimer";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CoursesContext } from "../../contexts/courses";
 
 import courseCover from "./../../assets/images/html-course-cover.jpg";

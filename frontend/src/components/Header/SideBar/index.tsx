@@ -4,8 +4,14 @@ import { useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Logo from "../../Logo";
+import { NavMegamenu, NavMenuTypes, NavSubMenu } from "../../../types/Header";
 
-const SideBarSubmenu = ({ submenu, open }) => {
+type SideBarSubmenuProps = {
+  submenu: NavSubMenu[];
+  open: boolean;
+};
+
+const SideBarSubmenu = ({ submenu, open }: SideBarSubmenuProps) => {
   return (
     <div
       className={`mt-2 bg-[var(--app-bg)] p-3 rounded-lg ${
@@ -19,15 +25,13 @@ const SideBarSubmenu = ({ submenu, open }) => {
   );
 };
 
-export default function SideBar({
-  show,
-  menus,
-  onHide,
-}: {
+type SideBarProps = {
   show: boolean;
-  onHide: any;
-  menus: any;
-}) {
+  onHide: () => void;
+  menus: NavMenuTypes[];
+};
+
+export default function SideBar({ show, menus, onHide }: SideBarProps) {
   const [openSubmenu, setOpenSubmenu] = useState(false);
 
   return (
@@ -52,7 +56,7 @@ export default function SideBar({
           </IconButton>
         </div>
         <ul className="space-y-6">
-          {menus.map((menu) => (
+          {menus.map((menu: NavMenuTypes) => (
             <li key={menu.id} className="relative ">
               <div className="flex items-center justify-between">
                 <Link to={menu.path}>{menu.title}</Link>
@@ -73,8 +77,10 @@ export default function SideBar({
               {menu.megamenu && (
                 <>
                   <div className="mt-2 bg-[var(--app-bg)] p-3 rounded-lg flex flex-col gap-4">
-                    {menu.megamenu.map((item) => (
-                      <Link to={"/"}>{item.title}</Link>
+                    {menu.megamenu.map((item: NavMegamenu) => (
+                      <Link to={"/"} key={item.id}>
+                        {item.title}
+                      </Link>
                     ))}
                   </div>
                 </>

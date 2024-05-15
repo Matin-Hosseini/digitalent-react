@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
+import { UserPanelSidebarMenuTypes } from "../../types/UserPanel";
 
-export default function PanelSidebarLink({ path, icon, title }) {
+export default function PanelSidebarLink({
+  path,
+  icon,
+  title,
+}: UserPanelSidebarMenuTypes) {
   return (
     <NavLink
       to={path}

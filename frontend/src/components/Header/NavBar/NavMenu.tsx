@@ -3,45 +3,13 @@ import { useEffect, useState } from "react";
 import { MdOutlineMenu } from "react-icons/md";
 import SideBar from "../SideBar";
 import NavLink from "./NavLink";
-
-const navMenu = [
-  {
-    id: 1,
-    title: "خانه",
-    path: "/",
-    submenu: [{ id: "fsdknfs", title: "زیر منوی 1" }],
-  },
-  {
-    id: 2,
-    title: "دوره ها",
-    path: "/courses",
-    megamenu: [
-      { id: "fnee", title: "فیلمبرداری" },
-      { id: "fege", title: "گرافیک" },
-      { id: "leme", title: "آشپزی" },
-      { id: "fefe", title: "ui/ux" },
-      { id: "aaae", title: "انیمیشن سازی" },
-    ],
-  },
-  {
-    id: 3,
-    title: "برنامه نویسی",
-    path: "/courses/programming",
-    submenu: [
-      { id: "fnslkf", title: "فرانت اند", path: "/courses/frontend" },
-      { id: "febe", title: "بک اند", path: "/courses/backend" },
-      { id: "hehrh", title: "موبایل", path: "/courses/mobile" },
-      { id: "ehhjy", title: "دیتا ساینس", path: "/courses/datasience" },
-    ],
-  },
-  { id: 4, title: "مقالات", path: "/articles" },
-  { id: 5, title: "ارتباط با ما", path: "/contact-us" },
-];
+import { NavMenuTypes } from "../../../types/Header";
+import { navMenu } from "../../../data/header";
 
 export default function NavMenu() {
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useState<boolean>(false);
 
-  const [menus, setMenus] = useState([]);
+  const [menus, setMenus] = useState<NavMenuTypes[]>([]);
 
   useEffect(() => {
     setMenus(navMenu);
@@ -63,7 +31,7 @@ export default function NavMenu() {
           <MdOutlineMenu className="text-color" />
         </IconButton>
       </div>
-      
+
       <SideBar
         show={showSideBar}
         onHide={() => setShowSideBar(false)}

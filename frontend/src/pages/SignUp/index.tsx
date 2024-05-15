@@ -4,15 +4,15 @@ import "./index.css";
 
 import UnderlinedLink from "../../components/UnderlinedLink";
 import Logo from "./../../components/Logo";
-import { useContext, useState } from "react";
-import { Controller, SubmitHandler, get, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Api from "../../axios/api";
 import { toast } from "react-toastify";
-import { authContext } from "../../contexts/auth";
+import { useAuthContext } from "../../contexts/auth";
 import { useNavigate } from "react-router-dom";
 import ThreeDotsLoading from "../../components/Loaders/ThreeDots";
+import signupImg from "./../../assets/images/sign-up-page/sign-up.png";
 
 const schema = z.object({
   username: z
@@ -41,7 +41,7 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 export default function SignUp() {
-  const { getUser } = useContext(authContext);
+  const { getUser } = useAuthContext();
   const navigate = useNavigate();
 
   const {
@@ -60,7 +60,7 @@ export default function SignUp() {
       setTimeout(() => {
         navigate("/user-panel");
       }, 2000);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       if (error.response.status === 400) {
         return toast("نام کاربری یا ایمیل قبلا استفاده شده است.");
@@ -169,7 +169,7 @@ export default function SignUp() {
       </div>
 
       <div className="hidden lg:grid items-center bg-stone-900 h-full">
-        <img src="src/assets/images/sign-up-page/sign-up.png" alt="" />
+        <img src={signupImg} alt="ثبت نام" />
       </div>
     </div>
   );

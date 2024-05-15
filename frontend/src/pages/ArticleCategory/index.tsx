@@ -1,11 +1,9 @@
 import { FormGroup } from "@mui/material";
 import { BiSearchAlt } from "react-icons/bi";
-import BlogBox from "../../components/BlogBox";
 import ContainerBox from "../../components/ContainerBox";
 import ContainerBoxTitle from "../../components/ContainerBoxTitle";
 import Icon from "../../components/Icon";
 import { Checkbox, FormControlLabel } from "../../components/mui/customs";
-import { useEffect, useState } from "react";
 
 export default function ArticleCategory() {
   return (

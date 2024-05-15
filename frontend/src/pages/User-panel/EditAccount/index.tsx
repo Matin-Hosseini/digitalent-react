@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./EditAccount.css";
-import { authContext } from "../../../contexts/auth";
+import { useAuthContext } from "../../../contexts/auth";
 import { toast } from "react-toastify";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -16,7 +16,7 @@ import Api from "../../../axios/api";
 import { Button } from "@mui/material";
 
 export default function EditAccount() {
-  const { userInfo, changeUserInfo } = useContext(authContext);
+  const { userInfo, changeUserInfo } = useAuthContext();
 
   const schema = z.object({
     name: nameValidator,
@@ -58,7 +58,7 @@ export default function EditAccount() {
         phone: data.phone,
         email: data.email,
       });
-    } catch (error) {
+    } catch (error: any) {
       if (error.response.status === 400) {
         return toast("کاربری با این نام کاربری یا ایمیل قبلا ثبت شده است");
       }

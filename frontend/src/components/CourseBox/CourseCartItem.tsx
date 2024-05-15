@@ -30,14 +30,14 @@ export default function CourseCartItem({
   title: string;
   price: number;
 }) {
-  const buttonStyles = {
-    color: "var(--gray)",
-    fontSize: 14,
-    padding: 0,
-    minWidth: "auto",
-    flex: 1,
-    paddingBlock: "4px",
-  };
+  // const buttonStyles = {
+  //   color: "var(--gray)",
+  //   fontSize: 14,
+  //   padding: 0,
+  //   minWidth: "auto",
+  //   flex: 1,
+  //   paddingBlock: "4px",
+  // };
 
   const { removeCourseFromWishlist, addCourseToCart, removeCourseFromCart } =
     useContext(CoursesContext);

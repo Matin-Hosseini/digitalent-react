@@ -1,5 +1,4 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import CustomInput from "../../../components/Input";
 import "./ChangePassword.css";
 import { z } from "zod";
 import { passwordValidator } from "../../../validators/schemas";
@@ -30,8 +29,7 @@ export default function ChangePassword() {
 
       setValue("currentPassword", "");
       setValue("newPassword", "");
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
       if (error.response.status === 400) {
         return toast("رمز عبور با رمز عبور قبلی تطابق ندارد.");
       }

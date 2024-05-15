@@ -6,7 +6,6 @@ import ContainerBoxTitle from "../../../components/ContainerBoxTitle";
 import RelatedArticleBox from "./RelatedArticleBox";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import BlogBox from "../../../components/BlogBox";
 
 const relatedArticles = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 export default function () {

@@ -1,19 +1,17 @@
 import { Link } from "react-router-dom";
 import ContainerBox from "./ContainerBox";
+import { Article } from "../types/Article";
 
 //react-icons
 
 export default function BlogBox({
-  id,
   cover,
   title,
-  views,
   subtitle,
   author,
   short_name,
   createdAt,
-}) {
-  
+}: Article) {
   return (
     <>
       <ContainerBox className="p-3">

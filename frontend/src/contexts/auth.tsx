@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Api from "../axios/api";
 
 import { User } from "./../types/User";
@@ -12,11 +12,11 @@ type AuthContext = {
   changeUserInfo: (newInfo: User) => void;
 };
 
-export const authContext = createContext<AuthContext | null>(null);
+export const AuthContext = createContext<AuthContext | null>(null);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [userInfo, setUserInfo] = useState<User | {}>({});
 
   const login = (userData: User) => {
     setIsLoggedIn(true);
@@ -28,7 +28,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const changeUserInfo = (newInfo: User) => {
-    // console.log("changing user info", newInfo.user);
     setUserInfo(newInfo);
   };
 
@@ -39,7 +38,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setUserInfo(res.data.user);
     } catch (error) {
       setIsLoggedIn(false);
-      setUserInfo(null);
+      setUserInfo({});
       console.log("AuthContext: error");
     }
   };
@@ -49,12 +48,22 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <authContext.Provider
+    <AuthContext.Provider
       value={{ isLoggedIn, userInfo, getUser, login, logout, changeUserInfo }}
     >
       {children}
-    </authContext.Provider>
+    </AuthContext.Provider>
   );
+};
+
+export const useAuthContext = () => {
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error("AuthContext must be used in a AuthProvider");
+  }
+
+  return context;
 };
 
 export default AuthProvider;

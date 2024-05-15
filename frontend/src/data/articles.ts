@@ -9,7 +9,7 @@ import udpVStcpCover from "./../assets/images/articles/udp-vs-tcp/cover.png";
 
 const articles = [
   {
-    id: 1,
+    id: "1",
     cover: getToKnowProgrammingCover,
     title: "آشنایی با برنامه نویسی",
     views: 35,
@@ -22,7 +22,7 @@ const articles = [
     updatedAt: "13 اردیبهشت 1403",
   },
   {
-    id: 2,
+    id: "2",
     cover: whatIsGoogleColabCover,
     title: "Google Colab چیست؟",
     views: 42,
@@ -35,7 +35,7 @@ const articles = [
     updatedAt: "2 فروردین 1400",
   },
   {
-    id: 3,
+    id: "3",
     cover: shoeLaceCover,
     title: "کتابخانه بند کفش (ShoeLace) و مزایای آن",
     views: 87,
@@ -48,7 +48,7 @@ const articles = [
     updatedAt: "4 خرداد 1400",
   },
   {
-    id: 4,
+    id: "4",
     cover: agileCover,
     title: " متدولوژی agile چیست؟ توسعه نرم افزار مدرن ",
     views: 90,
@@ -61,7 +61,7 @@ const articles = [
     updatedAt: "4 خرداد 1400",
   },
   {
-    id: 5,
+    id: "5",
     cover: techTrendsCover,
     title: " آشنایی با ترندهای تکنولوژی در سال 2022 ",
     views: 90,
@@ -74,7 +74,7 @@ const articles = [
     updatedAt: "7 اردیبهشت 1403",
   },
   {
-    id: 6,
+    id: "6",
     cover: apiTestToolsCover,
     title: " 12 ابزار رایگان برای طراحی API و تست آن ",
     views: 23,
@@ -86,7 +86,7 @@ const articles = [
     updatedAt: "9 دی 1401",
   },
   {
-    id: 7,
+    id: "7",
     cover: freelacnersCover,
     title: "چرا باید فریلنسرها کار خود را ارزان ارائه ندهند",
     views: 44,
@@ -98,7 +98,7 @@ const articles = [
     updatedAt: "7 آبان 1400",
   },
   {
-    id: 8,
+    id: "8",
     cover: udpVStcpCover,
     title: "مقایسه TCP و UDP، کدام یک سریع تر است؟ ",
     views: 44,

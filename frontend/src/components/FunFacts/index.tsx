@@ -6,6 +6,7 @@ import { FaRegFaceSmileWink } from "react-icons/fa6";
 import { IoPeopleOutline } from "react-icons/io5";
 import { PiClockAfternoon, PiStudentLight } from "react-icons/pi";
 import Funfact from "./FunFact";
+import { FunFact } from "../../data/FunFact";
 
 const funfactsData = [
   {
@@ -39,7 +40,7 @@ const funfactsData = [
 ];
 
 export default function FunFacts() {
-  const [funfacts, setFunfacts] = useState([]);
+  const [funfacts, setFunfacts] = useState<FunFact[]>([]);
 
   useEffect(() => {
     setFunfacts(funfactsData);

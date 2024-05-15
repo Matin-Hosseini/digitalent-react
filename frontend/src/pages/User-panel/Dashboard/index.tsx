@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import "./Dashboard.css";
 
 //react-icons
@@ -8,10 +8,10 @@ import {
   RiMessage3Line,
   RiQuestionFill,
 } from "react-icons/ri";
-import { authContext } from "../../../contexts/auth";
+import { useAuthContext } from "../../../contexts/auth";
 
 export default function UserDashBoard() {
-  const { userInfo } = useContext(authContext);
+  const { userInfo } = useAuthContext();
 
   useEffect(() => {}, []);
 

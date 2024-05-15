@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import Api from "../api";
 
 const updateUserInfo = async (body: any) => {

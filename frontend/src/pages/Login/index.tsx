@@ -10,8 +10,8 @@ import "./index.css";
 import ThreeDotsLoading from "../../components/Loaders/ThreeDots";
 import Api from "../../axios/api";
 import { toast } from "react-toastify";
-import { useContext } from "react";
-import { authContext } from "../../contexts/auth";
+import { useAuthContext } from "../../contexts/auth";
+import loginImg from "./../../assets/images/login-page/login.png";
 
 const schema = z.object({
   identifier: z.string().min(1, { message: "این فیلد اجباری است." }),
@@ -21,7 +21,7 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 export default function Login() {
-  const { login } = useContext(authContext);
+  const { login } = useAuthContext();
   const navigate = useNavigate();
 
   const {
@@ -119,7 +119,7 @@ export default function Login() {
           </div>
         </div>
         <div className="hidden lg:grid items-center bg-stone-900 h-full">
-          <img src="src/assets/images/login-page/login.png" alt="" />
+          <img src={loginImg} alt="ورود" />
         </div>
       </div>
     </>

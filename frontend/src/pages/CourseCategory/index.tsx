@@ -3,7 +3,6 @@ import ContainerBox from "../../components/ContainerBox";
 import ContainerBoxTitle from "../../components/ContainerBoxTitle";
 import { Checkbox, FormControlLabel } from "../../components/mui/customs";
 import { BiSearchAlt } from "react-icons/bi";
-import Icon from "../../components/Icon";
 import IconButton from "../../components/mui-customs/IconButton";
 import CourseBox from "../../components/CourseBox";
 

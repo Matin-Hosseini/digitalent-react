@@ -1,11 +1,10 @@
 import IconButton from "@mui/material/IconButton";
 import { BsMoon, BsSun } from "react-icons/bs";
 
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/theme";
+import { useThemeContext } from "../../contexts/theme";
 
 export default function ThemeBtn() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useThemeContext();
 
   return (
     <IconButton className="IconButton" onClick={toggleTheme}>

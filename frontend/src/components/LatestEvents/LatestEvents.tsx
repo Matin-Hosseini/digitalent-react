@@ -1,9 +1,5 @@
 import "./LatestEvents.css";
 
-//react-bootstrap
-
-const eventsData: number[] = [1, 2, 3, 4, 5, 6];
-
 export default function LatestEvents() {
   return (
     <section className="latest-events my-5">
