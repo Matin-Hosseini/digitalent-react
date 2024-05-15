@@ -19,7 +19,7 @@ export default function SpecialDiscounts() {
 
   useEffect(() => {
     const specialDiscountCourses = allCourses.filter(
-      (course: any) => course.discount > 40
+      (course: any) => course.discount > 30
     );
     setCourses(specialDiscountCourses);
   }, []);

@@ -16,26 +16,42 @@ import { useCoursesContext } from "../../contexts/courses";
 import courseCover from "./../../assets/images/html-course-cover.jpg";
 import { Course } from "../../types/Course";
 
-export default function CourseBox({ id, title }: Course) {
+export default function CourseBox({
+  id,
+  title,
+  price,
+  discount,
+  students,
+  teacher,
+  time,
+  rate,
+  endDiscount,
+  short_name,
+}: Course) {
   const { addCourseToWishlist } = useCoursesContext();
+  const priceAfterDiscount: Number = (price * discount) / 100;
 
   return (
     <ContainerBox className="group p-3">
       <div className="course-box relative text-xl text-[var(--gray)] transition-all">
-        <div className="absolute grid place-content-center bg-[var(--purple)] text-white w-14 h-14 rounded-full -top-4 -right-4 -rotate-[30deg] group-hover:-rotate-[10deg] transition-all z-50">
-          25%
-        </div>
-        <Link to="/course" className="relative">
-          <DiscountTimer
-            className={"absolute left-3 top-3"}
-            endTime={"2024-05-04T00:00:00"}
-          />
+        {discount !== 0 && (
+          <div className="absolute grid place-content-center bg-[var(--purple)] text-white w-14 h-14 rounded-full -top-4 -right-4 -rotate-[30deg] group-hover:-rotate-[10deg] transition-all z-50">
+            {discount}%
+          </div>
+        )}
+        <Link to={`/course/${short_name}`} className="relative">
+          {discount !== 0 && (
+            <DiscountTimer
+              className={"absolute left-3 top-3"}
+              endTime={endDiscount || ""}
+            />
+          )}
           <img src={courseCover} alt="" className="rounded-lg mb-3 h-[16rem]" />
         </Link>
         <div className="relative">
           <h2 className="line-clamp-2 mb-5 text-2xl text-[var(--title-color)] h-24">
             <Link
-              to="/course"
+              to={`/course/${short_name}`}
               className="underline-animated-text group-hover:bg-[length:100%_2px]"
             >
               {title}
@@ -51,11 +67,13 @@ export default function CourseBox({ id, title }: Course) {
             </button>
 
             <div className="flex items-center gap-2">
-              <span className="relative text-[var(--gray)] text-lg me-4 before:absolute before:content-[''] before:w-full before:h-[0.1rem] before:bg-[var(--red)] before:top-1/2 before:-translate-y-2/4 before:-rotate-12">
-                220,000 تومان
-              </span>
+              {discount !== 0 && (
+                <span className="relative text-[var(--gray)] text-lg me-4 before:absolute before:content-[''] before:w-full before:h-[0.1rem] before:bg-[var(--red)] before:top-1/2 before:-translate-y-2/4 before:-rotate-12">
+                  {priceAfterDiscount.toLocaleString()} تومان
+                </span>
+              )}
               <span className="text-[var(--green)] text-2xl">
-                175,000 تومان
+                {price.toLocaleString()} تومان
               </span>
             </div>
           </div>
@@ -63,11 +81,11 @@ export default function CourseBox({ id, title }: Course) {
           <div className="flex justify-between items-center my-3">
             <div className="flex items-center gap-2">
               <BsClockHistory className="w-6" />
-              <span>20:50:34</span>
+              <span>{time} ساعت</span>
             </div>
             <div className="flex items-center gap-1">
               <PiShootingStarFill className="w-7 fill-yellow" />
-              <span>4</span>
+              <span>{rate}</span>
             </div>
           </div>
           <div className="flex justify-between items-center">
@@ -76,12 +94,12 @@ export default function CourseBox({ id, title }: Course) {
               className=" flex items-center gap-2 hover:text-[var(--purple)] transition-all"
             >
               <LiaChalkboardTeacherSolid className="w-7" />
-              <h3>متین حسینی</h3>
+              <h3>{teacher}</h3>
             </Link>
 
             <div className="flex items-center gap-2">
               <PiStudentLight className="w-7" />
-              <span>11,578</span>
+              <span>{students?.toLocaleString()}</span>
             </div>
           </div>
         </div>
