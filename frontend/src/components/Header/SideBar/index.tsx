@@ -4,14 +4,10 @@ import { useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Logo from "../../Logo";
-import { NavMegamenu, NavMenuTypes, NavSubMenu } from "../../../types/Header";
+import { NavMenuTypes } from "../../../types/Header";
 import IconButton from "../../mui-customs/IconButton";
 
-type SideBarMenuProps = {
-  submenu: NavSubMenu[];
-};
-
-const SideBarMenu = ({ title, path, megamenu, submenu }) => {
+const SideBarMenu = ({ title, path, megamenu, submenu }: NavMenuTypes) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -29,7 +25,7 @@ const SideBarMenu = ({ title, path, megamenu, submenu }) => {
 
         {submenu && (
           <div
-            className={`bg-[var(--app-bg)] flex-col gap-3 ps-4 py-3 rounded-lg ${
+            className={`bg-[var(--app-bg)] mt-4 flex-col gap-5 ps-4 py-4 rounded-lg ${
               open ? "flex" : "hidden"
             } `}
           >
@@ -41,7 +37,7 @@ const SideBarMenu = ({ title, path, megamenu, submenu }) => {
 
         {megamenu && (
           <div
-            className={`bg-[var(--app-bg)] flex-col gap-3 ps-4 py-3 rounded-lg ${
+            className={`bg-[var(--app-bg)] mt-4 flex-col gap-5 ps-4 py-4 rounded-lg ${
               open ? "flex" : "hidden"
             } `}
           >
@@ -50,18 +46,6 @@ const SideBarMenu = ({ title, path, megamenu, submenu }) => {
             ))}
           </div>
         )}
-
-        {/* {menu.megamenu && (
-          <>
-            <div className="mt-2 bg-[var(--app-bg)] p-3 rounded-lg flex flex-col gap-4">
-              {menu.megamenu.map((item: NavMegamenu) => (
-                <Link to={"/"} key={item.id}>
-                  {item.title}
-                </Link>
-              ))}
-            </div>
-          </>
-        )} */}
       </li>
     </>
   );
@@ -74,8 +58,6 @@ type SideBarProps = {
 };
 
 export default function SideBar({ show, menus, onHide }: SideBarProps) {
-  const [openSubmenu, setOpenSubmenu] = useState(false);
-
   return (
     <Drawer
       anchor="right"
@@ -98,39 +80,7 @@ export default function SideBar({ show, menus, onHide }: SideBarProps) {
           </IconButton>
         </div>
         <ul className="space-y-6">
-          {/* {menus.map((menu: NavMenuTypes) => (
-            <li key={menu.id} className="relative ">
-              <div className="flex items-center justify-between">
-                <Link to={menu.path}>{menu.title}</Link>
-
-                {(menu.megamenu || menu.submenu) && (
-                  <IconButton onClick={() => setOpenSubmenu((prev) => !prev)}>
-                    <KeyboardArrowDownIcon className="text-color" />
-                  </IconButton>
-                )}
-              </div>
-
-              {menu.submenu && (
-                <>
-                  <SideBarSubmenu submenu={menu.submenu} open={openSubmenu} />
-                </>
-              )}
-
-              {menu.megamenu && (
-                <>
-                  <div className="mt-2 bg-[var(--app-bg)] p-3 rounded-lg flex flex-col gap-4">
-                    {menu.megamenu.map((item: NavMegamenu) => (
-                      <Link to={"/"} key={item.id}>
-                        {item.title}
-                      </Link>
-                    ))}
-                  </div>
-                </>
-              )}
-            </li>
-          ))} */}
-
-          {menus?.map((menu) => (
+          {menus?.map((menu: NavMenuTypes) => (
             <SideBarMenu key={menu.id} {...menu} />
           ))}
         </ul>

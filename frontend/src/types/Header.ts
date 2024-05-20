@@ -1,5 +1,5 @@
 export type NavMenuTypes = {
-  id: React.Key;
+  id: React.Key | any;
   title: String;
   path: any;
   submenu?: NavSubMenu[];
