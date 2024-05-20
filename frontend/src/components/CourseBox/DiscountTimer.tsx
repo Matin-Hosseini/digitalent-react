@@ -18,7 +18,7 @@ export default function DiscountTimer({
 }: DiscountTimerProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
 
-  const intervalRef = useRef<NodeJS.Timeout>();
+  const intervalRef = useRef<any>();
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {

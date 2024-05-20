@@ -5,7 +5,6 @@ export const navMenu: NavMenuTypes[] = [
     id: 1,
     title: "خانه",
     path: "/",
-    submenu: [{ id: "fsdknfs", title: "زیر منوی 1", path: "/" }],
   },
   {
     id: 2,

@@ -163,7 +163,6 @@ export default function CoursesProvider({
 
 export const useCoursesContext = () => {
   const context = useContext(CoursesContext);
-  console.log(context);
 
   if (!context)
     throw new Error("CoursesContext must be used in CoursesProvider");

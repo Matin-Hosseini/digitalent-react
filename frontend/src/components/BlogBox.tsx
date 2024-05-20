@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import ContainerBox from "./ContainerBox";
 import { Article } from "../types/Article";
+import profilePic from './../assets/images/profile.jpg'
 
 //react-icons
 
@@ -33,8 +34,8 @@ export default function BlogBox({
                 <p className="text-sm text-[var(--gray)]">{author.joined_on}</p>
               </div>
               <img
-                src="src/assets/images/profile.jpg"
-                alt=""
+                src={profilePic}
+                alt={author.name}
                 className="w-16 h-16 rounded-full"
               />
             </div>

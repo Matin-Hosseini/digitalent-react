@@ -9,13 +9,63 @@ import CourseBox from "../../components/CourseBox";
 import allCourses from "./../../data/courses";
 import { useEffect, useState } from "react";
 import { Course } from "../../types/Course";
+import { useSearchParams } from "react-router-dom";
+import { useAuthContext } from "../../contexts/auth";
 
 export default function CourseCategory() {
+  const { isLoggedIn } = useAuthContext();
   const [courses, setCourses] = useState<Course[]>([]);
+
+  const [search, setSearch] = useSearchParams();
+
+  const courseTitle = search.get("search") || "";
+  const isFree = search.get("free") || "";
+  const isDiscounted = search.get("discount") || "";
 
   useEffect(() => {
     setCourses(allCourses);
   }, []);
+
+  const handleFreeClick = () => {
+    if (!!isFree) {
+      search.delete("free");
+      setSearch(search);
+      return;
+    }
+
+    search.set("free", true.toString());
+    setSearch(search);
+  };
+  const handleDiscountClick = () => {
+    if (!!isDiscounted) {
+      search.delete("discount");
+      setSearch(search);
+      return;
+    }
+
+    search.set("discount", true.toString());
+    setSearch(search);
+  };
+
+  useEffect(() => {
+    const filteredCourses = allCourses.filter((course) => {
+      if (!courseTitle) return allCourses;
+      if (course.title?.toLowerCase()?.includes(courseTitle)) return true;
+    });
+
+    setCourses(filteredCourses);
+  }, [courseTitle]);
+
+  useEffect(() => {
+    const filteredcourses = allCourses.filter((course) => {
+      const matchesDiscount = !!course.discount === !!isDiscounted;
+      const matchesSearch = course.title?.toLowerCase()?.includes(courseTitle);
+      const matchesFree = course.discount === 100;
+
+      return matchesDiscount && matchesSearch && matchesFree;
+    });
+    console.log(filteredcourses);
+  }, [search]);
 
   return (
     <main className="container my-20">
@@ -25,6 +75,11 @@ export default function CourseCategory() {
             <ContainerBox className={"p-3"}>
               <div className="flex items-center justify-between">
                 <input
+                  value={courseTitle}
+                  onChange={(e) => {
+                    search.set("search", e.target.value);
+                    setSearch(search);
+                  }}
                   type="text"
                   placeholder="دنبال چه دوره ای می گردی؟"
                   className="bg-transparent pr-3 text-xl w-80"
@@ -36,9 +91,23 @@ export default function CourseCategory() {
             </ContainerBox>
             <ContainerBox className={"p-3"}>
               <FormGroup>
-                <FormControlLabel control={<Checkbox />} label="رایگان" />
-                <FormControlLabel control={<Checkbox />} label="تخفیف خورده" />
-                <FormControlLabel control={<Checkbox />} label="خریداری شده" />
+                <FormControlLabel
+                  checked={!!isFree}
+                  control={<Checkbox />}
+                  label="رایگان"
+                  onChange={handleFreeClick}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="تخفیف خورده"
+                  onChange={handleDiscountClick}
+                />
+                {isLoggedIn && (
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label="خریداری شده"
+                  />
+                )}
               </FormGroup>
             </ContainerBox>
 

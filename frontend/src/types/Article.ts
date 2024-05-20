@@ -1,12 +1,12 @@
 export type Article = {
   id?: React.Key;
   cover?: any;
-  title?: String;
+  title?: string;
   views?: Number;
   likes?: Number;
-  subtitle?: String;
-  author: { cover?: any; name: String; joined_on: String };
-  short_name?: String;
-  createdAt?: String;
-  updatedAt?: String;
+  subtitle?: string;
+  author: { cover?: any; name: string; joined_on: string };
+  short_name?: string;
+  createdAt?: string;
+  updatedAt?: string;
 };
