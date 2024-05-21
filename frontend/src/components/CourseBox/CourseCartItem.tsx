@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
-import IconButton from "../mui-customs/IconButton";
 import { GoTrash } from "react-icons/go";
 import { useCoursesContext } from "../../contexts/courses";
 import { Course } from "../../types/Course";
+import { IconButton } from "../mui/customs";
 
 const removeIconButtonStyles = {
   fontSize: "1rem",

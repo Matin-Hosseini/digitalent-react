@@ -5,7 +5,7 @@ import { MdOutlineClose } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../Logo";
 import { NavMenuTypes } from "../../../types/Header";
-import IconButton from "../../mui-customs/IconButton";
+import { IconButton } from "../../mui/customs";
 
 const SideBarMenu = ({ title, path, megamenu, submenu }: NavMenuTypes) => {
   const [open, setOpen] = useState(false);

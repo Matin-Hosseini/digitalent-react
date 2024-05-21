@@ -4,13 +4,13 @@ import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../contexts/auth";
 import UserMenu from "./UserMenu";
-import IconButton from "../../mui-customs/IconButton";
 import ContainerBox from "../../ContainerBox";
 import CourseCartItem from "../../CourseBox/CourseCartItem";
 import { Menu } from "@mui/material";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { useCoursesContext } from "../../../contexts/courses";
 import { Course } from "../../../types/Course";
+import { IconButton } from "../../mui/customs";
 
 export default function NavOptions() {
   const { isLoggedIn } = useAuthContext();
