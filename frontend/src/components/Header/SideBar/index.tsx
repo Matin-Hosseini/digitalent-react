@@ -1,8 +1,8 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Drawer } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../Logo";
 import { NavMenuTypes } from "../../../types/Header";
 import IconButton from "../../mui-customs/IconButton";
@@ -58,6 +58,12 @@ type SideBarProps = {
 };
 
 export default function SideBar({ show, menus, onHide }: SideBarProps) {
+  const location = useLocation();
+
+  useEffect(() => {
+    onHide();
+  }, [location.pathname]);
+
   return (
     <Drawer
       anchor="right"
