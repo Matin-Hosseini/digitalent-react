@@ -29,7 +29,7 @@ export default function CourseBox({
   short_name,
 }: Course) {
   const { addCourseToWishlist } = useCoursesContext();
-  const priceAfterDiscount: Number = (price * discount) / 100;
+  const priceAfterDiscount: Number = (price * (100 - discount)) / 100;
 
   return (
     <ContainerBox className="group p-3">
@@ -69,11 +69,15 @@ export default function CourseBox({
             <div className="flex items-center gap-2">
               {discount !== 0 && (
                 <span className="relative text-[var(--gray)] text-lg me-4 before:absolute before:content-[''] before:w-full before:h-[0.1rem] before:bg-[var(--red)] before:top-1/2 before:-translate-y-2/4 before:-rotate-12">
-                  {priceAfterDiscount.toLocaleString()} تومان
+                  {price.toLocaleString()} تومان
                 </span>
               )}
               <span className="text-[var(--green)] text-2xl">
-                {price.toLocaleString()} تومان
+                {priceAfterDiscount === 0 ? (
+                  "رایگان"
+                ) : (
+                  <>{priceAfterDiscount.toLocaleString()} تومان</>
+                )}
               </span>
             </div>
           </div>
