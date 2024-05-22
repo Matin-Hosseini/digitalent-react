@@ -7,6 +7,6 @@ const categories: category[] = [
   { id: "jrj", name: "گرافیک", value: "graphic" },
   { id: "esswg", name: "آشپزی", value: "cooking" },
   { id: "lkmef", name: "وب", value: "web" },
-  { id: "fwfw", name: "برنامه نویسی", value: "prgramming" },
+  { id: "fwfw", name: "برنامه نویسی", value: "programming" },
 ];
 export default categories;

@@ -8,14 +8,22 @@ import ThemeProvider from "./contexts/theme";
 import "./index.css";
 import CoursesProvider from "./contexts/courses";
 
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const client = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
-    <CoursesProvider>
-      <ThemeProvider>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      </ThemeProvider>
-    </CoursesProvider>
+    <QueryClientProvider client={client}>
+      <CoursesProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </ThemeProvider>
+      </CoursesProvider>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   </BrowserRouter>
 );

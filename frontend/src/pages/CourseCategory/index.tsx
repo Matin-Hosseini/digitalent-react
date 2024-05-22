@@ -23,9 +23,23 @@ export default function CourseCategory() {
   const isFree = search.get("free") || "";
   const isDiscounted = search.get("discount") || "";
 
+  function containsCategory(categories: any, course: Course) {
+    if (!categories) return true;
+
+    const selectedCategories = new Set(categories.split(","));
+    console.log(selectedCategories);
+
+    if (selectedCategories.has(course.category)) return true;
+
+    return false;
+  }
+
   const applyFilters = (
     courses: any[],
-    { search }: { search: string | null }
+    {
+      search,
+      categories,
+    }: { search?: string | null; categories?: string | null }
   ) => {
     const filteredCourses = [];
 
@@ -36,6 +50,8 @@ export default function CourseCategory() {
       ) {
         continue;
       }
+
+      if (!containsCategory(categories, course)) continue;
 
       filteredCourses.push(course);
     }
@@ -71,6 +87,7 @@ export default function CourseCategory() {
     search.set("free", true.toString());
     setSearch(search);
   };
+
   const handleDiscountClick = () => {
     if (!!isDiscounted) {
       search.delete("discount");
@@ -102,6 +119,12 @@ export default function CourseCategory() {
     }
 
     setSearch(search);
+    setCourses(
+      applyFilters(allCourses, {
+        search: search.get("search"),
+        categories: search.get("cat"),
+      })
+    );
   };
 
   // let query: any = {};

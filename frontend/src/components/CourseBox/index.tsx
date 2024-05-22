@@ -35,7 +35,7 @@ export default function CourseBox({
     <ContainerBox className="group p-3">
       <div className="course-box relative text-xl text-[var(--gray)] transition-all">
         {discount !== 0 && (
-          <div className="absolute grid place-content-center bg-[var(--purple)] text-white w-14 h-14 rounded-full -top-4 -right-4 -rotate-[30deg] group-hover:-rotate-[10deg] transition-all z-50">
+          <div className="absolute grid place-content-center bg-[var(--purple)] text-white w-14 h-14 rounded-full -top-4 -right-4 -rotate-[30deg] group-hover:-rotate-[10deg] transition-all z-40">
             {discount}%
           </div>
         )}

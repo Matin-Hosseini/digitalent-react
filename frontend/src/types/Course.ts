@@ -7,6 +7,7 @@ export type Course = {
   endDiscount?: string;
   students?: number;
   teacher?: String;
+  category: string,
   time?: number;
   rate?: number;
   short_name: string;
