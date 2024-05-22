@@ -1,7 +1,7 @@
 import { category } from "../types/Category";
 
 const categories: category[] = [
-  { id: "fwwq", name: "وردپرس", value: "wordpress" },
+  { id: "fwwq", name: "بلاک چین", value: "blockchain" },
   { id: "fefe", name: "عکاسی", value: "photoshoot" },
   { id: "fevh", name: "سئو", value: "seo" },
   { id: "jrj", name: "گرافیک", value: "graphic" },

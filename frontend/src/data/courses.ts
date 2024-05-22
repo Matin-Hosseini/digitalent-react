@@ -168,6 +168,23 @@ const courses: Course[] = [
     updatedAt: "2023-10-23T15:36:05.243Z",
     __v: 0,
   },
+  {
+    id: "653692e5c65fadb18417h32b",
+    title: " آموزش Design Pattern ها در سی شارپ ",
+    des: "دوره جامع برای یادگیری اصولی جاوااسکریپت",
+    price: 294000,
+    discount: 100,
+    endDiscount: "2024-05-23T00:00:00",
+    students: 2581,
+    teacher: "رضا ملک زاده",
+    category: "programming",
+    time: 5,
+    rate: 4.5,
+    short_name: "5-day-webdesign-challenge",
+    createdAt: "2023-10-23T15:36:05.243Z",
+    updatedAt: "2023-10-23T15:36:05.243Z",
+    __v: 0,
+  },
 ];
 
 export default courses;
