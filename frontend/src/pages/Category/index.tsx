@@ -4,7 +4,7 @@ import ContainerBoxTitle from "../../components/ContainerBoxTitle";
 import { Checkbox, FormControlLabel } from "../../components/mui/customs";
 import CourseBox from "../../components/CourseBox";
 
-import allCourses from "./../../data/courses";
+import allCourses from "../../data/courses";
 import allArticles from "../../data/articles";
 import { useEffect, useState } from "react";
 import { Course } from "../../types/Course";
@@ -17,7 +17,7 @@ import useUrlQueries from "../../hooks/urlQueries";
 import CategoryCheckBoxes from "../../components/CategoryCheckBoxes";
 import BlogBox from "../../components/BlogBox";
 
-export default function CourseCategory() {
+export default function Category() {
   const { isLoggedIn } = useAuthContext();
   const [datas, setDatas] = useState<Course[]>([]);
 

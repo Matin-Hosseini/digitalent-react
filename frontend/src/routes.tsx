@@ -4,9 +4,8 @@ const Home = lazy(() => import("./pages/Home"));
 const NotFound = lazy(() => import("./pages/404"));
 const About = lazy(() => import("./pages/About-us"));
 const Article = lazy(() => import("./pages/Article"));
-const ArticleCategory = lazy(() => import("./pages/ArticleCategory"));
 const Course = lazy(() => import("./pages/Course"));
-const CourseCategory = lazy(() => import("./pages/CourseCategory"));
+const Category = lazy(() => import("./pages/Category"));
 const Login = lazy(() => import("./pages/Login"));
 const NotCompleted = lazy(() => import("./pages/NotCompleted"));
 const SignUp = lazy(() => import("./pages/SignUp"));
@@ -19,16 +18,19 @@ const UserDashBoard = lazy(() => import("./pages/User-panel/Dashboard"));
 const EditAccount = lazy(() => import("./pages/User-panel/EditAccount"));
 const Tickets = lazy(() => import("./pages/User-panel/Tickets"));
 const AddTicket = lazy(() => import("./pages/User-panel/Tickets/AddTicket"));
+const ContactUs = lazy(() => import("./pages/Contact-us/index"))
 
 const routes: any = [
   { path: "/", element: <Home /> },
   { path: "/about", element: <About /> },
   { path: "/login", element: <Login /> },
   { path: "/sign-up", element: <SignUp /> },
+  { path: "/contact-us", element: <ContactUs /> },
+
   { path: "/course/:short_name", element: <Course /> },
-  { path: "/courses", element: <CourseCategory /> },
+  { path: "/courses", element: <Category /> },
   { path: "/article/:short_name", element: <Article /> },
-  { path: "/articles", element: <CourseCategory /> },
+  { path: "/articles", element: <Category /> },
   { path: "/not-completed", element: <NotCompleted /> },
   { path: "*", element: <NotFound /> },
 
