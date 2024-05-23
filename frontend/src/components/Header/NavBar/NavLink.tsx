@@ -35,7 +35,7 @@ export default function NavLink({
           } gap-3 p-4 transition-all bg-[var(--section-bg)] max-h-64 border border-t-2 border-[var(--red)] shadow-lg rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible`}
         >
           {megamenu.map((menu: NavMegamenu) => (
-            <Link to={"/"} key={menu.id}>
+            <Link to={path} key={menu.id}>
               {menu.title}
             </Link>
           ))}
@@ -47,7 +47,7 @@ export default function NavLink({
           className={`absolute top-full right-0 z-50 flex flex-col flex-wrap items-start w-[30rem] gap-3 p-4 transition-all bg-[var(--section-bg)] max-h-64 border border-t-2 border-[var(--red)] shadow-lg rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible`}
         >
           {submenu.map((menu: NavSubMenu) => (
-            <Link to={"/"} key={menu.id}>
+            <Link to={menu.path} key={menu.id}>
               {menu.title}
             </Link>
           ))}
