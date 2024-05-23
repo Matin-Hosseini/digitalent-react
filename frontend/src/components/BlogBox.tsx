@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import ContainerBox from "./ContainerBox";
-import { Article } from "../types/Article";
-import profilePic from './../assets/images/profile.jpg'
+// import { Article } from "../types/Article";
+import profilePic from "./../assets/images/profile.jpg";
 
 //react-icons
 
 export default function BlogBox({
   cover,
   title,
-  subtitle,
+  des,
   author,
   short_name,
   createdAt,
-}: Article) {
+}: any) {
   return (
     <>
       <ContainerBox className="p-3">
@@ -25,7 +25,7 @@ export default function BlogBox({
             <Link to={`/article/${short_name}`}>{title}</Link>
           </h2>
           <p className="text-base text-[var(--gray)] mb-5 line-clamp-3 h-[4.5rem]">
-            {subtitle}
+            {des}
           </p>
           <div className="flex justify-end">
             <div className="flex items-center gap-3">

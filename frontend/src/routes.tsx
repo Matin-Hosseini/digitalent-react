@@ -28,7 +28,7 @@ const routes: any = [
   { path: "/course/:short_name", element: <Course /> },
   { path: "/courses", element: <CourseCategory /> },
   { path: "/article/:short_name", element: <Article /> },
-  { path: "/articles", element: <ArticleCategory /> },
+  { path: "/articles", element: <CourseCategory /> },
   { path: "/not-completed", element: <NotCompleted /> },
   { path: "*", element: <NotFound /> },
 

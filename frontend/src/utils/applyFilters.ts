@@ -15,7 +15,7 @@ function applyFilters(entityArray: any[], queries: any) {
   for (const entity of entityArray) {
     if (
       queries.search &&
-      !entity.title.toLowerCase().includes(queries.search.toLowerCase())
+      !entity.title?.toLowerCase().includes(queries.search?.toLowerCase())
     ) {
       continue;
     }

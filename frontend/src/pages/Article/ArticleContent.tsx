@@ -85,7 +85,7 @@ export default function Articlecontent({ article }: { article: Article }) {
         </p>
         <h2 className="article-content__title">موارد لازم نمیدونم چی چی</h2>
         <ul className="article-content__list">
-          <li>این اولین مورد کسشریه که به ذهنم می رسه</li>
+          <li>این اولین موردیه که به ذهنم می رسه</li>
           <li>این واسهی متن دوم می رسه</li>
           <li>حالا اینم برای اینکه یذرع بخوام تفاوت قایل بشم</li>
           <li>اینم به خاطر گل روی ماه تو عشقم</li>
